@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=3 uid="uid://ccxndyvr4xqkq"]
+
+[ext_resource type="Script" path="res://objects/characters/playable/GenericController.cs" id="1_awjjb"]
+[ext_resource type="Texture2D" uid="uid://cxbb3kbuvfrwn" path="res://assets/sprites/characters/playable/jario/spr_jario_walk_down.png" id="1_w1st2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bl2kg"]
+atlas = ExtResource("1_w1st2")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvba7"]
+atlas = ExtResource("1_w1st2")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qony"]
+atlas = ExtResource("1_w1st2")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_46uem"]
+atlas = ExtResource("1_w1st2")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_idudg"]
+atlas = ExtResource("1_w1st2")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6rhw5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bl2kg")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jvba7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qony")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46uem")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_idudg")
+}],
+"loop": true,
+"name": &"walk_down",
+"speed": 8.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0iwcb"]
+size = Vector2(14, 42)
+
+[node name="GenericController" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_awjjb")
+
+[node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_6rhw5")
+animation = &"idle"
+autoplay = "idle"
+frame_progress = 0.849628
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_0iwcb")
