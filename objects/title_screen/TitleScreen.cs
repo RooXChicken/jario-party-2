@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class SplashScreen : Node2D
+public partial class TitleScreen : Node2D
 {
 	private AnimationPlayer anim;
 	private AudioStreamPlayer2D titleThemePlayer;
