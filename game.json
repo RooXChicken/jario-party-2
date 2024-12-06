@@ -1,0 +1,28 @@
+{
+  "game": {
+    "id": 4,
+    "turn_total": 10,
+    "current_turn": 5
+  },
+  "player_data": {
+    "count": 3,
+    "player_0": {
+      "id": 0,
+      "character_id": 0,
+      "coins": 2,
+      "stars": 0
+    },
+    "player_1": {
+      "id": 1,
+      "character_id": 3,
+      "coins": 10,
+      "stars": 20
+    },
+    "player_2": {
+      "id": 2,
+      "character_id": 100,
+      "coins": -1,
+      "stars": 8
+    }
+  }
+}

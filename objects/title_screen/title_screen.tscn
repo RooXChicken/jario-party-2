@@ -1,5 +1,13 @@
-[gd_scene format=3 uid="uid://b0bmflwfs5tm8"]
+[gd_scene load_steps=3 format=3 uid="uid://b0bmflwfs5tm8"]
+
+[ext_resource type="Script" path="res://objects/title_screen/TitleScreen.cs" id="1_m0t22"]
+[ext_resource type="AudioStream" uid="uid://dq3eiv771115v" path="res://assets/music/title_screen.wav" id="2_2n82r"]
 
 [node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_m0t22")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BackgroundSprite" type="Sprite2D" parent="."]
+
+[node name="TitleTheme" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_2n82r")
+autoplay = true
