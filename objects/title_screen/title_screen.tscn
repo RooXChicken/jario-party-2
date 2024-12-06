@@ -96,7 +96,7 @@ tracks/1/path = NodePath("..")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -146,7 +146,7 @@ tracks/5/path = NodePath("../LogoSprite:material:shader_parameter/slide")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(3.5, 4.4),
+"times": PackedFloat32Array(2.9, 4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [0.0, 1.1]
