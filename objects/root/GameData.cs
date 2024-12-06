@@ -4,6 +4,11 @@ using Godot;
 
 public class GameData
 {
+    /*
+        Represents the master map data.
+        Stores map id and turn information
+    */
+
     public int id { get; private set; }
 
     public int turnTotal { get; private set; }
@@ -41,7 +46,8 @@ public class GameData
 
     public void save(Utf8JsonWriter writer)
     {
-        writer.WriteStartObject("game");
+        //start object game data
+        writer.WriteStartObject("game_data");
 
         writer.WriteNumber("id", id);
         writer.WriteNumber("turn_total", turnTotal);

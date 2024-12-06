@@ -1,5 +1,5 @@
 {
-  "game": {
+  "game_data": {
     "id": 4,
     "turn_total": 10,
     "current_turn": 5

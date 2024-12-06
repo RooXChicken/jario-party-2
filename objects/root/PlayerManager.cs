@@ -4,6 +4,11 @@ using Godot;
 
 public class PlayerManager
 {
+    /*
+        Master player manager
+        Contains all player data
+    */
+
     public int numPlayers { get; private set; }
     public List<PlayerData> playerData;
 
@@ -26,8 +31,11 @@ public class PlayerManager
                         reader.Read();
                         numPlayers = reader.GetInt32();
 
+                        //if our count is received, the next data is guaranteed to be player data ( unless somebody modified the file. #notmyproblem )
+
                         for(int i = 0; i < numPlayers; i++)
                         {
+                            //load player data
                             PlayerData _data = new PlayerData(0, false, 0);
                             _data.load(ref reader);
                             playerData.Add(_data);
@@ -43,6 +51,7 @@ public class PlayerManager
 
     public void save(Utf8JsonWriter writer)
     {
+        //start player_data object
         writer.WriteStartObject("player_data");
 
         writer.WriteNumber("count", numPlayers);
@@ -54,6 +63,7 @@ public class PlayerManager
 
     public override string ToString()
     {
+        //fancy formatting for debugging
         string value = "PlayerManager: {\n";
         for(int i = 0; i < numPlayers; i++)
             value += playerData[i].ToString() + "\n";

@@ -3,6 +3,11 @@ using Godot;
 
 public class PlayerData
 {
+    /*
+        Represents a player's data
+        Contains all necessary info on the player
+    */
+
     public int id { get; private set; } //player slot (0 -> 3)
     public bool ai { get; private set; } //false if real player
 
@@ -13,7 +18,7 @@ public class PlayerData
     public PlayerData(int _id, bool _ai, int _characterID)
     {
         id = _id;
-        ai = _ai;
+        ai = _ai; //not jario party using ai :pensive:
 
         characterID = _characterID;
     }
@@ -46,6 +51,7 @@ public class PlayerData
 
     public void save(Utf8JsonWriter writer, int index)
     {
+        //index passed in from player manager. just used for file saving, as the id is saved/read from disk
         writer.WriteStartObject("player_" + index);
 
         writer.WriteNumber("id", id);
