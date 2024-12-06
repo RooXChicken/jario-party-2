@@ -11,8 +11,8 @@ public class GameManager
         Mainly saving/loading
     */
 
-    public PlayerManager playerManager { get; private set; }
-    public GameData gameData { get; private set; }
+    public static PlayerManager playerManager { get; private set; }
+    public static GameData gameData { get; private set; }
 
     public GameManager()
     {
@@ -21,14 +21,14 @@ public class GameManager
         gameData = new GameData(0, 0);
     }
 
-    public void initializeGame(int _numPlayers, List<PlayerData> _playerData, GameData _gameData)
+    public static void initializeGame(int _numPlayers, List<PlayerData> _playerData, GameData _gameData)
     {
         //load the game from the specified paramaters (to be used after game setup with frog)
         playerManager = new PlayerManager(_numPlayers, _playerData);
         gameData = _gameData;
     }
 
-    public void loadGame(string path)
+    public static void loadGame(string path)
     {
         //load the file
         byte[] fs = File.ReadAllBytes(path);
@@ -53,7 +53,7 @@ public class GameManager
         }
     }
 
-    public void saveGame(string path)
+    public static void saveGame(string path)
     {
         //open the file (writer)
         using FileStream fs = File.OpenWrite(path);

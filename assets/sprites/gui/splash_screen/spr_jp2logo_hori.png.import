@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rg4afm652w3o"
-path="res://.godot/imported/spr_jp2logo_vert.png-8ad9a60a07ce8e7b4c2f1a3aa653b388.ctex"
+uid="uid://b0cbmy4s7s862"
+path="res://.godot/imported/spr_jp2logo_hori.png-a0755f151d36a4fa013234555e163519.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/gui/title_screen/spr_jp2logo_vert.png"
-dest_files=["res://.godot/imported/spr_jp2logo_vert.png-8ad9a60a07ce8e7b4c2f1a3aa653b388.ctex"]
+source_file="res://assets/sprites/gui/splash_screen/spr_jp2logo_hori.png"
+dest_files=["res://.godot/imported/spr_jp2logo_hori.png-a0755f151d36a4fa013234555e163519.ctex"]
 
 [params]
 
