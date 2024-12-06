@@ -28,7 +28,7 @@ public class PlayerManager
 
                         for(int i = 0; i < numPlayers; i++)
                         {
-                            PlayerData _data = new PlayerData(0, 0);
+                            PlayerData _data = new PlayerData(0, false, 0);
                             _data.load(ref reader);
                             playerData.Add(_data);
                         }
