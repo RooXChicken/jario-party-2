@@ -30,9 +30,9 @@ public partial class TitleScreen : Node2D
 		}
 	}
 
-	public void playSong()
+	public void playLoopingShine()
 	{
-		titleThemePlayer.Play();
+		anim.Play("logo_shine_loop");
 	}
 
 	// public void LoadTitle()

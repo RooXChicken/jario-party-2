@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://ccxndyvr4xqkq"]
 
 [ext_resource type="Script" path="res://objects/characters/playable/GenericController.cs" id="1_awjjb"]
-[ext_resource type="Texture2D" uid="uid://cxbb3kbuvfrwn" path="res://assets/sprites/characters/playable/jario/spr_jario_walk_down.png" id="1_w1st2"]
+[ext_resource type="Texture2D" uid="uid://cxbb3kbuvfrwn" path="res://assets/sprites/characters/playable/jario/jario_walk_down.png" id="1_w1st2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bl2kg"]
 atlas = ExtResource("1_w1st2")
