@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxbb3kbuvfrwn"
-path="res://.godot/imported/spr_jario_walk_down.png-f9f9dda6f8b7581f4f24c95a7f9bab1b.ctex"
+uid="uid://blio474nu1wfn"
+path="res://.godot/imported/jario_walk_up.png-b9bbc5c1b424be3bf69d37f0e8bb1baf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/characters/playable/jario/spr_jario_walk_down.png"
-dest_files=["res://.godot/imported/spr_jario_walk_down.png-f9f9dda6f8b7581f4f24c95a7f9bab1b.ctex"]
+source_file="res://assets/sprites/characters/playable/jario/jario_walk_up.png"
+dest_files=["res://.godot/imported/jario_walk_up.png-b9bbc5c1b424be3bf69d37f0e8bb1baf.ctex"]
 
 [params]
 
