@@ -9,53 +9,53 @@
 atlas = ExtResource("1_w1st2")
 region = Rect2(0, 0, 32, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jvba7"]
-atlas = ExtResource("1_w1st2")
-region = Rect2(0, 0, 32, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qony"]
 atlas = ExtResource("1_w1st2")
 region = Rect2(32, 0, 32, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_46uem"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jvba7"]
 atlas = ExtResource("1_w1st2")
-region = Rect2(64, 0, 32, 48)
+region = Rect2(0, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idudg"]
 atlas = ExtResource("1_w1st2")
 region = Rect2(96, 0, 32, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_32gqp"]
-atlas = ExtResource("3_gu3hc")
-region = Rect2(32, 0, 32, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_46uem"]
+atlas = ExtResource("1_w1st2")
+region = Rect2(64, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1yhi"]
 atlas = ExtResource("3_gu3hc")
 region = Rect2(0, 0, 32, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e6cix"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_32gqp"]
 atlas = ExtResource("3_gu3hc")
-region = Rect2(96, 0, 32, 48)
+region = Rect2(32, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c01hk"]
 atlas = ExtResource("3_gu3hc")
 region = Rect2(64, 0, 32, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2i18k"]
-atlas = ExtResource("3_6gnxu")
-region = Rect2(0, 0, 32, 48)
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6cix"]
+atlas = ExtResource("3_gu3hc")
+region = Rect2(96, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sba7q"]
 atlas = ExtResource("3_6gnxu")
 region = Rect2(32, 0, 32, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_6e4if"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i18k"]
 atlas = ExtResource("3_6gnxu")
-region = Rect2(64, 0, 32, 48)
+region = Rect2(0, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_it4cg"]
 atlas = ExtResource("3_6gnxu")
 region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e4if"]
+atlas = ExtResource("3_6gnxu")
+region = Rect2(64, 0, 32, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6rhw5"]
 animations = [{
@@ -69,54 +69,54 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jvba7")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_8qony")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_46uem")
+"texture": SubResource("AtlasTexture_jvba7")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_idudg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_46uem")
 }],
 "loop": true,
 "name": &"walk_down",
-"speed": 8.0
+"speed": 6.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_32gqp")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_v1yhi")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_e6cix")
+"texture": SubResource("AtlasTexture_32gqp")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_c01hk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6cix")
 }],
 "loop": true,
 "name": &"walk_left",
-"speed": 8.0
+"speed": 6.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2i18k")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_sba7q")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_6e4if")
+"texture": SubResource("AtlasTexture_2i18k")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_it4cg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e4if")
 }],
 "loop": true,
 "name": &"walk_up",
-"speed": 8.0
+"speed": 6.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0iwcb"]
@@ -134,6 +134,7 @@ y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_6rhw5")
 animation = &"walk_left"
 autoplay = "idle"
+frame_progress = 0.0208758
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 17)

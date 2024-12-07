@@ -1,0 +1,63 @@
+[gd_resource type="AudioStreamInteractive" load_steps=6 format=3 uid="uid://bpp3bh1uqwqnw"]
+
+[ext_resource type="AudioStream" uid="uid://bq1e248j41cgg" path="res://assets/music/menu_melody/menu1.wav" id="1_n6kkj"]
+[ext_resource type="AudioStream" uid="uid://dta304a8qf7d2" path="res://assets/music/menu_melody/menu2.wav" id="2_0na4q"]
+[ext_resource type="AudioStream" uid="uid://btj02nid0ytgr" path="res://assets/music/menu_melody/menu3.wav" id="3_tab2y"]
+[ext_resource type="AudioStream" uid="uid://dcop3n42tl1rx" path="res://assets/music/menu_melody/menu4.wav" id="4_kyr2d"]
+[ext_resource type="AudioStream" uid="uid://b5vsilp0pttev" path="res://assets/music/menu_melody/menufull.wav" id="5_vmiw7"]
+
+[resource]
+clip_count = 5
+clip_0/name = &"Menu 1"
+clip_0/stream = ExtResource("1_n6kkj")
+clip_0/auto_advance = 0
+clip_1/name = &"Menu 2"
+clip_1/stream = ExtResource("2_0na4q")
+clip_1/auto_advance = 0
+clip_2/name = &"Menu 3"
+clip_2/stream = ExtResource("3_tab2y")
+clip_2/auto_advance = 0
+clip_3/name = &"Menu 4"
+clip_3/stream = ExtResource("4_kyr2d")
+clip_3/auto_advance = 0
+clip_4/name = &"Menu Full"
+clip_4/stream = ExtResource("5_vmiw7")
+clip_4/auto_advance = 0
+_transitions = {
+Vector2i(-1, -1): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(0, 0): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(1, 1): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(2, 2): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(3, 3): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 0
+},
+Vector2i(4, 4): {
+"fade_beats": 1,
+"fade_mode": 4,
+"from_time": 0,
+"to_time": 0
+}
+}

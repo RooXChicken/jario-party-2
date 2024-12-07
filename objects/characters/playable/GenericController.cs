@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 public partial class GenericController : RigidBody2D
 {
 	private AnimatedSprite2D playerSprite;
-	private float moveSpeed = 150;
+	private float moveSpeed = 85;
 
 	private Vector2 joyAxis = new Vector2(0, 0);
 
@@ -22,6 +22,11 @@ public partial class GenericController : RigidBody2D
 		{
 
 		}
+
+		if(Input.IsActionPressed("menu"))
+			moveSpeed = 150;
+		else
+			moveSpeed = 85;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -29,7 +34,7 @@ public partial class GenericController : RigidBody2D
 		joyAxis = new Vector2(Input.GetJoyAxis(0, JoyAxis.LeftX), Input.GetJoyAxis(0, JoyAxis.LeftY));
 		float distanceMoved = Math.Abs(joyAxis.X) + Math.Abs(joyAxis.Y);
 
-		if(distanceMoved < 0.1)
+		if(distanceMoved < 0.5)
 			joyAxis = new Vector2(0, 0);
 
 		ApplyCentralImpulse(joyAxis*moveSpeed);
@@ -37,8 +42,8 @@ public partial class GenericController : RigidBody2D
 		processAnimations();
 
 		playerSprite.SpeedScale = distanceMoved;
-		if(distanceMoved < 0.1)
-			playerSprite.Frame = 0;
+		if(distanceMoved < 0.5)
+			playerSprite.Frame = 1;
 	}
 
 	public void processAnimations()

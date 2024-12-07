@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://cemiexldkunah"]
+
+[ext_resource type="AudioStream" uid="uid://bpp3bh1uqwqnw" path="res://objects/main_menu/MenuStream.tres" id="1_jurpa"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_jurpa")
+autoplay = true
