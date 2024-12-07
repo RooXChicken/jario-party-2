@@ -1,7 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://ccxndyvr4xqkq"]
+[gd_scene load_steps=20 format=3 uid="uid://ccxndyvr4xqkq"]
 
 [ext_resource type="Script" path="res://objects/characters/playable/GenericController.cs" id="1_awjjb"]
 [ext_resource type="Texture2D" uid="uid://cxbb3kbuvfrwn" path="res://assets/sprites/characters/playable/jario/jario_walk_down.png" id="1_w1st2"]
+[ext_resource type="Texture2D" uid="uid://blio474nu1wfn" path="res://assets/sprites/characters/playable/jario/jario_walk_up.png" id="3_6gnxu"]
+[ext_resource type="Texture2D" uid="uid://ccpjxap737hat" path="res://assets/sprites/characters/playable/jario/jario_walk_side.png" id="3_gu3hc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bl2kg"]
 atlas = ExtResource("1_w1st2")
@@ -21,6 +23,38 @@ region = Rect2(64, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idudg"]
 atlas = ExtResource("1_w1st2")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32gqp"]
+atlas = ExtResource("3_gu3hc")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1yhi"]
+atlas = ExtResource("3_gu3hc")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6cix"]
+atlas = ExtResource("3_gu3hc")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c01hk"]
+atlas = ExtResource("3_gu3hc")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2i18k"]
+atlas = ExtResource("3_6gnxu")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sba7q"]
+atlas = ExtResource("3_6gnxu")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6e4if"]
+atlas = ExtResource("3_6gnxu")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_it4cg"]
+atlas = ExtResource("3_6gnxu")
 region = Rect2(96, 0, 32, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6rhw5"]
@@ -49,21 +83,58 @@ animations = [{
 "loop": true,
 "name": &"walk_down",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32gqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1yhi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e6cix")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c01hk")
+}],
+"loop": true,
+"name": &"walk_left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2i18k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sba7q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6e4if")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_it4cg")
+}],
+"loop": true,
+"name": &"walk_up",
+"speed": 8.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0iwcb"]
-size = Vector2(14, 42)
+size = Vector2(14, 14)
 
-[node name="GenericController" type="CharacterBody2D"]
-motion_mode = 1
+[node name="GenericController" type="RigidBody2D"]
+gravity_scale = 0.0
+lock_rotation = true
+continuous_cd = 1
+linear_damp = 25.0
 script = ExtResource("1_awjjb")
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_6rhw5")
-animation = &"idle"
+animation = &"walk_left"
 autoplay = "idle"
-frame_progress = 0.849628
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 3)
+position = Vector2(0, 17)
 shape = SubResource("RectangleShape2D_0iwcb")
