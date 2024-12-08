@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bl4luc6ufja47" path="res://assets/sprites/gui/title_screen/title_screen_bg.png" id="4_je1yw"]
 [ext_resource type="Texture2D" uid="uid://bjdgysowgl60f" path="res://assets/sprites/gui/title_screen/jp2logo_small.png" id="7_80bjg"]
 [ext_resource type="PackedScene" uid="uid://cm003mc4wqrt1" path="res://objects/generic/gui/prompts/button_prompt.tscn" id="10_4ewj2"]
-[ext_resource type="Theme" uid="uid://cjqm3b2h667sh" path="res://assets/gui_theme.tres" id="11_osgcv"]
+[ext_resource type="Theme" uid="uid://bcuw0mka8mj25" path="res://assets/gui_theme.tres" id="11_osgcv"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_vsqa0"]
 clip_count = 2

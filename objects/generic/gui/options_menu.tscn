@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmgdevdoo7hh2"]
 
-[ext_resource type="Theme" uid="uid://cjqm3b2h667sh" path="res://assets/gui_theme.tres" id="1_0lciu"]
+[ext_resource type="Theme" uid="uid://bcuw0mka8mj25" path="res://assets/gui_theme.tres" id="1_0lciu"]
 [ext_resource type="Script" path="res://objects/generic/gui/OptionsMenu.cs" id="3_v64cr"]
 
 [node name="OptionsMenu" type="Node2D"]

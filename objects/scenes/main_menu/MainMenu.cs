@@ -4,7 +4,7 @@ using System;
 public partial class MainMenu : Node2D
 {
 
-	// I am not entirely sure if "menufull" is any different from "menu4" but they were listed separately so
+	// I am not entirely sure if "menufull" is any different from "menu4" but they were listed separately so - D
 
 	private AudioStreamPlayer player;
 	private byte menuStage = 1;
