@@ -41,6 +41,8 @@ public partial class SettingsManager : Node2D
 			case 0: gameManager.GetWindow().Size = new Vector2I(640, 360); break;
 			case 1: gameManager.GetWindow().Size = new Vector2I(1280, 720); break;
 			case 2: gameManager.GetWindow().Size = new Vector2I(1920, 1080); break;
+			case 3: gameManager.GetWindow().Size = new Vector2I(2560, 1440); break;
+			case 4: gameManager.GetWindow().Size = new Vector2I(3840, 2160); break;
 		}
 
 		saveSettings("options.cfg");
