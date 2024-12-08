@@ -1,13 +1,33 @@
-[gd_scene load_steps=15 format=3 uid="uid://c5q4j8gnrcue5"]
+[gd_scene load_steps=17 format=3 uid="uid://c5q4j8gnrcue5"]
 
 [ext_resource type="Texture2D" uid="uid://c5mcmk07mex4g" path="res://assets/sprites/gui/splash_screen/spr_splash_text.png" id="1_kfsxx"]
 [ext_resource type="Script" path="res://objects/title_screen/TitleScreen.cs" id="1_vbnw0"]
+[ext_resource type="AudioStream" uid="uid://wfdvbux60tbq" path="res://assets/music/title_screen_intro.wav" id="2_w0w5n"]
 [ext_resource type="Texture2D" uid="uid://280g5hty6bcn" path="res://assets/sprites/gui/splash_screen/spr_jarioparty1_HD.png" id="2_wd4i1"]
 [ext_resource type="Shader" path="res://assets/shaders/title_screen/bg_scroll.gdshader" id="3_dhp8x"]
 [ext_resource type="Shader" path="res://assets/shaders/title_screen/logo_shine.gdshader" id="3_trvis"]
+[ext_resource type="AudioStream" uid="uid://btv2ohbpn23i3" path="res://assets/music/title_screen_loop.wav" id="3_v774u"]
 [ext_resource type="Texture2D" uid="uid://bl4luc6ufja47" path="res://assets/sprites/gui/title_screen/title_screen_bg.png" id="4_je1yw"]
-[ext_resource type="AudioStream" uid="uid://dq3eiv771115v" path="res://assets/music/title_screen.wav" id="6_4qpmy"]
 [ext_resource type="Texture2D" uid="uid://bjdgysowgl60f" path="res://assets/sprites/gui/title_screen/jp2logo_small.png" id="7_80bjg"]
+
+[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_vsqa0"]
+clip_count = 2
+clip_0/name = &"Title Screen Intro"
+clip_0/stream = ExtResource("2_w0w5n")
+clip_0/auto_advance = 1
+clip_0/next_clip = 1
+clip_1/name = &"Title Screen Loop"
+clip_1/stream = ExtResource("3_v774u")
+clip_1/auto_advance = 1
+clip_1/next_clip = 1
+_transitions = {
+Vector2i(0, 1): {
+"fade_beats": 1,
+"fade_mode": 0,
+"from_time": 0,
+"to_time": 0
+}
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_64ouc"]
 shader = ExtResource("3_dhp8x")
@@ -155,7 +175,7 @@ tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.3, 0.9, 1.56667, 3.43333),
+"times": PackedFloat32Array(0.3, 0.9, 1.56667, 3.66667),
 "transitions": PackedFloat32Array(0.406126, 1, 8.5, 1),
 "update": 0,
 "values": [Vector2(0, 0), Vector2(1, 1), Vector2(1, 1), Vector2(15, 15)]
@@ -167,7 +187,7 @@ tracks/1/path = NodePath(".:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(1.56667, 3.43333),
+"times": PackedFloat32Array(1.56667, 3.66667),
 "transitions": PackedFloat32Array(8.5, 1),
 "update": 0,
 "values": [Vector2(320, 180), Vector2(700, 350)]
@@ -216,7 +236,7 @@ tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(4.96666, 5.66666),
-"transitions": PackedFloat32Array(-2, 1),
+"transitions": PackedFloat32Array(0.5, 1),
 "update": 0,
 "values": [Vector2(253, -57), Vector2(253, 57)]
 }
@@ -239,7 +259,7 @@ tracks/7/path = NodePath("../BGScroll:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(2.43333, 3.7),
+"times": PackedFloat32Array(3.1, 4.36667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -270,7 +290,7 @@ _data = {
 script = ExtResource("1_vbnw0")
 
 [node name="TitleTheme" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("6_4qpmy")
+stream = SubResource("AudioStreamInteractive_vsqa0")
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 640.0
