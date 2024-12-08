@@ -15,7 +15,7 @@ public partial class TitleScreen : Node2D
 		titleThemePlayer = GetNode<AudioStreamPlayer2D>("TitleTheme");
 
 		//preload the nex scene in the background
-		ResourceLoader.LoadThreadedRequest("res://objects/scenes/game_setup/game_setup.tscn");
+		ResourceLoader.LoadThreadedRequest("res://objects/scenes/main_menu/main_menu.tscn");
 	}
 
 	public override void _Process(double delta)
@@ -31,7 +31,7 @@ public partial class TitleScreen : Node2D
 
 		if(Input.IsActionJustPressed("back"))
 		{
-			Node scene = ((PackedScene)ResourceLoader.LoadThreadedGet("res://objects/scenes/game_setup/game_setup.tscn")).Instantiate();
+			Node scene = ((PackedScene)ResourceLoader.LoadThreadedGet("res://objects/scenes/main_menu/main_menu.tscn")).Instantiate();
 			scene.GetNode<Sprite2D>("TransitionGroup/PreviousScreenSprite").Texture = ImageTexture.CreateFromImage(GetViewport().GetTexture().GetImage());
 
 			GetParent().AddChild(scene);

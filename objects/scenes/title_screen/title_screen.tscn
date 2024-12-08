@@ -29,10 +29,6 @@ Vector2i(0, 1): {
 }
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_64ouc"]
-shader = ExtResource("3_dhp8x")
-shader_parameter/speed = 0.05
-
 [sub_resource type="Animation" id="Animation_bdxlg"]
 length = 0.001
 tracks/0/type = "value"
@@ -282,6 +278,10 @@ _data = {
 "splash_biggify": SubResource("Animation_ldcjt")
 }
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_64ouc"]
+shader = ExtResource("3_dhp8x")
+shader_parameter/speed = 0.05
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ugtuq"]
 shader = ExtResource("3_trvis")
 shader_parameter/slide = 0.0
@@ -291,6 +291,13 @@ script = ExtResource("1_vbnw0")
 
 [node name="TitleTheme" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamInteractive_vsqa0")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../SplashSprite")
+libraries = {
+"": SubResource("AnimationLibrary_knovq")
+}
+autoplay = "splash_biggify"
 
 [node name="Background" type="ColorRect" parent="."]
 offset_right = 640.0
@@ -315,13 +322,6 @@ texture = ExtResource("1_kfsxx")
 modulate = Color(1, 1, 1, 0)
 position = Vector2(320, 520)
 texture = ExtResource("2_wd4i1")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../SplashSprite")
-libraries = {
-"": SubResource("AnimationLibrary_knovq")
-}
-autoplay = "splash_biggify"
 
 [node name="LogoSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_ugtuq")
