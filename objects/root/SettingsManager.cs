@@ -133,7 +133,7 @@ public partial class SettingsManager : Node2D
 	public void saveSettings(string path)
 	{
 		//open the file (writer)
-		using FileStream fs = File.OpenWrite(path);
+		using FileStream fs = new FileStream(path, FileMode.Create);
 		using var writer = new Utf8JsonWriter(fs, new JsonWriterOptions { Indented = true });
 
 		//begin root object

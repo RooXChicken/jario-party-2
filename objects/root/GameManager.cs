@@ -81,7 +81,7 @@ public partial class GameManager : Node2D
 	public static void saveGame(string path)
 	{
 		//open the file (writer)
-		using MemoryStream fs = new MemoryStream();
+		using FileStream fs = File.OpenWrite(path);
 		using var writer = new Utf8JsonWriter(fs, new JsonWriterOptions { Indented = true });
 
 		//begin root object
@@ -96,7 +96,7 @@ public partial class GameManager : Node2D
 
 		//flush and close file
 		writer.Flush();
-		File.WriteAllText(path, writer.ToString());
+		fs.Flush();
 
 		writer.Dispose();
 		fs.Close();
