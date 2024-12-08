@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cemiexldkunah"]
+[gd_scene load_steps=14 format=3 uid="uid://cemiexldkunah"]
 
 [ext_resource type="Script" path="res://objects/scenes/main_menu/MainMenu.cs" id="1_uooec"]
 [ext_resource type="AudioStream" uid="uid://d1f18tiqi1lxh" path="res://assets/music/menu_melody/menu1.wav" id="2_jlhs4"]
@@ -6,6 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://idlg57rmjxek" path="res://assets/music/menu_melody/menu3.wav" id="4_qsq04"]
 [ext_resource type="AudioStream" uid="uid://dxdxa3jf7ngts" path="res://assets/music/menu_melody/menu4.wav" id="5_30c8q"]
 [ext_resource type="AudioStream" uid="uid://d711dwftgqr5" path="res://assets/music/menu_melody/menu5.wav" id="6_j57ih"]
+[ext_resource type="Texture2D" uid="uid://280g5hty6bcn" path="res://assets/sprites/gui/splash_screen/spr_jarioparty1_HD.png" id="7_enlsy"]
+[ext_resource type="Texture2D" uid="uid://dia83m52molrt" path="res://assets/sprites/gui/title_screen/jariomask.png" id="8_20bbh"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_kda78"]
 clip_count = 5
@@ -63,9 +65,87 @@ Vector2i(4, 4): {
 }
 }
 
+[sub_resource type="Animation" id="Animation_1ptyb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionGroup/CircleTransitionMask:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sosxi"]
+resource_name = "circle_transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionGroup/CircleTransitionMask:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.406126, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.2, 1.2)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"removeTransition"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lixmr"]
+_data = {
+"RESET": SubResource("Animation_1ptyb"),
+"circle_transition": SubResource("Animation_sosxi")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s88y2"]
+blend_mode = 3
+
 [node name="MainMenu" type="Node2D"]
 script = ExtResource("1_uooec")
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_kda78")
 autoplay = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lixmr")
+}
+autoplay = "circle_transition"
+
+[node name="TransitionGroup" type="CanvasGroup" parent="."]
+
+[node name="Background" type="ColorRect" parent="TransitionGroup"]
+visible = false
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.937255, 0.894118, 0.690196, 1)
+
+[node name="PreviousScreenSprite" type="Sprite2D" parent="TransitionGroup"]
+position = Vector2(320, 180)
+texture = ExtResource("7_enlsy")
+
+[node name="CircleTransitionMask" type="Sprite2D" parent="TransitionGroup"]
+material = SubResource("CanvasItemMaterial_s88y2")
+position = Vector2(320, 180)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("8_20bbh")
+flip_h = true

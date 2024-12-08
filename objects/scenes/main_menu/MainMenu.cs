@@ -34,4 +34,9 @@ public partial class MainMenu : Node2D
 		}
 		
 	}
+
+	public void removeTransition()
+	{
+		GetNode("TransitionGroup").QueueFree();
+	}
 }
