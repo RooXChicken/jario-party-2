@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cm003mc4wqrt1"]
+
+[ext_resource type="Script" path="res://objects/generic/gui/prompts/ButtonPrompt.cs" id="1_4utip"]
+[ext_resource type="SpriteFrames" uid="uid://b1h56x7gvsr6d" path="res://assets/sprites/gui/prompts/sprite_frames/button_b.tres" id="2_an2jj"]
+
+[node name="ButtonPrompt" type="Node2D"]
+script = ExtResource("1_4utip")
+metadata/button = ""
+
+[node name="ButtonSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_an2jj")
+autoplay = "default"
