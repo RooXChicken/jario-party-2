@@ -96,8 +96,6 @@ public partial class GameManager : Node2D
 
 		//flush and close file
 		writer.Flush();
-		fs.Flush();
-
 		File.WriteAllText(path, writer.ToString());
 
 		writer.Dispose();
