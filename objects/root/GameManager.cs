@@ -27,7 +27,7 @@ public partial class GameManager : Node2D
 
 	public override void _EnterTree()
 	{
-        settingsManager.fullscreenToggle(settingsManager.fullscreen, false);
+		settingsManager.fullscreenToggle(settingsManager.fullscreen, false);
 
 		optionsMenu = (Node2D)((PackedScene)ResourceLoader.Load("res://objects/generic/gui/options_menu.tscn")).Instantiate();
 		AddChild(optionsMenu);
@@ -81,7 +81,7 @@ public partial class GameManager : Node2D
 	public static void saveGame(string path)
 	{
 		//open the file (writer)
-		using FileStream fs = File.OpenWrite(path);
+		using MemoryStream fs = new MemoryStream();
 		using var writer = new Utf8JsonWriter(fs, new JsonWriterOptions { Indented = true });
 
 		//begin root object
@@ -97,6 +97,8 @@ public partial class GameManager : Node2D
 		//flush and close file
 		writer.Flush();
 		fs.Flush();
+
+		File.WriteAllText(path, writer.ToString());
 
 		writer.Dispose();
 		fs.Close();

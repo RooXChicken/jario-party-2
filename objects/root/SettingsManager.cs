@@ -47,7 +47,7 @@ public partial class SettingsManager : Node2D
 		}
 
 		if(save)
-		    saveSettings("options.cfg");
+			saveSettings("options.cfg");
 	}
 
 	//called from the fullscreen button in the video submenu
@@ -62,7 +62,7 @@ public partial class SettingsManager : Node2D
 		resolutionChange(resolution);
 
 		if(save)
-		    saveSettings("options.cfg");
+			saveSettings("options.cfg");
 	}
 
 	//called from the master audio slider
@@ -71,8 +71,8 @@ public partial class SettingsManager : Node2D
 		masterVolume = volume;
 		AudioServer.SetBusVolumeDb(0, masterVolume);
 
-        if(save)
-		    saveSettings("options.cfg");
+		if(save)
+			saveSettings("options.cfg");
 	}
 
 	//called from the music audio slider
@@ -82,7 +82,7 @@ public partial class SettingsManager : Node2D
 		AudioServer.SetBusVolumeDb(1, musicVolume);
 
 		if(save)
-		    saveSettings("options.cfg");
+			saveSettings("options.cfg");
 	}
 
 	//called from the sound audio slider
@@ -92,7 +92,7 @@ public partial class SettingsManager : Node2D
 		AudioServer.SetBusVolumeDb(2, soundVolume);
 		
 		if(save)
-		    saveSettings("options.cfg");
+			saveSettings("options.cfg");
 	}
 
 	public void loadSettings(string path)
