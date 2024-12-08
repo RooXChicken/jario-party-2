@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Jario Party 2"
-run/main_scene="res://objects/title_screen/title_screen.tscn"
+run/main_scene="res://objects/scenes/title_screen/title_screen.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/scale=2.0

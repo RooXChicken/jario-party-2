@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4f04ad5t31hc"]
+
+[ext_resource type="Texture2D" uid="uid://bhar17cbjd3ce" path="res://assets/sprites/gui/title_screen/circletransition.png" id="1_s2h2j"]
+[ext_resource type="Texture2D" uid="uid://280g5hty6bcn" path="res://assets/sprites/gui/splash_screen/spr_jarioparty1_HD.png" id="2_cyeeb"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7h4wb"]
+blend_mode = 3
+
+[sub_resource type="Animation" id="Animation_1ptyb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionGroup/CircleTransitionMask:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_sosxi"]
+resource_name = "circle_transition"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TransitionGroup/CircleTransitionMask:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.406126, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lixmr"]
+_data = {
+"RESET": SubResource("Animation_1ptyb"),
+"circle_transition": SubResource("Animation_sosxi")
+}
+
+[node name="GameSetup" type="Node2D"]
+
+[node name="TransitionGroup" type="CanvasGroup" parent="."]
+
+[node name="PreviousScreenSprite" type="Sprite2D" parent="TransitionGroup"]
+position = Vector2(320, 180)
+texture = ExtResource("2_cyeeb")
+
+[node name="CircleTransitionMask" type="Sprite2D" parent="TransitionGroup"]
+material = SubResource("CanvasItemMaterial_7h4wb")
+position = Vector2(320, 180)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("1_s2h2j")
+flip_h = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lixmr")
+}
+autoplay = "circle_transition"
