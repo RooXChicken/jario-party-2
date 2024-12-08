@@ -27,7 +27,7 @@ public partial class GameManager : Node2D
 
 	public override void _EnterTree()
 	{
-		settingsManager.fullscreenToggle(settingsManager.fullscreen);
+        settingsManager.fullscreenToggle(settingsManager.fullscreen, false);
 
 		optionsMenu = (Node2D)((PackedScene)ResourceLoader.Load("res://objects/generic/gui/options_menu.tscn")).Instantiate();
 		AddChild(optionsMenu);

@@ -27,13 +27,14 @@ public partial class SettingsManager : Node2D
 
 		//load settings
 		loadSettings("options.cfg");
-		masterVolumeChanged(masterVolume);
-		musicVolumeChanged(musicVolume);
-		soundVolumeChanged(soundVolume);
+
+		masterVolumeChanged(masterVolume, false);
+		musicVolumeChanged(musicVolume, false);
+		soundVolumeChanged(soundVolume, false);
 	}
 
 	//called from the resolution dropdown in the video submenu
-	public void resolutionChange(int index)
+	public void resolutionChange(int index, bool save = true)
 	{
 		resolution = index;
 		switch(resolution)
@@ -45,11 +46,12 @@ public partial class SettingsManager : Node2D
 			case 4: gameManager.GetWindow().Size = new Vector2I(3840, 2160); break;
 		}
 
-		saveSettings("options.cfg");
+		if(save)
+		    saveSettings("options.cfg");
 	}
 
 	//called from the fullscreen button in the video submenu
-	public void fullscreenToggle(bool state)
+	public void fullscreenToggle(bool state, bool save = true)
 	{
 		fullscreen = state;
 		
@@ -59,34 +61,38 @@ public partial class SettingsManager : Node2D
 		//call resolution change to set the resolution to what it was
 		resolutionChange(resolution);
 
-		saveSettings("options.cfg");
+		if(save)
+		    saveSettings("options.cfg");
 	}
 
 	//called from the master audio slider
-	public void masterVolumeChanged(int volume)
+	public void masterVolumeChanged(int volume, bool save = true)
 	{
 		masterVolume = volume;
 		AudioServer.SetBusVolumeDb(0, masterVolume);
 
-		saveSettings("options.cfg");
+        if(save)
+		    saveSettings("options.cfg");
 	}
 
 	//called from the music audio slider
-	public void musicVolumeChanged(int volume)
+	public void musicVolumeChanged(int volume, bool save = true)
 	{
 		musicVolume = volume;
 		AudioServer.SetBusVolumeDb(1, musicVolume);
 
-		saveSettings("options.cfg");
+		if(save)
+		    saveSettings("options.cfg");
 	}
 
 	//called from the sound audio slider
-	public void soundVolumeChanged(int volume)
+	public void soundVolumeChanged(int volume, bool save = true)
 	{
 		soundVolume = volume;
 		AudioServer.SetBusVolumeDb(2, soundVolume);
 		
-		saveSettings("options.cfg");
+		if(save)
+		    saveSettings("options.cfg");
 	}
 
 	public void loadSettings(string path)
