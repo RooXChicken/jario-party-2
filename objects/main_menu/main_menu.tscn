@@ -1,14 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://cemiexldkunah"]
+[gd_scene load_steps=7 format=3 uid="uid://cemiexldkunah"]
 
 [ext_resource type="Script" path="res://objects/main_menu/MainMenu.cs" id="1_uooec"]
 [ext_resource type="AudioStream" uid="uid://d1f18tiqi1lxh" path="res://assets/music/menu_melody/menu1.wav" id="2_jlhs4"]
 [ext_resource type="AudioStream" uid="uid://ct8vgxg27vp7u" path="res://assets/music/menu_melody/menu2.wav" id="3_xlbof"]
 [ext_resource type="AudioStream" uid="uid://idlg57rmjxek" path="res://assets/music/menu_melody/menu3.wav" id="4_qsq04"]
 [ext_resource type="AudioStream" uid="uid://dxdxa3jf7ngts" path="res://assets/music/menu_melody/menu4.wav" id="5_30c8q"]
-[ext_resource type="AudioStream" uid="uid://d711dwftgqr5" path="res://assets/music/menu_melody/menu5.wav" id="6_j57ih"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_kda78"]
-clip_count = 5
+clip_count = 4
 clip_0/name = &"Menu 1"
 clip_0/stream = ExtResource("2_jlhs4")
 clip_0/auto_advance = 0
@@ -21,9 +20,6 @@ clip_2/auto_advance = 0
 clip_3/name = &"Menu 4"
 clip_3/stream = ExtResource("5_30c8q")
 clip_3/auto_advance = 0
-clip_4/name = &"Menu 5"
-clip_4/stream = ExtResource("6_j57ih")
-clip_4/auto_advance = 0
 _transitions = {
 Vector2i(-1, -1): {
 "fade_beats": 1,
@@ -69,3 +65,8 @@ script = ExtResource("1_uooec")
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_kda78")
 autoplay = true
+
+[node name="TestText" type="RichTextLabel" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+text = "1"

@@ -7,6 +7,7 @@ public partial class MainMenu : Node2D
 	// I am not entirely sure if "menufull" is any different from "menu4" but they were listed separately so
 
 	private AudioStreamPlayer player;
+	private RichTextLabel text;
 	private byte menuStage = 1;
 	private string currentStage = "1";
 
@@ -14,6 +15,7 @@ public partial class MainMenu : Node2D
 	public override void _Ready()
 	{
 		player = GetNode<AudioStreamPlayer>("MenuMusic");
+		text = GetNode<RichTextLabel>("TestText");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,7 +23,7 @@ public partial class MainMenu : Node2D
 	{
 		
 		if(Input.IsActionJustPressed("select"))
-			if(menuStage <= 5)
+			if(menuStage <= 4)
 				menuStage++;
 		if(Input.IsActionJustPressed("back"))
 			if(menuStage > 1)
@@ -29,6 +31,7 @@ public partial class MainMenu : Node2D
 		if(currentStage != menuStage.ToString())
 		{
 			currentStage = menuStage.ToString();
+			text.Text = menuStage.ToString();
 			player.Set("parameters/switch_to_clip", "Menu " + currentStage);
 			
 		}

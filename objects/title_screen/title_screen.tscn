@@ -327,3 +327,12 @@ libraries = {
 "": SubResource("AnimationLibrary_knovq")
 }
 autoplay = "splash_biggify"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 26.0
+offset_top = 296.0
+offset_right = 164.0
+offset_bottom = 337.0
+bbcode_enabled = true
+text = "[img]assets/sprites/prompts/b_button_prompt.tres[/img] Exit Game"
+scroll_active = false
