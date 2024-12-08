@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://b4f04ad5t31hc"]
 
-[ext_resource type="Texture2D" uid="uid://bhar17cbjd3ce" path="res://assets/sprites/gui/title_screen/circletransition.png" id="1_s2h2j"]
 [ext_resource type="Texture2D" uid="uid://280g5hty6bcn" path="res://assets/sprites/gui/splash_screen/spr_jarioparty1_HD.png" id="2_cyeeb"]
+[ext_resource type="Texture2D" uid="uid://dia83m52molrt" path="res://assets/sprites/gui/title_screen/jariomask.png" id="2_vk6nm"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7h4wb"]
 blend_mode = 3
@@ -33,7 +33,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(0.406126, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(1, 1)]
+"values": [Vector2(0, 0), Vector2(1.2, 1.2)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lixmr"]
@@ -46,6 +46,11 @@ _data = {
 
 [node name="TransitionGroup" type="CanvasGroup" parent="."]
 
+[node name="Background" type="ColorRect" parent="TransitionGroup"]
+offset_right = 640.0
+offset_bottom = 360.0
+color = Color(0.937255, 0.894118, 0.690196, 1)
+
 [node name="PreviousScreenSprite" type="Sprite2D" parent="TransitionGroup"]
 position = Vector2(320, 180)
 texture = ExtResource("2_cyeeb")
@@ -54,7 +59,7 @@ texture = ExtResource("2_cyeeb")
 material = SubResource("CanvasItemMaterial_7h4wb")
 position = Vector2(320, 180)
 scale = Vector2(1e-05, 1e-05)
-texture = ExtResource("1_s2h2j")
+texture = ExtResource("2_vk6nm")
 flip_h = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

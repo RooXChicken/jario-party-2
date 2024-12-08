@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://c5q4j8gnrcue5"]
 
 [ext_resource type="Texture2D" uid="uid://c5mcmk07mex4g" path="res://assets/sprites/gui/splash_screen/spr_splash_text.png" id="1_kfsxx"]
-[ext_resource type="Script" path="res://objects/title_screen/TitleScreen.cs" id="1_vbnw0"]
+[ext_resource type="Script" path="res://objects/scenes/title_screen/TitleScreen.cs" id="1_vbnw0"]
 [ext_resource type="AudioStream" uid="uid://wfdvbux60tbq" path="res://assets/music/title_screen_intro.wav" id="2_w0w5n"]
 [ext_resource type="Texture2D" uid="uid://280g5hty6bcn" path="res://assets/sprites/gui/splash_screen/spr_jarioparty1_HD.png" id="2_wd4i1"]
 [ext_resource type="Shader" path="res://assets/shaders/title_screen/bg_scroll.gdshader" id="3_dhp8x"]
