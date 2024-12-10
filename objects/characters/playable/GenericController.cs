@@ -47,6 +47,10 @@ public partial class GenericController : CharacterBody2D
 	private float walkSpeed = 90;
 	private float runSpeed = 140;
 
+	//physics ticks without movement counter (60tps)
+	private int ticksWithoutMovement = 0;
+	private int longIdleTime = 600; //10 seconds (60tps * 10)
+
 	//'fake y' related variables
 	private float y = 0;
 	private float oldY = 0;
@@ -126,6 +130,12 @@ public partial class GenericController : CharacterBody2D
 		if(!hasAbility("walk"))
 			return;
 
+		//increment ticks without moving, if the joystick is neutral
+		if(joyAxis.X == 0 && joyAxis.Y == 0)
+			ticksWithoutMovement++;
+		else
+			ticksWithoutMovement = 0;
+
 		//increase velocity based on joy angle and acceleration
 		velocity += joyAxis * (acceleration);
 
@@ -186,13 +196,18 @@ public partial class GenericController : CharacterBody2D
 			else if(velocity.Y > velocity.X && velocity.Y > -velocity.X)
 				toPlay = "walk_down";
 
+			//set speed based on velocity then play respective animaation
+			playerSprite.SpeedScale = (Math.Abs(velocity.X) + Math.Abs(velocity.Y)) / walkSpeed;
 			playIfNot(toPlay);
 		}
-		else
+		else if(ticksWithoutMovement < longIdleTime)
 			playerSprite.Frame = 1;
 
-		playerSprite.SpeedScale = (Math.Abs(velocity.X) + Math.Abs(velocity.Y)) / walkSpeed;
-		//((ShaderMaterial)playerSprite.Material).SetShaderParameter("vSpeed", 1+(Math.Abs(yVelocity)/20));
+		if(ticksWithoutMovement >= longIdleTime)
+		{
+			playerSprite.SpeedScale = 1;
+			playIfNot("long_idle");
+		}
 	}
 
 	public void playIfNot(string animation)

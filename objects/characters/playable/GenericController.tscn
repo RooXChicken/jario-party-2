@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://objects/characters/playable/GenericController.cs" id="1_awjjb"]
 [ext_resource type="Shader" path="res://assets/shaders/Wave.gdshader" id="2_4r0dp"]
-[ext_resource type="Texture2D" uid="uid://fimwh784clmb" path="res://assets/sprites/characters/playable/shadow.png" id="2_r52bl"]
+[ext_resource type="Texture2D" uid="uid://fimwh784clmb" path="res://assets/sprites/characters/shadow.png" id="2_r52bl"]
 [ext_resource type="SpriteFrames" uid="uid://bjoxkkwhxndbq" path="res://assets/sprites/characters/playable/jario_sprite_frames.tres" id="4_2wye6"]
 [ext_resource type="Theme" uid="uid://bcuw0mka8mj25" path="res://assets/gui_theme.tres" id="5_0oi5w"]
 
@@ -36,6 +36,7 @@ offset_bottom = -23.0
 color = Color(0.140447, 0.140447, 0.140447, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CharacterSprite/ColorRect"]
+layout_mode = 0
 offset_right = 372.0
 offset_bottom = 41.0
 theme = ExtResource("5_0oi5w")
