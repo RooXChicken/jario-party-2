@@ -1,6 +1,6 @@
 shader_type canvas_item;
 
-void vertex() 
+void vertex()
 {
 	UV.y += TIME ;
 }

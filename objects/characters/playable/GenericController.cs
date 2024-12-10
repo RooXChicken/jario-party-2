@@ -53,7 +53,7 @@ public partial class GenericController : CharacterBody2D
 	private RichTextLabel label;
 
 	//movement related variables
-	private float joystickDeadzone = 0.08f;
+	private float joystickDeadzone = 0.2f;
 	
 	private float acceleration = 0;
 	private float decelleration = 0.6f;
