@@ -2,66 +2,87 @@ using Godot;
 using System;
 using System.Runtime.CompilerServices;
 
-public partial class GenericController : RigidBody2D
+public partial class GenericController : CharacterBody2D
 {
 	private AnimatedSprite2D playerSprite;
-	private float moveSpeed = 85;
+	private RichTextLabel label;
 
+	private float acceleration = 0;
+	private float decelleration = 0.6f;
+
+	private float walkSpeed = 90;
+	private float runSpeed = 140;
+
+	private Vector2 velocity = new Vector2(0, 0);
 	private Vector2 joyAxis = new Vector2(0, 0);
 
 	public override void _Ready()
 	{
 		playerSprite = GetNode<AnimatedSprite2D>("CharacterSprite");
+		label = GetNode<RichTextLabel>("ColorRect/RichTextLabel");
+
+		acceleration = walkSpeed;
 	}
 
 	public override void _Process(double delta)
 	{
-		Vector2 rJoyAxis = new Vector2(Input.GetJoyAxis(0, JoyAxis.RightX), Input.GetJoyAxis(0, JoyAxis.RightY));
-		float distanceMoved = Math.Abs(rJoyAxis.X) + Math.Abs(rJoyAxis.Y);
-		if(distanceMoved > 0.5)
-		{
+		joyAxis = new Vector2(Input.GetJoyAxis(0, JoyAxis.LeftX), Input.GetJoyAxis(0, JoyAxis.LeftY));
 
-		}
+		if(Math.Abs(joyAxis.X) < 0.08) joyAxis.X = 0;
+		if(Math.Abs(joyAxis.Y) < 0.08) joyAxis.Y = 0;
+
+		processAnimations();
 
 		if(Input.IsActionPressed("menu"))
-			moveSpeed = 150;
+			acceleration = runSpeed;
 		else
-			moveSpeed = 85;
+			acceleration = walkSpeed;
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
-		joyAxis = new Vector2(Input.GetJoyAxis(0, JoyAxis.LeftX), Input.GetJoyAxis(0, JoyAxis.LeftY));
-		float distanceMoved = Math.Abs(joyAxis.X) + Math.Abs(joyAxis.Y);
+		//increase velocity based on joy angle and acceleration
+		velocity += joyAxis * (acceleration);
 
-		if(distanceMoved < 0.5)
-			joyAxis = new Vector2(0, 0);
+		//decelerate character
+		velocity *= decelleration;
 
-		ApplyCentralImpulse(joyAxis*moveSpeed);
+		//if the velocity is 'basically' zero, set it to zero
+		if(Math.Abs(velocity.X) + Math.Abs(velocity.Y) < 0.1)
+			velocity = Vector2.Zero;
 
-		processAnimations();
+		//set 'real' velocity to the one we control, then move
+		Velocity = velocity;
+		MoveAndSlide();
 
-		playerSprite.SpeedScale = distanceMoved;
-		if(distanceMoved < 0.5)
-			playerSprite.Frame = 1;
+		label.Text = string.Format("Position: ({0:0.##}, {1:0.##})\nSpeed: ({2:0.##}, {3:0.##})", Position.X, Position.Y, velocity.X, velocity.Y);
 	}
 
 	public void processAnimations()
 	{
-		if(joyAxis.X > joyAxis.Y && joyAxis.X > -joyAxis.Y)
+		string toPlay = "idle";
+
+		if(velocity != Vector2.Zero)
 		{
-			playIfNot("walk_left");
-			playerSprite.FlipH = true;
+			if(velocity.X > velocity.Y && velocity.X > -velocity.Y)
+			{
+				toPlay = "walk_left";
+				playerSprite.FlipH = true;
+			}
+			else if(-velocity.X > velocity.Y && -velocity.X > -velocity.Y)
+			{
+				toPlay = "walk_left";
+				playerSprite.FlipH = false;
+			}
+			else if(-velocity.Y > velocity.X && -velocity.Y > -velocity.X)
+				toPlay = "walk_up";
+			else if(velocity.Y > velocity.X && velocity.Y > -velocity.X)
+				toPlay = "walk_down";
+
+			playIfNot(toPlay);
 		}
-		else if(-joyAxis.X > joyAxis.Y && -joyAxis.X > -joyAxis.Y)
-		{
-			playIfNot("walk_left");
-			playerSprite.FlipH = false;
-		}
-		else if(-joyAxis.Y > joyAxis.X && -joyAxis.Y > -joyAxis.X)
-			playIfNot("walk_up");
-		else if(joyAxis.Y > joyAxis.X && joyAxis.Y > -joyAxis.X)
-			playIfNot("walk_down");
+		else
+			playerSprite.Frame = 1;
 	}
 
 	public void playIfNot(string animation)

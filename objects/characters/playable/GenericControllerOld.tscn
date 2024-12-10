@@ -1,61 +1,60 @@
-[gd_scene load_steps=21 format=3 uid="uid://ccxndyvr4xqkq"]
+[gd_scene load_steps=20 format=3 uid="uid://dnus2stmo5101"]
 
-[ext_resource type="Script" path="res://objects/characters/playable/GenericController.cs" id="1_awjjb"]
-[ext_resource type="Texture2D" uid="uid://cxbb3kbuvfrwn" path="res://assets/sprites/characters/playable/jario/jario_walk_down.png" id="1_w1st2"]
-[ext_resource type="Texture2D" uid="uid://blio474nu1wfn" path="res://assets/sprites/characters/playable/jario/jario_walk_up.png" id="3_6gnxu"]
-[ext_resource type="Texture2D" uid="uid://ccpjxap737hat" path="res://assets/sprites/characters/playable/jario/jario_walk_side.png" id="3_gu3hc"]
-[ext_resource type="Theme" uid="uid://bcuw0mka8mj25" path="res://assets/gui_theme.tres" id="5_0oi5w"]
+[ext_resource type="Script" path="res://objects/characters/playable/GenericController.cs" id="1_7em1g"]
+[ext_resource type="Texture2D" uid="uid://cxbb3kbuvfrwn" path="res://assets/sprites/characters/playable/jario/jario_walk_down.png" id="2_07l5w"]
+[ext_resource type="Texture2D" uid="uid://ccpjxap737hat" path="res://assets/sprites/characters/playable/jario/jario_walk_side.png" id="3_4lfye"]
+[ext_resource type="Texture2D" uid="uid://blio474nu1wfn" path="res://assets/sprites/characters/playable/jario/jario_walk_up.png" id="4_pcl33"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bl2kg"]
-atlas = ExtResource("1_w1st2")
+atlas = ExtResource("2_07l5w")
 region = Rect2(0, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8qony"]
-atlas = ExtResource("1_w1st2")
+atlas = ExtResource("2_07l5w")
 region = Rect2(32, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jvba7"]
-atlas = ExtResource("1_w1st2")
+atlas = ExtResource("2_07l5w")
 region = Rect2(0, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_idudg"]
-atlas = ExtResource("1_w1st2")
+atlas = ExtResource("2_07l5w")
 region = Rect2(96, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_46uem"]
-atlas = ExtResource("1_w1st2")
+atlas = ExtResource("2_07l5w")
 region = Rect2(64, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v1yhi"]
-atlas = ExtResource("3_gu3hc")
+atlas = ExtResource("3_4lfye")
 region = Rect2(0, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_32gqp"]
-atlas = ExtResource("3_gu3hc")
+atlas = ExtResource("3_4lfye")
 region = Rect2(32, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_c01hk"]
-atlas = ExtResource("3_gu3hc")
+atlas = ExtResource("3_4lfye")
 region = Rect2(64, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e6cix"]
-atlas = ExtResource("3_gu3hc")
+atlas = ExtResource("3_4lfye")
 region = Rect2(96, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sba7q"]
-atlas = ExtResource("3_6gnxu")
+atlas = ExtResource("4_pcl33")
 region = Rect2(32, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2i18k"]
-atlas = ExtResource("3_6gnxu")
+atlas = ExtResource("4_pcl33")
 region = Rect2(0, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_it4cg"]
-atlas = ExtResource("3_6gnxu")
+atlas = ExtResource("4_pcl33")
 region = Rect2(96, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6e4if"]
-atlas = ExtResource("3_6gnxu")
+atlas = ExtResource("4_pcl33")
 region = Rect2(64, 0, 32, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6rhw5"]
@@ -123,9 +122,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0iwcb"]
 size = Vector2(14, 14)
 
-[node name="GenericController" type="CharacterBody2D"]
-motion_mode = 1
-script = ExtResource("1_awjjb")
+[node name="GenericController" type="RigidBody2D"]
+gravity_scale = 0.0
+lock_rotation = true
+continuous_cd = 1
+linear_damp = 25.0
+script = ExtResource("1_7em1g")
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
@@ -137,17 +139,3 @@ frame_progress = 0.0208758
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 17)
 shape = SubResource("RectangleShape2D_0iwcb")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -10.0
-offset_top = -64.0
-offset_right = 229.0
-offset_bottom = -23.0
-color = Color(0.140447, 0.140447, 0.140447, 1)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
-offset_right = 239.0
-offset_bottom = 41.0
-theme = ExtResource("5_0oi5w")
-text = "Position: (0, 0)
-Speed: 0"
