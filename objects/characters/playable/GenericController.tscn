@@ -1,10 +1,16 @@
-[gd_scene load_steps=21 format=3 uid="uid://ccxndyvr4xqkq"]
+[gd_scene load_steps=24 format=3 uid="uid://ccxndyvr4xqkq"]
 
 [ext_resource type="Script" path="res://objects/characters/playable/GenericController.cs" id="1_awjjb"]
 [ext_resource type="Texture2D" uid="uid://cxbb3kbuvfrwn" path="res://assets/sprites/characters/playable/jario/jario_walk_down.png" id="1_w1st2"]
+[ext_resource type="Shader" path="res://assets/shaders/Wave.gdshader" id="2_4r0dp"]
+[ext_resource type="Texture2D" uid="uid://fimwh784clmb" path="res://assets/sprites/characters/playable/shadow.png" id="2_r52bl"]
 [ext_resource type="Texture2D" uid="uid://blio474nu1wfn" path="res://assets/sprites/characters/playable/jario/jario_walk_up.png" id="3_6gnxu"]
 [ext_resource type="Texture2D" uid="uid://ccpjxap737hat" path="res://assets/sprites/characters/playable/jario/jario_walk_side.png" id="3_gu3hc"]
 [ext_resource type="Theme" uid="uid://bcuw0mka8mj25" path="res://assets/gui_theme.tres" id="5_0oi5w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_teobo"]
+shader = ExtResource("2_4r0dp")
+shader_parameter/vSpeed = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bl2kg"]
 atlas = ExtResource("1_w1st2")
@@ -127,27 +133,31 @@ size = Vector2(14, 14)
 motion_mode = 1
 script = ExtResource("1_awjjb")
 
+[node name="ShadowSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 2)
+texture = ExtResource("2_r52bl")
+
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
+material = SubResource("ShaderMaterial_teobo")
 sprite_frames = SubResource("SpriteFrames_6rhw5")
-animation = &"walk_left"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.0208758
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 17)
-shape = SubResource("RectangleShape2D_0iwcb")
-
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="CharacterSprite"]
 offset_left = -10.0
 offset_top = -64.0
-offset_right = 229.0
+offset_right = 361.0
 offset_bottom = -23.0
 color = Color(0.140447, 0.140447, 0.140447, 1)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ColorRect"]
-offset_right = 239.0
+[node name="RichTextLabel" type="RichTextLabel" parent="CharacterSprite/ColorRect"]
+offset_right = 372.0
 offset_bottom = 41.0
 theme = ExtResource("5_0oi5w")
 text = "Position: (0, 0)
 Speed: 0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 17)
+shape = SubResource("RectangleShape2D_0iwcb")

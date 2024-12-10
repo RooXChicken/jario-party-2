@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://fwku6cfxi0x3"]
+[gd_scene load_steps=4 format=3 uid="uid://fwku6cfxi0x3"]
 
 [ext_resource type="PackedScene" uid="uid://ccxndyvr4xqkq" path="res://objects/characters/playable/GenericController.tscn" id="1_c1e3w"]
 [ext_resource type="Texture2D" uid="uid://bsbo7cx7msim6" path="res://assets/sprites/scenes/test_scene/test_background.png" id="1_setjr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3gy2"]
+size = Vector2(87, 132)
 
 [node name="TestScene" type="Node2D"]
 y_sort_enabled = true
@@ -12,3 +15,10 @@ centered = false
 
 [node name="GenericController" parent="." instance=ExtResource("1_c1e3w")]
 position = Vector2(160, 260)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(238, 274)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(33.5, -56)
+shape = SubResource("RectangleShape2D_k3gy2")
