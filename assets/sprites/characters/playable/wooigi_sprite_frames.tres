@@ -94,4 +94,19 @@ animations = [{
 "loop": true,
 "name": &"long_idle",
 "speed": 4.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk_down",
+"speed": 6.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk_left",
+"speed": 6.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"walk_up",
+"speed": 6.0
 }]
