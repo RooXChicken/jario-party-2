@@ -1,130 +1,14 @@
-[gd_scene load_steps=24 format=3 uid="uid://ccxndyvr4xqkq"]
+[gd_scene load_steps=8 format=3 uid="uid://ccxndyvr4xqkq"]
 
 [ext_resource type="Script" path="res://objects/characters/playable/GenericController.cs" id="1_awjjb"]
-[ext_resource type="Texture2D" uid="uid://cxbb3kbuvfrwn" path="res://assets/sprites/characters/playable/jario/jario_walk_down.png" id="1_w1st2"]
 [ext_resource type="Shader" path="res://assets/shaders/Wave.gdshader" id="2_4r0dp"]
 [ext_resource type="Texture2D" uid="uid://fimwh784clmb" path="res://assets/sprites/characters/playable/shadow.png" id="2_r52bl"]
-[ext_resource type="Texture2D" uid="uid://blio474nu1wfn" path="res://assets/sprites/characters/playable/jario/jario_walk_up.png" id="3_6gnxu"]
-[ext_resource type="Texture2D" uid="uid://ccpjxap737hat" path="res://assets/sprites/characters/playable/jario/jario_walk_side.png" id="3_gu3hc"]
+[ext_resource type="SpriteFrames" uid="uid://bjoxkkwhxndbq" path="res://assets/sprites/characters/playable/jario_sprite_frames.tres" id="4_2wye6"]
 [ext_resource type="Theme" uid="uid://bcuw0mka8mj25" path="res://assets/gui_theme.tres" id="5_0oi5w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_teobo"]
 shader = ExtResource("2_4r0dp")
 shader_parameter/vSpeed = 1.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bl2kg"]
-atlas = ExtResource("1_w1st2")
-region = Rect2(0, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_8qony"]
-atlas = ExtResource("1_w1st2")
-region = Rect2(32, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_jvba7"]
-atlas = ExtResource("1_w1st2")
-region = Rect2(0, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_idudg"]
-atlas = ExtResource("1_w1st2")
-region = Rect2(96, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_46uem"]
-atlas = ExtResource("1_w1st2")
-region = Rect2(64, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v1yhi"]
-atlas = ExtResource("3_gu3hc")
-region = Rect2(0, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_32gqp"]
-atlas = ExtResource("3_gu3hc")
-region = Rect2(32, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_c01hk"]
-atlas = ExtResource("3_gu3hc")
-region = Rect2(64, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_e6cix"]
-atlas = ExtResource("3_gu3hc")
-region = Rect2(96, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_sba7q"]
-atlas = ExtResource("3_6gnxu")
-region = Rect2(32, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2i18k"]
-atlas = ExtResource("3_6gnxu")
-region = Rect2(0, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_it4cg"]
-atlas = ExtResource("3_6gnxu")
-region = Rect2(96, 0, 32, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_6e4if"]
-atlas = ExtResource("3_6gnxu")
-region = Rect2(64, 0, 32, 48)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_6rhw5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bl2kg")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 1.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_8qony")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_jvba7")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_idudg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_46uem")
-}],
-"loop": true,
-"name": &"walk_down",
-"speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v1yhi")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_32gqp")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_c01hk")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e6cix")
-}],
-"loop": true,
-"name": &"walk_left",
-"speed": 6.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_sba7q")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2i18k")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_it4cg")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_6e4if")
-}],
-"loop": true,
-"name": &"walk_up",
-"speed": 6.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0iwcb"]
 size = Vector2(14, 14)
@@ -140,7 +24,7 @@ texture = ExtResource("2_r52bl")
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_teobo")
-sprite_frames = SubResource("SpriteFrames_6rhw5")
+sprite_frames = ExtResource("4_2wye6")
 animation = &"idle"
 autoplay = "idle"
 
