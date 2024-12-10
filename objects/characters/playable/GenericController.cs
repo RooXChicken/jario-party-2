@@ -1,10 +1,6 @@
 using Godot;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Security;
-using System.Threading;
 
 class Ability
 {
@@ -13,11 +9,27 @@ class Ability
 
 	private Ability(int _id, string _name) { id = _id; name = _name; }
 	
-	//component types (no manual creation)
+	//ability types (no manual creation)
 	public static Ability ANIMATE = new Ability(0, "animate");
 	public static Ability WALK = new Ability(1, "walk");
 	public static Ability JUMP = new Ability(2, "jump");
 	public static Ability Y_MOVEMENT = new Ability(3, "y_movement");
+	public static Ability LONG_IDLE = new Ability(4, "long_idle");
+}
+
+public class Character
+{
+	public int id { get; private set; }
+	public string name { get; private set; }
+	public string spriteFramesPath { get; private set; }
+
+	private Character(int _id, string _name, string _spriteFramesPath) { id = _id; name = _name; spriteFramesPath = _spriteFramesPath; }
+	
+	//character types (no manual creation)
+	public static Character JARIO = new Character(1, "Jario", "res://assets/sprites/characters/playable/jario_sprite_frames.tres");
+	public static Character WOOIGI = new Character(2, "Wooigi", "res://assets/sprites/characters/playable/wooigi_sprite_frames.tres");
+	public static Character GRAPEJUICE = new Character(3, "Grapejuice", "res://assets/sprites/characters/playable/grapejuice_sprite_frames.tres");
+	public static Character JOSH = new Character(4, "Josh", "res://assets/sprites/characters/playable/josh_sprite_frames.tres");
 }
 
 public partial class GenericController : CharacterBody2D
@@ -33,6 +45,8 @@ public partial class GenericController : CharacterBody2D
 		Abilities can only be manually defined to prevent random abilities from existing
 	*/
 
+	//registered character
+	public Character character { get; private set; }
 	private List<Ability> abilities;
 
 	private AnimatedSprite2D playerSprite;
@@ -62,6 +76,16 @@ public partial class GenericController : CharacterBody2D
 
 	public override void _Ready()
 	{
+		//assign variables
+		playerSprite = GetNode<AnimatedSprite2D>("CharacterSprite");
+		label = GetNode<RichTextLabel>("CharacterSprite/ColorRect/RichTextLabel");
+
+		//set character (manually for now)
+		character = Character.JARIO;
+
+		//load info based on character
+		playerSprite.SpriteFrames = GD.Load<SpriteFrames>(character.spriteFramesPath);
+
 		//create list of abilities
 		abilities = new List<Ability>();
 
@@ -70,10 +94,7 @@ public partial class GenericController : CharacterBody2D
 		abilities.Add(Ability.WALK);
 		abilities.Add(Ability.JUMP);
 		abilities.Add(Ability.Y_MOVEMENT);
-
-		//assign variables
-		playerSprite = GetNode<AnimatedSprite2D>("CharacterSprite");
-		label = GetNode<RichTextLabel>("CharacterSprite/ColorRect/RichTextLabel");
+		abilities.Add(Ability.LONG_IDLE);
 
 		acceleration = walkSpeed;
 	}
@@ -130,11 +151,14 @@ public partial class GenericController : CharacterBody2D
 		if(!hasAbility("walk"))
 			return;
 
-		//increment ticks without moving, if the joystick is neutral
-		if(joyAxis.X == 0 && joyAxis.Y == 0)
-			ticksWithoutMovement++;
-		else
-			ticksWithoutMovement = 0;
+		if(hasAbility("long_idle"))
+		{
+			//increment ticks without moving, if the joystick is neutral
+			if(joyAxis.X == 0 && joyAxis.Y == 0)
+				ticksWithoutMovement++;
+			else
+				ticksWithoutMovement = 0;
+		}
 
 		//increase velocity based on joy angle and acceleration
 		velocity += joyAxis * (acceleration);
@@ -203,6 +227,7 @@ public partial class GenericController : CharacterBody2D
 		else if(ticksWithoutMovement < longIdleTime)
 			playerSprite.Frame = 1;
 
+		//play long idle if the timer is above the threshold
 		if(ticksWithoutMovement >= longIdleTime)
 		{
 			playerSprite.SpeedScale = 1;
