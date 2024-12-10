@@ -152,6 +152,7 @@ offset_bottom = -23.0
 color = Color(0.140447, 0.140447, 0.140447, 1)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CharacterSprite/ColorRect"]
+layout_mode = 0
 offset_right = 372.0
 offset_bottom = 41.0
 theme = ExtResource("5_0oi5w")
