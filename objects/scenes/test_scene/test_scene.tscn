@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bsbo7cx7msim6" path="res://assets/sprites/scenes/test_scene/test_background.png" id="1_setjr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3gy2"]
-size = Vector2(87, 132)
+size = Vector2(639.5, 132)
 
 [node name="TestScene" type="Node2D"]
 y_sort_enabled = true
@@ -17,9 +17,8 @@ centered = false
 position = Vector2(160, 260)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-visible = false
 position = Vector2(238, 274)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(33.5, -56)
+position = Vector2(82.25, -133)
 shape = SubResource("RectangleShape2D_k3gy2")

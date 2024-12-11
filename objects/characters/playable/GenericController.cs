@@ -126,7 +126,7 @@ public partial class GenericController : CharacterBody2D
 		//'fake y' related interactions
 		if(hasAbility("y_movement"))
 		{
-			if(Input.IsActionJustPressed("select") && y == 0)
+			if(Input.IsActionJustPressed("jump") && y == 0)
 			{
 				SoundManager.playSound("character_playable_jump");
 				yVelocity = -5f;
@@ -134,6 +134,9 @@ public partial class GenericController : CharacterBody2D
 
 			//interpolate oldY and y to get framerate-independant y
 			oldY = Mathf.Lerp(oldY, y, ((float)delta*10));
+			if(yVelocity < 0)
+				playIfNot("jump");
+			
 			playerSprite.Position = new Vector2(0, oldY);
 		}
 	}

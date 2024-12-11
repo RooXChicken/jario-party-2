@@ -21,7 +21,7 @@ public partial class MainMenu : Node2D
 	{
 		
 		if(Input.IsActionJustPressed("select"))
-			if(menuStage <= 5)
+			if(menuStage < 4)
 				menuStage++;
 		if(Input.IsActionJustPressed("back"))
 			if(menuStage > 1)
