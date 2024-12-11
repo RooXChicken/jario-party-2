@@ -70,6 +70,7 @@ public partial class GenericController : CharacterBody2D
 	private int _characterIndex = 0;
 
 	//make character index visible to editor
+	[ExportCategory("Character Data")]
 	[Export(PropertyHint.Range, "0,3,")]
 	private int characterIndex { get { return _characterIndex; } set { _characterIndex = value; updateCharacter(); } }
 
@@ -287,6 +288,7 @@ public partial class GenericController : CharacterBody2D
 		}
 		else
 		{
+			playerSprite.SpeedScale = 1;
 			action = "jump_" + direction;
 		}
 
@@ -306,8 +308,8 @@ public partial class GenericController : CharacterBody2D
 	{
 		if(playerSprite.Animation != animation)
 		{
-			playerSprite.Frame = 0;
 			playerSprite.Play(animation);
+			playerSprite.Frame = 0;
 		}
 	}
 
