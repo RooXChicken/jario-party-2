@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://ctr02vdnb7x51"]
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://ckhlnuhiu3pen"]
 
 [ext_resource type="Texture2D" uid="uid://ccfjk8ofqf00u" path="res://assets/sprites/characters/playable/grapejuice/grape_walk_down.png" id="1_1h2d3"]
 [ext_resource type="Texture2D" uid="uid://dkj3d3h823i0l" path="res://assets/sprites/characters/playable/grapejuice/grape_walk_side.png" id="2_mn815"]

@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://bmxh7ullsal3t"]
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://waehc4plgain"]
 
 [ext_resource type="Texture2D" uid="uid://rwgh04k46hpg" path="res://assets/sprites/characters/playable/josh/josh_walk_down.png" id="1_s5vk1"]
 [ext_resource type="Texture2D" uid="uid://djo8m1qnaulpd" path="res://assets/sprites/characters/playable/josh/josh_walk_side.png" id="2_iyw6b"]

@@ -4,6 +4,14 @@ using System.Collections.Generic;
 
 class Ability
 {
+	/*
+		Stores information on each of the 'abilities'
+		Abilities are any action that can be defined
+		Think of this as a poor person's component system (single class so component system is unnecessary :P)
+
+		Are pre-defined, so there can't be a random ability with invalid data
+	*/
+
 	public int id { get; private set; }
 	public string name { get; private set; }
 
@@ -19,6 +27,13 @@ class Ability
 
 public class Character
 {
+	/*
+		Stores information on each of the characters
+		Any amount of character-specific variables can be stored here and loaded easily!
+
+		Are pre-defined, so there can't be a random Jaroi with invalid data
+	*/
+
 	public int id { get; private set; }
 	public string name { get; private set; }
 	public string spriteFramesPath { get; private set; }
@@ -86,6 +101,9 @@ public partial class GenericController : CharacterBody2D
 		//load info based on character
 		playerSprite.SpriteFrames = GD.Load<SpriteFrames>(character.spriteFramesPath);
 
+		//load sounds
+		SoundManager.loadSound("character_playable_jump", "res://assets/sound/effects/characters/playable/player_jump.wav", 12);
+
 		//create list of abilities
 		abilities = new List<Ability>();
 
@@ -109,7 +127,10 @@ public partial class GenericController : CharacterBody2D
 		if(hasAbility("y_movement"))
 		{
 			if(Input.IsActionJustPressed("select") && y == 0)
+			{
+				SoundManager.playSound("character_playable_jump");
 				yVelocity = -5f;
+			}
 
 			//interpolate oldY and y to get framerate-independant y
 			oldY = Mathf.Lerp(oldY, y, ((float)delta*10));

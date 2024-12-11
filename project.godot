@@ -23,6 +23,7 @@ buses/default_bus_layout="res://assets/sound/default_bus_layout.tres"
 [autoload]
 
 GameManager="*res://objects/root/GameManager.cs"
+SoundManager="*res://objects/root/SoundManager.cs"
 
 [display]
 

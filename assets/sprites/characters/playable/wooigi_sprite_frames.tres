@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=28 format=3 uid="uid://dhhxicc5adk6f"]
+[gd_resource type="SpriteFrames" load_steps=28 format=3 uid="uid://cdhcg4jjwsvcm"]
 
 [ext_resource type="Texture2D" uid="uid://cjulreu3dpt8x" path="res://assets/sprites/characters/playable/wooigi/wooigi_stand.png" id="1_wcecy"]
 [ext_resource type="Texture2D" uid="uid://bbhmx00xtqa56" path="res://assets/sprites/characters/playable/wooigi/wooigi_idle.png" id="2_wmrsu"]
