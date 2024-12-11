@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=29 format=3 uid="uid://de4yncbo4nf24"]
+[gd_resource type="SpriteFrames" load_steps=29 format=3 uid="uid://bjoxkkwhxndbq"]
 
 [ext_resource type="Texture2D" uid="uid://cxbb3kbuvfrwn" path="res://assets/sprites/characters/playable/jario/jario_walk_down.png" id="1_gx701"]
 [ext_resource type="Texture2D" uid="uid://h51cncxkiu7n" path="res://assets/sprites/characters/playable/jario/jario_idle.png" id="2_7v2wq"]
@@ -115,7 +115,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bpfwm")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump_down",
 "speed": 5.0
 }, {

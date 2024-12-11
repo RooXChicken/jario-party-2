@@ -5,7 +5,6 @@
 
 [node name="ButtonPrompt" type="Node2D"]
 script = ExtResource("1_4utip")
-metadata/button = ""
 
 [node name="ButtonSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = ExtResource("2_an2jj")

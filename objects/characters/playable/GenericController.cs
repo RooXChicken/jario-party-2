@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Xml.Schema;
 
 class Ability
 {
@@ -36,17 +37,22 @@ public class Character
 
 	public int id { get; private set; }
 	public string name { get; private set; }
-	public string spriteFramesPath { get; private set; }
+	public SpriteFrames spriteFrames { get; private set; }
 
-	private Character(int _id, string _name, string _spriteFramesPath) { id = _id; name = _name; spriteFramesPath = _spriteFramesPath; }
+	private Character(int _id, string _name, string _spriteFramesPath) { id = _id; name = _name; spriteFrames = GD.Load<SpriteFrames>(_spriteFramesPath); }
 	
 	//character types (no manual creation)
 	public static Character JARIO = new Character(1, "Jario", "res://assets/sprites/characters/playable/jario_sprite_frames.tres");
 	public static Character WOOIGI = new Character(2, "Wooigi", "res://assets/sprites/characters/playable/wooigi_sprite_frames.tres");
 	public static Character GRAPEJUICE = new Character(3, "Grapejuice", "res://assets/sprites/characters/playable/grapejuice_sprite_frames.tres");
 	public static Character JOSH = new Character(4, "Josh", "res://assets/sprites/characters/playable/josh_sprite_frames.tres");
+
+	//used for index -> character
+	public static Character[] characters = new Character[] { JARIO, WOOIGI, GRAPEJUICE, JOSH };
 }
 
+//marked as tool so that the sprites can update in realtime
+[Tool]
 public partial class GenericController : CharacterBody2D
 {
 	/*
@@ -59,6 +65,13 @@ public partial class GenericController : CharacterBody2D
 		Abilities can be anything, and allow for the generic re-use of code (yippie!!)
 		Abilities can only be manually defined to prevent random abilities from existing
 	*/
+
+	//hiden 'real' character index
+	private int _characterIndex = 0;
+
+	//make character index visible to editor
+	[Export(PropertyHint.Range, "0,3,")]
+	private int characterIndex { get { return _characterIndex; } set { _characterIndex = value; updateCharacter(); } }
 
 	//registered character
 	public Character character { get; private set; }
@@ -89,17 +102,21 @@ public partial class GenericController : CharacterBody2D
 	private Vector2 velocity = new Vector2(0, 0);
 	private Vector2 joyAxis = new Vector2(0, 0);
 
+	private string direction = "down";
+	private string action = "idle";
+
 	public override void _Ready()
 	{
+		if(Engine.IsEditorHint())
+			return;
+
 		//assign variables
 		playerSprite = GetNode<AnimatedSprite2D>("CharacterSprite");
 		label = GetNode<RichTextLabel>("CharacterSprite/ColorRect/RichTextLabel");
 
 		//set character (manually for now)
-		character = Character.JARIO;
-
-		//load info based on character
-		playerSprite.SpriteFrames = GD.Load<SpriteFrames>(character.spriteFramesPath);
+		character = Character.characters[characterIndex];
+		playerSprite.SpriteFrames = character.spriteFrames;
 
 		//load sounds
 		SoundManager.loadSound("character_playable_jump", "res://assets/sound/effects/characters/playable/player_jump.wav", 12);
@@ -119,6 +136,9 @@ public partial class GenericController : CharacterBody2D
 
 	public override void _Process(double delta)
 	{
+		if(Engine.IsEditorHint())
+			return;
+
 		//process framerate-independent actions
 		processInput();
 		processAnimations();
@@ -134,15 +154,18 @@ public partial class GenericController : CharacterBody2D
 
 			//interpolate oldY and y to get framerate-independant y
 			oldY = Mathf.Lerp(oldY, y, ((float)delta*10));
-			if(yVelocity < 0)
-				playIfNot("jump");
-			
 			playerSprite.Position = new Vector2(0, oldY);
+
+			if(yVelocity != 0)
+				ticksWithoutMovement = 0;
 		}
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if(Engine.IsEditorHint())
+			return;
+
 		//process moving
 		processMovement();
 		processYMovement();
@@ -162,6 +185,10 @@ public partial class GenericController : CharacterBody2D
 		//forced deadzone (evil mode)
 		if(Math.Abs(joyAxis.X) < joystickDeadzone) joyAxis.X = 0;
 		if(Math.Abs(joyAxis.Y) < joystickDeadzone) joyAxis.Y = 0;
+
+		// Vector2 multiplier = new Vector2(joyAxis.X)
+
+		//GD.Print(joyAxis);
 
 		//to run or not to run
 		if(Input.IsActionPressed("menu"))
@@ -190,9 +217,13 @@ public partial class GenericController : CharacterBody2D
 		//decelerate character
 		velocity *= decelleration;
 
+		float combinedSpeed = Math.Abs(velocity.X) + Math.Abs(velocity.Y);
+
 		//if the velocity is 'basically' zero, set it to zero
-		if(Math.Abs(velocity.X) + Math.Abs(velocity.Y) < 0.1)
+		if(combinedSpeed < 0.1)
 			velocity = Vector2.Zero;
+
+		GD.Print(combinedSpeed);
 
 		//set 'real' velocity to the one we control, then move
 		Velocity = velocity;
@@ -225,44 +256,59 @@ public partial class GenericController : CharacterBody2D
 		if(!hasAbility("animate"))
 			return;
 
-		string toPlay = "idle";
-
-		if(velocity != Vector2.Zero)
+		if(yVelocity == 0 && y == 0)
 		{
-			if(velocity.X > velocity.Y && velocity.X > -velocity.Y)
+			if(velocity != Vector2.Zero)
 			{
-				toPlay = "walk_left";
-				playerSprite.FlipH = true;
-			}
-			else if(-velocity.X > velocity.Y && -velocity.X > -velocity.Y)
-			{
-				toPlay = "walk_left";
-				playerSprite.FlipH = false;
-			}
-			else if(-velocity.Y > velocity.X && -velocity.Y > -velocity.X)
-				toPlay = "walk_up";
-			else if(velocity.Y > velocity.X && velocity.Y > -velocity.X)
-				toPlay = "walk_down";
+				if(velocity.X > velocity.Y && velocity.X > -velocity.Y)
+				{
+					direction = "left";
+					playerSprite.FlipH = true;
+				}
+				else if(-velocity.X > velocity.Y && -velocity.X > -velocity.Y)
+				{
+					direction = "left";
+					playerSprite.FlipH = false;
+				}
+				else if(-velocity.Y > velocity.X && -velocity.Y > -velocity.X)
+					direction = "up";
+				else if(velocity.Y > velocity.X && velocity.Y > -velocity.X)
+					direction = "down";
 
-			//set speed based on velocity then play respective animaation
-			playerSprite.SpeedScale = (Math.Abs(velocity.X) + Math.Abs(velocity.Y)) / walkSpeed;
-			playIfNot(toPlay);
+				//set speed based on velocity then play respective animaation
+				playerSprite.SpeedScale = (Math.Abs(velocity.X) + Math.Abs(velocity.Y)) / walkSpeed;
+
+				action = "walk_" + direction;
+			}
+			else if(ticksWithoutMovement < longIdleTime)
+				playerSprite.Frame = 1;
+
+			action = "walk_" + direction;
 		}
-		else if(ticksWithoutMovement < longIdleTime)
-			playerSprite.Frame = 1;
+		else
+		{
+			action = "jump_" + direction;
+		}
+
+		//GD.Print
 
 		//play long idle if the timer is above the threshold
 		if(ticksWithoutMovement >= longIdleTime)
 		{
 			playerSprite.SpeedScale = 1;
-			playIfNot("long_idle");
+			action = "long_idle";
 		}
+
+		playIfNot(action);
 	}
 
 	public void playIfNot(string animation)
 	{
 		if(playerSprite.Animation != animation)
+		{
+			playerSprite.Frame = 0;
 			playerSprite.Play(animation);
+		}
 	}
 
 	public bool hasAbility(int id)
@@ -279,5 +325,18 @@ public partial class GenericController : CharacterBody2D
 			if(ability.name == name) return true;
 
 		return false;
+	}
+
+	private void updateCharacter()
+	{
+		//if the node hasn't been initialized yet, make sure godot isn't angry
+		if(!HasNode("CharacterSprite"))
+			return;
+
+		//update character sprite frames to new ones
+		playerSprite = GetNode<AnimatedSprite2D>("CharacterSprite");
+
+		character = Character.characters[characterIndex];
+		playerSprite.SpriteFrames = character.spriteFrames;
 	}
 }

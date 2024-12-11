@@ -358,7 +358,7 @@ texture = ExtResource("7_80bjg")
 [node name="ButtonPrompt" parent="." instance=ExtResource("10_4ewj2")]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(27, 332)
-metadata/button = "b"
+button = "b"
 
 [node name="RichTextLabel" type="RichTextLabel" parent="ButtonPrompt"]
 offset_left = 24.0
