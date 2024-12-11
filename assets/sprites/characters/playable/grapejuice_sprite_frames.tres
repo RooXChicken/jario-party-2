@@ -1,12 +1,8 @@
-[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://ckhlnuhiu3pen"]
+[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://ckhlnuhiu3pen"]
 
 [ext_resource type="Texture2D" uid="uid://ccfjk8ofqf00u" path="res://assets/sprites/characters/playable/grapejuice/grape_walk_down.png" id="1_1h2d3"]
 [ext_resource type="Texture2D" uid="uid://dkj3d3h823i0l" path="res://assets/sprites/characters/playable/grapejuice/grape_walk_side.png" id="2_mn815"]
 [ext_resource type="Texture2D" uid="uid://5qy21iunpqxc" path="res://assets/sprites/characters/playable/grapejuice/grape_walk_up.png" id="3_3fcf1"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_v4lh4"]
-atlas = ExtResource("1_1h2d3")
-region = Rect2(0, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fskw7"]
 atlas = ExtResource("1_1h2d3")
@@ -58,14 +54,6 @@ region = Rect2(96, 0, 32, 48)
 
 [resource]
 animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_v4lh4")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 1.0
-}, {
 "frames": [],
 "loop": true,
 "name": &"long_idle",

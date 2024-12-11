@@ -82,7 +82,7 @@ public partial class GenericController : CharacterBody2D
 	private RichTextLabel label;
 
 	//movement related variables
-	private float joystickDeadzone = 0.2f;
+	private float joystickDeadzone = 0.08f;
 	
 	private float acceleration = 0;
 	private float decelleration = 0.6f;
@@ -104,7 +104,7 @@ public partial class GenericController : CharacterBody2D
 	private Vector2 joyAxis = new Vector2(0, 0);
 
 	private string direction = "down";
-	private string action = "idle";
+	private string action = "walk";
 
 	public override void _Ready()
 	{
@@ -181,15 +181,14 @@ public partial class GenericController : CharacterBody2D
 			return;
 
 		//get joystick input
-		joyAxis = new Vector2(Input.GetJoyAxis(0, JoyAxis.LeftX), Input.GetJoyAxis(0, JoyAxis.LeftY));
+		Vector2 rawInput = Input.GetVector("left", "right", "up", "down");
 
 		//forced deadzone (evil mode)
-		if(Math.Abs(joyAxis.X) < joystickDeadzone) joyAxis.X = 0;
-		if(Math.Abs(joyAxis.Y) < joystickDeadzone) joyAxis.Y = 0;
+		if(Math.Abs(rawInput.X) < joystickDeadzone) rawInput.X = 0;
+		if(Math.Abs(rawInput.Y) < joystickDeadzone) rawInput.Y = 0;
 
-		// Vector2 multiplier = new Vector2(joyAxis.X)
-
-		//GD.Print(joyAxis);
+		float combinedDirection = MathF.Abs(rawInput.X) + Mathf.Abs(rawInput.Y);
+		joyAxis = rawInput / ((combinedDirection != 0) ? combinedDirection : 1);
 
 		//to run or not to run
 		if(Input.IsActionPressed("menu"))
@@ -224,7 +223,7 @@ public partial class GenericController : CharacterBody2D
 		if(combinedSpeed < 0.1)
 			velocity = Vector2.Zero;
 
-		GD.Print(combinedSpeed);
+		//GD.Print(combinedSpeed);
 
 		//set 'real' velocity to the one we control, then move
 		Velocity = velocity;
@@ -257,32 +256,41 @@ public partial class GenericController : CharacterBody2D
 		if(!hasAbility("animate"))
 			return;
 
+		float combinedSpeed = Math.Abs(velocity.X) + Math.Abs(velocity.Y);
+		if(combinedSpeed != 0)
+		{
+			if(velocity.X > velocity.Y && velocity.X > -velocity.Y)
+			{
+				direction = "left";
+				playerSprite.FlipH = true;
+			}
+			else if(-velocity.X > velocity.Y && -velocity.X > -velocity.Y)
+			{
+				direction = "left";
+				playerSprite.FlipH = false;
+			}
+			else if(-velocity.Y > velocity.X && -velocity.Y > -velocity.X)
+			{
+				direction = "up";
+				playerSprite.FlipH = false;
+			}
+			else if(velocity.Y > velocity.X && velocity.Y > -velocity.X)
+			{
+				direction = "down";
+				playerSprite.FlipH = false;
+			}
+		}
+
 		if(yVelocity == 0 && y == 0)
 		{
 			if(velocity != Vector2.Zero)
 			{
-				if(velocity.X > velocity.Y && velocity.X > -velocity.Y)
-				{
-					direction = "left";
-					playerSprite.FlipH = true;
-				}
-				else if(-velocity.X > velocity.Y && -velocity.X > -velocity.Y)
-				{
-					direction = "left";
-					playerSprite.FlipH = false;
-				}
-				else if(-velocity.Y > velocity.X && -velocity.Y > -velocity.X)
-					direction = "up";
-				else if(velocity.Y > velocity.X && velocity.Y > -velocity.X)
-					direction = "down";
-
 				//set speed based on velocity then play respective animaation
 				playerSprite.SpeedScale = (Math.Abs(velocity.X) + Math.Abs(velocity.Y)) / walkSpeed;
-
 				action = "walk_" + direction;
 			}
 			else if(ticksWithoutMovement < longIdleTime)
-				playerSprite.Frame = 1;
+				playerSprite.Frame = 0;
 
 			action = "walk_" + direction;
 		}
@@ -340,5 +348,19 @@ public partial class GenericController : CharacterBody2D
 
 		character = Character.characters[characterIndex];
 		playerSprite.SpriteFrames = character.spriteFrames;
+	}
+
+	public Vector2 normalize(Vector2 _in)
+	{
+		Vector2 vec = new Vector2(_in.X, _in.Y);
+
+		float length = (float)Math.Sqrt((vec.X * vec.X) + (vec.Y * vec.Y));
+		if (length != 0)
+		{
+			vec.X /= length;
+			vec.Y /= length;
+		}
+
+		return vec;
 	}
 }

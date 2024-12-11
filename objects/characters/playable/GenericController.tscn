@@ -25,8 +25,7 @@ texture = ExtResource("2_r52bl")
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_teobo")
 sprite_frames = ExtResource("4_2wye6")
-animation = &"idle"
-autoplay = "idle"
+animation = &"walk_down"
 
 [node name="ColorRect" type="ColorRect" parent="CharacterSprite"]
 offset_left = -10.0
@@ -43,6 +42,6 @@ theme = ExtResource("5_0oi5w")
 text = "Position: (0, 0)
 Speed: 0"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="BodyCollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, 17)
 shape = SubResource("RectangleShape2D_0iwcb")
