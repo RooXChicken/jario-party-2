@@ -296,7 +296,8 @@ public partial class GenericController : CharacterBody2D
 			y = 0;
 			yVelocity = 0;
 		}
-		
+
+		//hitbox 'height'
 		if(y < -32)
 		{
 			CollisionLayer = 2;
