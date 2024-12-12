@@ -28,6 +28,7 @@ sprite_frames = ExtResource("4_2wye6")
 animation = &"walk_down"
 
 [node name="ColorRect" type="ColorRect" parent="CharacterSprite"]
+visible = false
 offset_left = -10.0
 offset_top = -64.0
 offset_right = 361.0

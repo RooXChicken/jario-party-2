@@ -92,6 +92,21 @@ region = Rect2(96, 0, 32, 48)
 
 [resource]
 animations = [{
+"frames": [],
+"loop": true,
+"name": &"jump_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jump_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jump_up",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lkcei")

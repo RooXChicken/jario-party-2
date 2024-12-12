@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 using System.Xml.Schema;
 
 class Ability
@@ -51,6 +52,21 @@ public class Character
 	public static Character[] characters = new Character[] { JARIO, WOOIGI, GRAPEJUICE, JOSH };
 }
 
+public class JoystickButton
+{
+	/*
+		Used only for AI
+		Simulates joystick buttons
+	*/
+
+	public string action { get; private set; } //corresponds to GD action name (to keep consistency)
+	public int duration = -2; //used to set how long the button is 'held'
+	public bool justPressed { get; private set; } = true;
+
+	public JoystickButton(string _action, int _duration) { action = _action; duration = _duration; }
+	public void tick() { justPressed = false; duration--; }
+}
+
 //marked as tool so that the sprites can update in realtime
 [Tool]
 public partial class GenericController : CharacterBody2D
@@ -73,6 +89,13 @@ public partial class GenericController : CharacterBody2D
 	[ExportCategory("Character Data")]
 	[Export(PropertyHint.Range, "0,3,")]
 	private int characterIndex { get { return _characterIndex; } set { _characterIndex = value; updateCharacter(); } }
+
+	[Export]
+	private bool ai = false;
+
+	//if dense, the character is a dummy, and has no logic
+	[Export]
+	private bool dense = false;
 
 	//registered character
 	public Character character { get; private set; }
@@ -106,6 +129,8 @@ public partial class GenericController : CharacterBody2D
 	private string direction = "down";
 	private string action = "walk";
 
+	private List<JoystickButton> joystickButtons;
+
 	public override void _Ready()
 	{
 		if(Engine.IsEditorHint())
@@ -133,26 +158,21 @@ public partial class GenericController : CharacterBody2D
 		abilities.Add(Ability.LONG_IDLE);
 
 		acceleration = walkSpeed;
+
+		joystickButtons = new List<JoystickButton>();
 	}
 
 	public override void _Process(double delta)
 	{
-		if(Engine.IsEditorHint())
+		if(Engine.IsEditorHint() || dense)
 			return;
 
 		//process framerate-independent actions
 		processInput();
 		processAnimations();
 
-		//'fake y' related interactions
 		if(hasAbility("y_movement"))
 		{
-			if(Input.IsActionJustPressed("jump") && y == 0)
-			{
-				SoundManager.playSound("character_playable_jump");
-				yVelocity = -5f;
-			}
-
 			//interpolate oldY and y to get framerate-independant y
 			oldY = Mathf.Lerp(oldY, y, ((float)delta*10));
 			playerSprite.Position = new Vector2(0, oldY);
@@ -164,12 +184,24 @@ public partial class GenericController : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if(Engine.IsEditorHint())
+		if(Engine.IsEditorHint() || dense)
 			return;
 
 		//process moving
 		processMovement();
 		processYMovement();
+
+		if(ai)
+		{
+			for(int i = 0; i < joystickButtons.Count - 1; i++)
+			{
+				joystickButtons[i].tick();
+
+				//removes at -1 to allow for justReleased
+				if(joystickButtons[i].duration < -1)
+					joystickButtons.RemoveAt(i);
+			}
+		}
 
 		//fancy debug text
 		label.Text = string.Format("Position: ({0:0.##}, {1:0.##}, {2:0.##})\nSpeed: ({3:0.##}, {4:0.##}, {5:0.##})", Position.X, y, Position.Y, velocity.X, yVelocity, velocity.Y);
@@ -180,21 +212,38 @@ public partial class GenericController : CharacterBody2D
 		if(!hasAbility("walk"))
 			return;
 
-		//get joystick input
-		Vector2 rawInput = Input.GetVector("left", "right", "up", "down");
+		if(!ai)
+		{
+			//get joystick input
+			Vector2 rawInput = Input.GetVector("left", "right", "up", "down");
 
-		//forced deadzone (evil mode)
-		if(Math.Abs(rawInput.X) < joystickDeadzone) rawInput.X = 0;
-		if(Math.Abs(rawInput.Y) < joystickDeadzone) rawInput.Y = 0;
+			//forced deadzone (evil mode)
+			if(Math.Abs(rawInput.X) < joystickDeadzone) rawInput.X = 0;
+			if(Math.Abs(rawInput.Y) < joystickDeadzone) rawInput.Y = 0;
 
-		float combinedDirection = MathF.Abs(rawInput.X) + Mathf.Abs(rawInput.Y);
-		joyAxis = rawInput / ((combinedDirection != 0) ? combinedDirection : 1);
+			float combinedDirection = MathF.Abs(rawInput.X) + Mathf.Abs(rawInput.Y);
+			joyAxis = rawInput / ((combinedDirection != 0) ? combinedDirection : 1);
+		}
+		//if ai, write to joyAxis manually :P
+
+		if(ai)
+			simulateAction("jump", 1);
 
 		//to run or not to run
-		if(Input.IsActionPressed("menu"))
+		if(getActionState("menu") >= 0)
 			acceleration = runSpeed;
 		else
 			acceleration = walkSpeed;
+
+		//'fake y' related interactions
+		if(hasAbility("y_movement"))
+		{
+			if(getActionState("jump") == 1 && y == 0)
+			{
+				SoundManager.playSound("character_playable_jump");
+				yVelocity = -5f;
+			}
+		}
 	}
 
 	private void processMovement()
@@ -212,7 +261,7 @@ public partial class GenericController : CharacterBody2D
 		}
 
 		//increase velocity based on joy angle and acceleration
-		velocity += joyAxis * (acceleration);
+		velocity += joyAxis * acceleration;
 
 		//decelerate character
 		velocity *= decelleration;
@@ -222,8 +271,6 @@ public partial class GenericController : CharacterBody2D
 		//if the velocity is 'basically' zero, set it to zero
 		if(combinedSpeed < 0.1)
 			velocity = Vector2.Zero;
-
-		//GD.Print(combinedSpeed);
 
 		//set 'real' velocity to the one we control, then move
 		Velocity = velocity;
@@ -248,6 +295,17 @@ public partial class GenericController : CharacterBody2D
 		{
 			y = 0;
 			yVelocity = 0;
+		}
+		
+		if(y < -32)
+		{
+			CollisionLayer = 2;
+			CollisionMask = 2;
+		}
+		else
+		{
+			CollisionLayer = 1;
+			CollisionMask = 1;
 		}
 	}
 
@@ -300,8 +358,6 @@ public partial class GenericController : CharacterBody2D
 			action = "jump_" + direction;
 		}
 
-		//GD.Print
-
 		//play long idle if the timer is above the threshold
 		if(ticksWithoutMovement >= longIdleTime)
 		{
@@ -350,17 +406,62 @@ public partial class GenericController : CharacterBody2D
 		playerSprite.SpriteFrames = character.spriteFrames;
 	}
 
-	public Vector2 normalize(Vector2 _in)
+	public void simulateAction(string action, int duration)
 	{
-		Vector2 vec = new Vector2(_in.X, _in.Y);
+		//override current action if it already exists
+		foreach(JoystickButton button in joystickButtons)
+			if(button.action == action)
+			{
+				button.duration = duration;
+				return;
+			}
 
-		float length = (float)Math.Sqrt((vec.X * vec.X) + (vec.Y * vec.Y));
-		if (length != 0)
+		joystickButtons.Add(new JoystickButton(action, duration));
+	}
+
+	/*
+
+		Used for allowing the same code to work for AIs and players
+
+		****
+		* Steps to puppet an AI:
+
+		* Write to joyAxis as a vector between representing the direction of the stick
+		-1 <- 0 -> 1
+
+		* Call simulateAction with the action name, and it's duration
+		****
+
+		1 is just pressed
+		0 is pressed
+		-1 is just released
+
+		Use >= 0 to detect if it is pressed in general
+	*/
+
+	public int getActionState(string action)
+	{
+		if(!ai)
 		{
-			vec.X /= length;
-			vec.Y /= length;
+			if(Input.IsActionJustPressed(action)) return 1;
+			if(Input.IsActionPressed(action)) return 0;
+			if(Input.IsActionJustReleased(action)) return -1;
+
+			return -2;
+		}
+		else
+		{
+			foreach(JoystickButton button in joystickButtons)
+			{
+				if(button.action != action) continue;
+
+				if(button.justPressed) return 1;
+				if(button.duration > 0) return 0;
+				if(button.duration == -1) return -1;
+
+			}
 		}
 
-		return vec;
+		return -2;
 	}
 }

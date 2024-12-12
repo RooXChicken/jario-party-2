@@ -56,6 +56,21 @@ region = Rect2(96, 0, 32, 48)
 animations = [{
 "frames": [],
 "loop": true,
+"name": &"jump_down",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jump_left",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"jump_up",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
 "name": &"long_idle",
 "speed": 4.0
 }, {
