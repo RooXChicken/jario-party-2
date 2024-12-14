@@ -2,68 +2,23 @@
 
 [ext_resource type="Script" path="res://objects/scenes/main_menu/MainMenu.cs" id="1_uooec"]
 [ext_resource type="AudioStream" uid="uid://d1f18tiqi1lxh" path="res://assets/sound/music/menu_melody/menu1.wav" id="2_jlhs4"]
-[ext_resource type="AudioStream" uid="uid://ct8vgxg27vp7u" path="res://assets/sound/music/menu_melody/menu2.wav" id="3_xlbof"]
-[ext_resource type="AudioStream" uid="uid://idlg57rmjxek" path="res://assets/sound/music/menu_melody/menu3.wav" id="4_qsq04"]
-[ext_resource type="AudioStream" uid="uid://dxdxa3jf7ngts" path="res://assets/sound/music/menu_melody/menu4.wav" id="5_30c8q"]
-[ext_resource type="AudioStream" uid="uid://d711dwftgqr5" path="res://assets/sound/music/menu_melody/menu5.wav" id="6_j57ih"]
+[ext_resource type="AudioStream" uid="uid://c61nhf7ff30l0" path="res://assets/sound/music/menu_melody/layer1.wav" id="3_hjsux"]
+[ext_resource type="AudioStream" uid="uid://cnpe27dwmf833" path="res://assets/sound/music/menu_melody/layer2.wav" id="4_pcc83"]
+[ext_resource type="AudioStream" uid="uid://5bb6lkw208v3" path="res://assets/sound/music/menu_melody/layer3.wav" id="5_x1bw6"]
+[ext_resource type="Script" path="res://objects/scenes/main_menu/MenuMusic.cs" id="6_0n561"]
 [ext_resource type="Texture2D" uid="uid://280g5hty6bcn" path="res://assets/sprites/gui/splash_screen/spr_jarioparty1_HD.png" id="7_enlsy"]
 [ext_resource type="Texture2D" uid="uid://dia83m52molrt" path="res://assets/sprites/gui/title_screen/jariomask.png" id="8_20bbh"]
 
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_kda78"]
-clip_count = 5
-clip_0/name = &"Menu 1"
-clip_0/stream = ExtResource("2_jlhs4")
-clip_0/auto_advance = 0
-clip_1/name = &"Menu 2"
-clip_1/stream = ExtResource("3_xlbof")
-clip_1/auto_advance = 0
-clip_2/name = &"Menu 3"
-clip_2/stream = ExtResource("4_qsq04")
-clip_2/auto_advance = 0
-clip_3/name = &"Menu 4"
-clip_3/stream = ExtResource("5_30c8q")
-clip_3/auto_advance = 0
-clip_4/name = &"Menu 5"
-clip_4/stream = ExtResource("6_j57ih")
-clip_4/auto_advance = 0
-_transitions = {
-Vector2i(-1, -1): {
-"fade_beats": 1,
-"fade_mode": 4,
-"from_time": 0,
-"to_time": 0
-},
-Vector2i(0, 0): {
-"fade_beats": 1,
-"fade_mode": 4,
-"from_time": 0,
-"to_time": 0
-},
-Vector2i(1, 1): {
-"fade_beats": 1,
-"fade_mode": 4,
-"from_time": 0,
-"to_time": 0
-},
-Vector2i(2, 2): {
-"fade_beats": 1,
-"fade_mode": 4,
-"from_time": 0,
-"to_time": 0
-},
-Vector2i(3, 3): {
-"fade_beats": 1,
-"fade_mode": 4,
-"from_time": 0,
-"to_time": 0
-},
-Vector2i(4, 4): {
-"fade_beats": 1,
-"fade_mode": 4,
-"from_time": 0,
-"to_time": 0
-}
-}
+[sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_4jbe6"]
+stream_count = 4
+stream_0/stream = ExtResource("2_jlhs4")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("3_hjsux")
+stream_1/volume = -60.0
+stream_2/stream = ExtResource("4_pcc83")
+stream_2/volume = -60.0
+stream_3/stream = ExtResource("5_x1bw6")
+stream_3/volume = -60.0
 
 [sub_resource type="Animation" id="Animation_1ptyb"]
 length = 0.001
@@ -122,9 +77,10 @@ blend_mode = 3
 script = ExtResource("1_uooec")
 
 [node name="MenuMusic" type="AudioStreamPlayer" parent="."]
-stream = SubResource("AudioStreamInteractive_kda78")
+stream = SubResource("AudioStreamSynchronized_4jbe6")
 autoplay = true
 bus = &"Music"
+script = ExtResource("6_0n561")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

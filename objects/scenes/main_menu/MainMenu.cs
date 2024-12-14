@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.IO;
 
 public partial class MainMenu : Node2D
 {
@@ -7,13 +8,14 @@ public partial class MainMenu : Node2D
 	// I am not entirely sure if "menufull" is any different from "menu4" but they were listed separately so - D
 
 	private AudioStreamPlayer player;
-	private byte menuStage = 1;
+	private byte menuStage = 0;
 	private string currentStage = "1";
+	private AudioStreamSynchronized stream;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		player = GetNode<AudioStreamPlayer>("MenuMusic");
+		stream = GetNode<AudioStreamSynchronized>("MenuMusic:stream");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -21,17 +23,17 @@ public partial class MainMenu : Node2D
 	{
 		
 		if(Input.IsActionJustPressed("select"))
-			if(menuStage < 4)
+			if(menuStage < 3)
+				stream.SetSyncStreamVolume(menuStage, 0);
 				menuStage++;
 		if(Input.IsActionJustPressed("back"))
-			if(menuStage > 1)
+			if(menuStage > 0)
+			{
+				stream.SetSyncStreamVolume(menuStage, -80);
 				menuStage--;
-		if(currentStage != menuStage.ToString())
-		{
-			currentStage = menuStage.ToString();
-			player.Set("parameters/switch_to_clip", "Menu " + currentStage);
-			
-		}
+				
+			}
+				
 		
 	}
 
