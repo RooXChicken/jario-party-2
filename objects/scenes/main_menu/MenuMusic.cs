@@ -4,7 +4,7 @@ using System;
 public partial class MenuMusic : AudioStreamPlayer
 {
 
-	private byte menuStage = 0;
+	private byte menuStage = 1;
 	private AudioStreamSynchronized streamSync;
 
 	// Called when the node enters the scene tree for the first time.
@@ -20,13 +20,13 @@ public partial class MenuMusic : AudioStreamPlayer
 		
 		streamSync = (AudioStreamSynchronized)Stream;
 		if(Input.IsActionJustPressed("select"))
-			if(menuStage < 3)
+			if(menuStage < 4)
 			{
 				streamSync.SetSyncStreamVolume(menuStage, 0);
 				menuStage++;
 			}
 		if(Input.IsActionJustPressed("back"))
-			if(menuStage > 0)
+			if(menuStage > 1)
 			{
 				streamSync.SetSyncStreamVolume(menuStage, -80);
 				menuStage--;
