@@ -369,8 +369,6 @@ public partial class GenericController : CharacterBody2D
 			direction = "";
 		}
 
-		// GD.Print(baseAction + " | " + _baseAction);
-		// GD.Print(baseAction.Equals(_baseAction));
 		playIfNot(_baseAction + direction, baseAction != _baseAction);
 		baseAction = _baseAction;
 	}
@@ -383,7 +381,6 @@ public partial class GenericController : CharacterBody2D
 			int _frame = playerSprite.Frame;
 
 			playerSprite.Play(animation);
-			GD.Print(_progress);
 			playerSprite.FrameProgress = _progress;
 
 			if(!resetAnimation)

@@ -71,7 +71,7 @@ public partial class SoundManager : Node
         loadedStreams.Add(_name, new SoundEffect(_name, _path, _volume));
     }
 
-    public static void loadSound(string _name)
+    public static void unloadSound(string _name)
     {
         if(!loadedStreams.ContainsKey(_name))
             return;
