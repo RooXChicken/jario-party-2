@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cemiexldkunah"]
+[gd_scene load_steps=14 format=3 uid="uid://cemiexldkunah"]
 
 [ext_resource type="Script" path="res://objects/scenes/main_menu/MainMenu.cs" id="1_uooec"]
 [ext_resource type="AudioStream" uid="uid://d1f18tiqi1lxh" path="res://assets/sound/music/menu_melody/menu1.wav" id="2_jlhs4"]
@@ -19,9 +19,6 @@ stream_2/stream = ExtResource("4_pcc83")
 stream_2/volume = -60.0
 stream_3/stream = ExtResource("5_x1bw6")
 stream_3/volume = -60.0
-
-[sub_resource type="Animation" id="Animation_4ugy6"]
-resource_name = "MusicFade"
 
 [sub_resource type="Animation" id="Animation_1ptyb"]
 length = 0.001
@@ -69,7 +66,6 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lixmr"]
 _data = {
-"MusicFade": SubResource("Animation_4ugy6"),
 "RESET": SubResource("Animation_1ptyb"),
 "circle_transition": SubResource("Animation_sosxi")
 }

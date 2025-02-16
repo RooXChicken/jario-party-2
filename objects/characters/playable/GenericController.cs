@@ -127,7 +127,8 @@ public partial class GenericController : CharacterBody2D
 	private Vector2 joyAxis = new Vector2(0, 0);
 
 	private string direction = "down";
-	private string action = "walk";
+	private string baseAction = "walk";
+	// private string action = "walk";
 
 	private List<JoystickButton> joystickButtons;
 
@@ -315,6 +316,8 @@ public partial class GenericController : CharacterBody2D
 		if(!hasAbility("animate"))
 			return;
 
+		string _baseAction = "";
+
 		float combinedSpeed = Math.Abs(velocity.X) + Math.Abs(velocity.Y);
 		if(combinedSpeed != 0)
 		{
@@ -346,35 +349,45 @@ public partial class GenericController : CharacterBody2D
 			{
 				//set speed based on velocity then play respective animaation
 				playerSprite.SpeedScale = (Math.Abs(velocity.X) + Math.Abs(velocity.Y)) / walkSpeed;
-				action = "walk_" + direction;
 			}
 			else if(ticksWithoutMovement < longIdleTime)
-				playerSprite.Frame = 0;
+				playerSprite.Frame = 1;
 
-			action = "walk_" + direction;
+			_baseAction = "walk_";
 		}
 		else
 		{
 			playerSprite.SpeedScale = 1;
-			action = "jump_" + direction;
+			_baseAction = "jump_";
 		}
 
 		//play long idle if the timer is above the threshold
 		if(ticksWithoutMovement >= longIdleTime)
 		{
 			playerSprite.SpeedScale = 1;
-			action = "long_idle";
+			_baseAction = "long_idle";
+			direction = "";
 		}
 
-		playIfNot(action);
+		// GD.Print(baseAction + " | " + _baseAction);
+		// GD.Print(baseAction.Equals(_baseAction));
+		playIfNot(_baseAction + direction, baseAction != _baseAction);
+		baseAction = _baseAction;
 	}
 
-	public void playIfNot(string animation)
+	public void playIfNot(string animation, bool resetAnimation)
 	{
 		if(playerSprite.Animation != animation)
 		{
+			float _progress = playerSprite.FrameProgress;
+			int _frame = playerSprite.Frame;
+
 			playerSprite.Play(animation);
-			playerSprite.Frame = 0;
+			GD.Print(_progress);
+			playerSprite.FrameProgress = _progress;
+
+			if(!resetAnimation)
+				playerSprite.Frame = _frame;
 		}
 	}
 

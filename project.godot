@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Jario Party 2"
-run/main_scene="res://objects/scenes/main_menu/main_menu.tscn"
+run/main_scene="res://objects/scenes/test_scene/test_scene.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
@@ -81,22 +81,22 @@ menu={
 ]
 }
 left={
-"deadzone": 0.3,
+"deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":-1.0,"script":null)
 ]
 }
 right={
-"deadzone": 0.3,
+"deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":0,"axis_value":1.0,"script":null)
 ]
 }
 up={
-"deadzone": 0.3,
+"deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":-1.0,"script":null)
 ]
 }
 down={
-"deadzone": 0.3,
+"deadzone": 0.0,
 "events": [Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":1.0,"script":null)
 ]
 }
