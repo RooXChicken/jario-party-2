@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cu4bpd068iykf"]
 
 [ext_resource type="Script" path="res://objects/generic/gui/EmoteWheel.cs" id="1_gew1n"]
-[ext_resource type="Texture2D" uid="uid://dyxu5xnbpfb1i" path="res://assets/sprites/gui/prompts/input_b.png" id="2_xrogy"]
 [ext_resource type="Texture2D" uid="uid://cc4sqrnwvs5h1" path="res://assets/sprites/gui/menu_screen/partyicon.png" id="3_0326c"]
+[ext_resource type="Texture2D" uid="uid://bch56q14cjk7v" path="res://assets/sprites/gui/prompts/bottom_button.png" id="3_uaby0"]
 
 [node name="EmoteWheel" type="Node2D"]
 position = Vector2(432, 232)
@@ -14,4 +14,4 @@ texture = ExtResource("3_0326c")
 [node name="EmoteGroup" type="CanvasGroup" parent="."]
 
 [node name="Emote0" type="Sprite2D" parent="EmoteGroup"]
-texture = ExtResource("2_xrogy")
+texture = ExtResource("3_uaby0")
