@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://fwku6cfxi0x3"]
+[gd_scene load_steps=5 format=3 uid="uid://fwku6cfxi0x3"]
 
 [ext_resource type="PackedScene" uid="uid://ccxndyvr4xqkq" path="res://objects/characters/playable/GenericController.tscn" id="1_c1e3w"]
 [ext_resource type="Texture2D" uid="uid://bsbo7cx7msim6" path="res://assets/sprites/scenes/test_scene/test_background.png" id="1_setjr"]
+[ext_resource type="AudioStream" uid="uid://b2bjxvl2d2yob" path="res://assets/sound/music/misc/8amacnh.mp3" id="3_82rij"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3gy2"]
 size = Vector2(639.5, 132)
@@ -36,3 +37,8 @@ dense = true
 position = Vector2(276, 260)
 characterIndex = 3
 dense = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_82rij")
+volume_db = 0.937
+autoplay = true
