@@ -9,5 +9,5 @@ void vertex() {
 }
 
 void fragment() {
-	COLOR *= vec4(color, 1.0);
+	COLOR *= vec4(color/10.0, 1.0);
 }

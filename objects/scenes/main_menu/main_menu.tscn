@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cemiexldkunah"]
+[gd_scene load_steps=23 format=3 uid="uid://cemiexldkunah"]
 
 [ext_resource type="Script" path="res://objects/scenes/main_menu/MainMenu.cs" id="1_uooec"]
 [ext_resource type="AudioStream" uid="uid://d1f18tiqi1lxh" path="res://assets/sound/music/menu_melody/menu1.wav" id="2_jlhs4"]
@@ -11,6 +11,7 @@
 [ext_resource type="Shader" path="res://assets/shaders/title_screen/bg_scroll.gdshader" id="9_30c87"]
 [ext_resource type="Texture2D" uid="uid://4w1bwr6lmfp7" path="res://assets/sprites/scenes/main_menu/bg_sun.png" id="11_en18o"]
 [ext_resource type="Texture2D" uid="uid://5abau5cvwk2m" path="res://assets/sprites/scenes/main_menu/bg_clouds.png" id="12_7vbe6"]
+[ext_resource type="PackedScene" uid="uid://bx285srjjbqg1" path="res://objects/scenes/gui/portrait.tscn" id="13_31ywq"]
 [ext_resource type="Texture2D" uid="uid://cuqrsi0fvgjdw" path="res://assets/sprites/scenes/main_menu/bg_grass.png" id="14_004ae"]
 
 [sub_resource type="AudioStreamSynchronized" id="AudioStreamSynchronized_4jbe6"]
@@ -110,6 +111,11 @@ shader_parameter/verticalMovement = null
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p11y0"]
 shader = ExtResource("7_1rhkn")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tanlw"]
+shader = ExtResource("9_30c87")
+shader_parameter/speed = 0.1
+shader_parameter/verticalMovement = null
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s88y2"]
 blend_mode = 3
 
@@ -154,6 +160,8 @@ texture = ExtResource("11_en18o")
 [node name="GrassParallax" type="Parallax2D" parent="."]
 
 [node name="GrassSprite" type="Sprite2D" parent="GrassParallax"]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_tanlw")
 position = Vector2(320, 540)
 texture = ExtResource("14_004ae")
 
@@ -177,3 +185,6 @@ position = Vector2(320, 180)
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("8_20bbh")
 flip_h = true
+
+[node name="Node2D" parent="." instance=ExtResource("13_31ywq")]
+position = Vector2(219, 459)
