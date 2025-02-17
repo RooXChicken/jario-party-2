@@ -38,15 +38,31 @@ public class Character
 
 	public int id { get; private set; }
 	public string name { get; private set; }
-	public SpriteFrames spriteFrames { get; private set; }
 
-	private Character(int _id, string _name, string _spriteFramesPath) { id = _id; name = _name; spriteFrames = GD.Load<SpriteFrames>(_spriteFramesPath); }
+	public SpriteFrames spriteFrames { get; private set; }
+	public Vector3 color { get; private set; }
+
+	private Character(int _id, string _name, string _spriteFramesPath, Vector3 _color)
+	{
+		id = _id;
+		name = _name;
+		
+		spriteFrames = GD.Load<SpriteFrames>(_spriteFramesPath);
+		color = _color;
+	}
 	
 	//character types (no manual creation)
-	public static Character JARIO = new Character(1, "Jario", "res://assets/sprites/characters/playable/jario_sprite_frames.tres");
-	public static Character WOOIGI = new Character(2, "Wooigi", "res://assets/sprites/characters/playable/wooigi_sprite_frames.tres");
-	public static Character GRAPEJUICE = new Character(3, "Grapejuice", "res://assets/sprites/characters/playable/grapejuice_sprite_frames.tres");
-	public static Character JOSH = new Character(4, "Josh", "res://assets/sprites/characters/playable/josh_sprite_frames.tres");
+	public static Character JARIO = new Character
+	(1, "Jario", "res://assets/sprites/characters/playable/jario_sprite_frames.tres", new Vector3(0, 0, 0));
+	
+	public static Character WOOIGI = new Character
+	(2, "Wooigi", "res://assets/sprites/characters/playable/wooigi_sprite_frames.tres", new Vector3(0, 0, 0));
+	
+	public static Character GRAPEJUICE = new Character
+	(3, "Grapejuice", "res://assets/sprites/characters/playable/grapejuice_sprite_frames.tres", new Vector3(0, 0, 0));
+	
+	public static Character JOSH = new Character
+	(4, "Josh", "res://assets/sprites/characters/playable/josh_sprite_frames.tres", new Vector3(0, 0, 0));
 
 	//used for index -> character
 	public static Character[] characters = new Character[] { JARIO, WOOIGI, GRAPEJUICE, JOSH };
@@ -216,14 +232,15 @@ public partial class GenericController : CharacterBody2D
 		if(!ai)
 		{
 			//get joystick input
-			Vector2 rawInput = Input.GetVector("left", "right", "up", "down");
+			// Vector2 rawInput = Input.GetVector("left", "right", "up", "down");
+			Vector2 rawInput = new Vector2(Input.GetAxis("left", "right"), Input.GetAxis("up", "down"));
 
 			//forced deadzone (evil mode)
 			if(Math.Abs(rawInput.X) < joystickDeadzone) rawInput.X = 0;
 			if(Math.Abs(rawInput.Y) < joystickDeadzone) rawInput.Y = 0;
 
-			float combinedDirection = MathF.Abs(rawInput.X) + Mathf.Abs(rawInput.Y);
-			joyAxis = rawInput / ((combinedDirection != 0) ? combinedDirection : 1);
+			// float combinedDirection = MathF.Abs(rawInput.X) + Mathf.Abs(rawInput.Y);
+			joyAxis = rawInput; // / ((combinedDirection != 0) ? combinedDirection : 1);
 		}
 		//if ai, write to joyAxis manually :P
 
