@@ -17,6 +17,10 @@ public partial class MenuMusic : AudioStreamPlayer
 		// what the fuck
 		streamSync = (AudioStreamSynchronized)Stream;
 
+		// FUUUCK!!! I HATE IT!!!
+		/*tween = GetTree().CreateTween();
+		tween.TweenProperty(streamSync, "stream_" + menuStage + "/volume", 0, 1.0f);*/
+
 		volume = new double[STAGE_COUNT];
 		for(int i = 1; i < STAGE_COUNT; i++)
 			volume[i] = 1.0;
@@ -26,7 +30,7 @@ public partial class MenuMusic : AudioStreamPlayer
 	public override void _Process(double delta)
 	{
 		if(Input.IsActionJustPressed("select"))
-			if(menuStage < STAGE_COUNT)
+			if(menuStage < STAGE_COUNT - 1)
 			{
 				menuStage++;
 			}
