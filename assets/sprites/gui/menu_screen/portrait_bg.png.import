@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fgkjn0hafstn"
-path="res://.godot/imported/jario_portrait.png-c41484c098af737d454890f5db96c6da.ctex"
+uid="uid://clehas80h3qua"
+path="res://.godot/imported/portrait_bg.png-a2a47f3aac1ffb704705275b3197a650.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/characters/playable/jario/jario_portrait.png"
-dest_files=["res://.godot/imported/jario_portrait.png-c41484c098af737d454890f5db96c6da.ctex"]
+source_file="res://assets/sprites/gui/menu_screen/portrait_bg.png"
+dest_files=["res://.godot/imported/portrait_bg.png-a2a47f3aac1ffb704705275b3197a650.ctex"]
 
 [params]
 
