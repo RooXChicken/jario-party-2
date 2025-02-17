@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cemiexldkunah"]
+[gd_scene load_steps=22 format=3 uid="uid://cemiexldkunah"]
 
 [ext_resource type="Script" path="res://objects/scenes/main_menu/MainMenu.cs" id="1_uooec"]
 [ext_resource type="AudioStream" uid="uid://d1f18tiqi1lxh" path="res://assets/sound/music/menu_melody/menu1.wav" id="2_jlhs4"]
@@ -7,7 +7,6 @@
 [ext_resource type="AudioStream" uid="uid://5bb6lkw208v3" path="res://assets/sound/music/menu_melody/layer3.wav" id="5_x1bw6"]
 [ext_resource type="Script" path="res://objects/scenes/main_menu/MenuMusic.cs" id="6_0n561"]
 [ext_resource type="Shader" path="res://objects/scenes/main_menu/color.gdshader" id="7_1rhkn"]
-[ext_resource type="Texture2D" uid="uid://280g5hty6bcn" path="res://assets/sprites/gui/splash_screen/spr_jarioparty1_HD.png" id="7_enlsy"]
 [ext_resource type="Texture2D" uid="uid://dia83m52molrt" path="res://assets/sprites/gui/title_screen/jariomask.png" id="8_20bbh"]
 [ext_resource type="Texture2D" uid="uid://bexcae726b6rb" path="res://assets/sprites/scenes/main_menu/bg_skylong.png" id="8_j6s1b"]
 [ext_resource type="Shader" path="res://assets/shaders/title_screen/bg_scroll.gdshader" id="9_30c87"]
@@ -25,6 +24,57 @@ stream_2/stream = ExtResource("4_pcc83")
 stream_2/volume = -60.0
 stream_3/stream = ExtResource("5_x1bw6")
 stream_3/volume = -60.0
+
+[sub_resource type="Animation" id="Animation_sgnra"]
+resource_name = "MenuStage2"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Grass:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-4, 1),
+"update": 0,
+"values": [Vector2(320, 540), Vector2(320, 180)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sky:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-4, 1),
+"update": 0,
+"values": [Vector2(320, 360), Vector2(320, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Clouds:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-3, 1),
+"update": 0,
+"values": [Vector2(320, 180), Vector2(320, -180)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sun:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-4, 1),
+"update": 0,
+"values": [Vector2(320, 180), Vector2(320, -180)]
+}
 
 [sub_resource type="Animation" id="Animation_1ptyb"]
 length = 0.001
@@ -118,57 +168,6 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_sgnra"]
-resource_name = "MenuStage2"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Grass:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-4, 1),
-"update": 0,
-"values": [Vector2(320, 540), Vector2(320, 180)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sky:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-4, 1),
-"update": 0,
-"values": [Vector2(320, 360), Vector2(320, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Clouds:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-3, 1),
-"update": 0,
-"values": [Vector2(320, 180), Vector2(320, -180)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sun:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-4, 1),
-"update": 0,
-"values": [Vector2(320, 180), Vector2(320, -180)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lixmr"]
 _data = {
 "MenuStage2": SubResource("Animation_sgnra"),
@@ -218,7 +217,6 @@ position = Vector2(320, 180)
 texture = ExtResource("12_7vbe6")
 
 [node name="TransitionGroup" type="CanvasGroup" parent="."]
-visible = false
 
 [node name="Background" type="ColorRect" parent="TransitionGroup"]
 visible = false
@@ -228,7 +226,6 @@ color = Color(0.937255, 0.894118, 0.690196, 1)
 
 [node name="PreviousScreenSprite" type="Sprite2D" parent="TransitionGroup"]
 position = Vector2(320, 180)
-texture = ExtResource("7_enlsy")
 
 [node name="CircleTransitionMask" type="Sprite2D" parent="TransitionGroup"]
 material = SubResource("CanvasItemMaterial_s88y2")
