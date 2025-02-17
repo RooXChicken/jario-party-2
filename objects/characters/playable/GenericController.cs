@@ -367,22 +367,22 @@ public partial class GenericController : CharacterBody2D
 		float combinedSpeed = Math.Abs(velocity.X) + Math.Abs(velocity.Y);
 		if(combinedSpeed != 0)
 		{
-			if(velocity.X > velocity.Y && velocity.X > -velocity.Y)
+			if(joyAxis.X > joyAxis.Y && joyAxis.X > -joyAxis.Y)
 			{
 				direction = "left";
 				playerSprite.FlipH = true;
 			}
-			else if(-velocity.X > velocity.Y && -velocity.X > -velocity.Y)
+			else if(-joyAxis.X > joyAxis.Y && -joyAxis.X > -joyAxis.Y)
 			{
 				direction = "left";
 				playerSprite.FlipH = false;
 			}
-			else if(-velocity.Y > velocity.X && -velocity.Y > -velocity.X)
+			else if(-joyAxis.Y > joyAxis.X && -joyAxis.Y > -joyAxis.X)
 			{
 				direction = "up";
 				playerSprite.FlipH = false;
 			}
-			else if(velocity.Y > velocity.X && velocity.Y > -velocity.X)
+			else if(joyAxis.Y > joyAxis.X && joyAxis.Y > -joyAxis.X)
 			{
 				direction = "down";
 				playerSprite.FlipH = false;
