@@ -1,8 +1,12 @@
-[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://waehc4plgain"]
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://waehc4plgain"]
 
 [ext_resource type="Texture2D" uid="uid://rwgh04k46hpg" path="res://assets/sprites/characters/playable/josh/josh_walk_down.png" id="1_s5vk1"]
 [ext_resource type="Texture2D" uid="uid://djo8m1qnaulpd" path="res://assets/sprites/characters/playable/josh/josh_walk_side.png" id="2_iyw6b"]
 [ext_resource type="Texture2D" uid="uid://dllm5ck44bgck" path="res://assets/sprites/characters/playable/josh/josh_walk_up.png" id="3_dmn6c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sjngo"]
+atlas = ExtResource("1_s5vk1")
+region = Rect2(0, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_il35v"]
 atlas = ExtResource("1_s5vk1")
@@ -69,7 +73,10 @@ animations = [{
 "name": &"jump_up",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sjngo")
+}],
 "loop": true,
 "name": &"long_idle",
 "speed": 4.0
