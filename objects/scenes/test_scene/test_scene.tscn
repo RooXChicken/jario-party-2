@@ -24,7 +24,7 @@ position = Vector2(82.25, -133)
 shape = SubResource("RectangleShape2D_k3gy2")
 
 [node name="GenericController2" parent="." instance=ExtResource("1_c1e3w")]
-position = Vector2(204, 260)
+position = Vector2(205, 260)
 characterIndex = 2
 
 [node name="GenericController3" parent="." instance=ExtResource("1_c1e3w")]

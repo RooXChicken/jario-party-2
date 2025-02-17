@@ -232,20 +232,49 @@ public partial class GenericController : CharacterBody2D
 		if(!ai)
 		{
 			//get joystick input
-			// Vector2 rawInput = Input.GetVector("left", "right", "up", "down");
 			Vector2 rawInput = new Vector2(Input.GetAxis("left", "right"), Input.GetAxis("up", "down"));
 
 			//forced deadzone (evil mode)
 			if(Math.Abs(rawInput.X) < joystickDeadzone) rawInput.X = 0;
 			if(Math.Abs(rawInput.Y) < joystickDeadzone) rawInput.Y = 0;
 
-			// float combinedDirection = MathF.Abs(rawInput.X) + Mathf.Abs(rawInput.Y);
-			joyAxis = rawInput; // / ((combinedDirection != 0) ? combinedDirection : 1);
+			// step count
+			int _steps = 8;
+
+			// get the direction of the input with atan2 (thank you pannenkoek, i will never mix up the directions of the function :D)
+			float _direction = Mathf.Atan2(rawInput.Y, rawInput.X);
+			float _length = rawInput.Length(); // store the length of the input for the last step
+			
+			// skip movement if steps is 0
+			if(_steps == 0)
+			{
+				_length = 0;
+			}
+			else if(_steps > 0) //if steps is -1, then don't limit to any number of axies
+			{
+				float _directionDeg = Mathf.RadToDeg(_direction); // degree math is easier for me than radian math (with an negligable performance loss)
+
+				// determine the size of each step
+				float _stepsInCircle = 360f/_steps;
+
+				// equation takes the floor of the direction divided by the step count
+				// this is to get the direction to a small value, then floor it (1, 2, 3, 4, 5, 6, 7, 8 for 8 steps)
+				// then multiply it by the step count to get the corrected value according to the size of the steps
+				// basically emulating int math and it's surprising uses
+				_directionDeg = Mathf.RoundToInt(_directionDeg/_stepsInCircle) * _stepsInCircle;
+				_direction = Mathf.DegToRad(_directionDeg);
+			}
+
+			// convert the direction back into a vector and multiply by it's original length
+			joyAxis = new Vector2(Mathf.Cos(_direction), Mathf.Sin(_direction)) * _length;
 		}
 		//if ai, write to joyAxis manually :P
 
-		if(ai)
-			simulateAction("jump", 1);
+		// if(ai)
+		// {
+		// 	// simulateAction("jump", 1);
+		// 	joyAxis.X = 1;
+		// }
 
 		//to run or not to run
 		if(getActionState("menu") >= 0)
