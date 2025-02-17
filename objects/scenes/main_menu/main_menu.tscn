@@ -1,11 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://cemiexldkunah"]
+[gd_scene load_steps=21 format=3 uid="uid://cemiexldkunah"]
 
 [ext_resource type="Script" path="res://objects/scenes/main_menu/MainMenu.cs" id="1_uooec"]
 [ext_resource type="AudioStream" uid="uid://d1f18tiqi1lxh" path="res://assets/sound/music/menu_melody/menu1.wav" id="2_jlhs4"]
 [ext_resource type="AudioStream" uid="uid://c61nhf7ff30l0" path="res://assets/sound/music/menu_melody/layer1.wav" id="3_hjsux"]
 [ext_resource type="AudioStream" uid="uid://cnpe27dwmf833" path="res://assets/sound/music/menu_melody/layer2.wav" id="4_pcc83"]
 [ext_resource type="AudioStream" uid="uid://5bb6lkw208v3" path="res://assets/sound/music/menu_melody/layer3.wav" id="5_x1bw6"]
-[ext_resource type="Script" path="res://objects/scenes/main_menu/MenuMusic.cs" id="6_0n561"]
 [ext_resource type="Shader" path="res://objects/scenes/main_menu/color.gdshader" id="7_1rhkn"]
 [ext_resource type="Texture2D" uid="uid://dia83m52molrt" path="res://assets/sprites/gui/title_screen/jariomask.png" id="8_20bbh"]
 [ext_resource type="Texture2D" uid="uid://bexcae726b6rb" path="res://assets/sprites/scenes/main_menu/bg_skylong.png" id="8_j6s1b"]
@@ -25,57 +24,6 @@ stream_2/volume = -60.0
 stream_3/stream = ExtResource("5_x1bw6")
 stream_3/volume = -60.0
 
-[sub_resource type="Animation" id="Animation_sgnra"]
-resource_name = "MenuStage2"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Grass:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-4, 1),
-"update": 0,
-"values": [Vector2(320, 540), Vector2(320, 180)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sky:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-4, 1),
-"update": 0,
-"values": [Vector2(320, 360), Vector2(320, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Clouds:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-3, 1),
-"update": 0,
-"values": [Vector2(320, 180), Vector2(320, -180)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sun:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(-4, 1),
-"update": 0,
-"values": [Vector2(320, 180), Vector2(320, -180)]
-}
-
 [sub_resource type="Animation" id="Animation_1ptyb"]
 length = 0.001
 tracks/0/type = "value"
@@ -93,50 +41,14 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Clouds:position")
+tracks/1/path = NodePath("Camera2D:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(-3),
 "update": 0,
 "values": [Vector2(320, 180)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Grass:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(320, 540)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sun:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(320, 180)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Sky:position")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(320, 360)]
 }
 
 [sub_resource type="Animation" id="Animation_sosxi"]
@@ -168,20 +80,35 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_lixmr"]
-_data = {
-"MenuStage2": SubResource("Animation_sgnra"),
-"RESET": SubResource("Animation_1ptyb"),
-"circle_transition": SubResource("Animation_sosxi")
+[sub_resource type="Animation" id="Animation_sgnra"]
+resource_name = "menu_stage_1"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(-3, 1),
+"update": 0,
+"values": [Vector2(320, 180), Vector2(320, 540)]
 }
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_p11y0"]
-shader = ExtResource("7_1rhkn")
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lixmr"]
+_data = {
+"RESET": SubResource("Animation_1ptyb"),
+"circle_transition": SubResource("Animation_sosxi"),
+"menu_stage_1": SubResource("Animation_sgnra")
+}
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jg53i"]
 shader = ExtResource("9_30c87")
 shader_parameter/speed = 0.011
 shader_parameter/verticalMovement = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p11y0"]
+shader = ExtResource("7_1rhkn")
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_s88y2"]
 blend_mode = 3
@@ -193,7 +120,6 @@ script = ExtResource("1_uooec")
 stream = SubResource("AudioStreamSynchronized_4jbe6")
 autoplay = true
 bus = &"Music"
-script = ExtResource("6_0n561")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -201,20 +127,38 @@ libraries = {
 }
 autoplay = "circle_transition"
 
-[node name="Sky" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_p11y0")
-position = Vector2(320, 360)
-texture = ExtResource("8_j6s1b")
+[node name="CloudsParallax" type="Parallax2D" parent="."]
 
-[node name="Sun" type="Sprite2D" parent="."]
-position = Vector2(320, 180)
-texture = ExtResource("11_en18o")
-
-[node name="Clouds" type="Sprite2D" parent="."]
+[node name="CloudsSprite" type="Sprite2D" parent="CloudsParallax"]
+z_index = 1
 texture_repeat = 2
 material = SubResource("ShaderMaterial_jg53i")
 position = Vector2(320, 180)
 texture = ExtResource("12_7vbe6")
+
+[node name="SkyParallax" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1, 0.8)
+
+[node name="SkySprite" type="Sprite2D" parent="SkyParallax"]
+material = SubResource("ShaderMaterial_p11y0")
+position = Vector2(320, 360)
+texture = ExtResource("8_j6s1b")
+
+[node name="SunParallax" type="Parallax2D" parent="."]
+scroll_scale = Vector2(1, 0.25)
+
+[node name="SunSprite" type="Sprite2D" parent="SunParallax"]
+position = Vector2(320, 180)
+texture = ExtResource("11_en18o")
+
+[node name="GrassParallax" type="Parallax2D" parent="."]
+
+[node name="GrassSprite" type="Sprite2D" parent="GrassParallax"]
+position = Vector2(320, 540)
+texture = ExtResource("14_004ae")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(320, 180)
 
 [node name="TransitionGroup" type="CanvasGroup" parent="."]
 
@@ -233,7 +177,3 @@ position = Vector2(320, 180)
 scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("8_20bbh")
 flip_h = true
-
-[node name="Grass" type="Sprite2D" parent="."]
-position = Vector2(320, 540)
-texture = ExtResource("14_004ae")
