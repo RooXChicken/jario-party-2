@@ -20,7 +20,7 @@ public partial class TitleScreen : Node2D
 
 	public override void _Process(double delta)
 	{
-		if(Input.IsActionJustPressed("select") && anim.CurrentAnimationPosition > 2)
+		if(Input.IsActionJustPressed("select") && (anim.CurrentAnimation == "logo_shine_loop" || anim.CurrentAnimationPosition > 2))
 		{
 			Node scene = ((PackedScene)ResourceLoader.LoadThreadedGet("res://objects/scenes/main_menu/main_menu.tscn")).Instantiate();
 			scene.GetNode<Sprite2D>("TransitionGroup/PreviousScreenSprite").Texture = ImageTexture.CreateFromImage(GetViewport().GetTexture().GetImage());
@@ -30,7 +30,7 @@ public partial class TitleScreen : Node2D
 		}
 
 		//skip to title
-		if(Input.IsActionJustPressed("select") && anim.CurrentAnimationPosition < 2)
+		if(Input.IsActionJustPressed("select") && (anim.CurrentAnimation != "logo_shine_loop" && anim.CurrentAnimationPosition < 2))
 		{
 			anim.Seek(2);
 
