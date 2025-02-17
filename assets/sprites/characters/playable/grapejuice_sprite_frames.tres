@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://ckhlnuhiu3pen"]
+[gd_resource type="SpriteFrames" load_steps=18 format=3 uid="uid://ckhlnuhiu3pen"]
 
 [ext_resource type="Texture2D" uid="uid://ccfjk8ofqf00u" path="res://assets/sprites/characters/playable/grapejuice/grape_walk_down.png" id="1_1h2d3"]
 [ext_resource type="Texture2D" uid="uid://c3fjc7cqtakwq" path="res://assets/sprites/characters/playable/grapejuice/grape_jump.png" id="1_tvibr"]
@@ -12,6 +12,10 @@ region = Rect2(0, 0, 32, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_exoav"]
 atlas = ExtResource("1_tvibr")
 region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_li55q"]
+atlas = ExtResource("1_1h2d3")
+region = Rect2(0, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fskw7"]
 atlas = ExtResource("1_1h2d3")
@@ -76,7 +80,10 @@ animations = [{
 "name": &"jump_up",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_li55q")
+}],
 "loop": true,
 "name": &"long_idle",
 "speed": 4.0

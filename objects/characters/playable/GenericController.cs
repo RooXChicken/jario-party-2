@@ -162,7 +162,7 @@ public partial class GenericController : CharacterBody2D
 		playerSprite.SpriteFrames = character.spriteFrames;
 
 		//load sounds
-		SoundManager.loadSound("character_playable_jump", "res://assets/sound/effects/characters/playable/player_jump.wav", 12);
+		SoundManager.loadSound("character_playable_jump", "res://assets/sound/effects/characters/playable/player_jump.wav", 4);
 
 		//create list of abilities
 		abilities = new List<Ability>();

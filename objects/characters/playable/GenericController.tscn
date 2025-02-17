@@ -44,5 +44,6 @@ text = "Position: (0, 0)
 Speed: 0"
 
 [node name="BodyCollision" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 17)
 shape = SubResource("RectangleShape2D_0iwcb")

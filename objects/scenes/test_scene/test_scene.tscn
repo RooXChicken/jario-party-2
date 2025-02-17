@@ -14,7 +14,7 @@ texture = ExtResource("1_setjr")
 centered = false
 
 [node name="GenericController" parent="." instance=ExtResource("1_c1e3w")]
-position = Vector2(160, 260)
+position = Vector2(174, 260)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(238, 274)
@@ -24,7 +24,7 @@ position = Vector2(82.25, -133)
 shape = SubResource("RectangleShape2D_k3gy2")
 
 [node name="GenericController2" parent="." instance=ExtResource("1_c1e3w")]
-position = Vector2(205, 260)
+position = Vector2(207, 260)
 characterIndex = 2
 
 [node name="GenericController3" parent="." instance=ExtResource("1_c1e3w")]
@@ -33,6 +33,6 @@ characterIndex = 1
 dense = true
 
 [node name="GenericController4" parent="." instance=ExtResource("1_c1e3w")]
-position = Vector2(276, 260)
+position = Vector2(271, 260)
 characterIndex = 3
 dense = true
