@@ -20,6 +20,15 @@ public partial class TitleScreen : Node2D
 
 	public override void _Process(double delta)
 	{
+		if(Input.IsActionJustPressed("select") && anim.CurrentAnimationPosition > 2)
+		{
+			Node scene = ((PackedScene)ResourceLoader.LoadThreadedGet("res://objects/scenes/main_menu/main_menu.tscn")).Instantiate();
+			scene.GetNode<Sprite2D>("TransitionGroup/PreviousScreenSprite").Texture = ImageTexture.CreateFromImage(GetViewport().GetTexture().GetImage());
+
+			GetParent().AddChild(scene);
+			QueueFree();
+		}
+
 		//skip to title
 		if(Input.IsActionJustPressed("select") && anim.CurrentAnimationPosition < 2)
 		{
@@ -27,15 +36,6 @@ public partial class TitleScreen : Node2D
 
 			// if(!titleThemePlayer.Playing)
 			// 	titleThemePlayer.Play();
-		}
-
-		if(Input.IsActionJustPressed("back"))
-		{
-			Node scene = ((PackedScene)ResourceLoader.LoadThreadedGet("res://objects/scenes/main_menu/main_menu.tscn")).Instantiate();
-			scene.GetNode<Sprite2D>("TransitionGroup/PreviousScreenSprite").Texture = ImageTexture.CreateFromImage(GetViewport().GetTexture().GetImage());
-
-			GetParent().AddChild(scene);
-			QueueFree();
 		}
 	}
 
