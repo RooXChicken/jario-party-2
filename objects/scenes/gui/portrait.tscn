@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bx285srjjbqg1"]
+[gd_scene load_steps=7 format=3 uid="uid://bx285srjjbqg1"]
 
+[ext_resource type="Script" path="res://objects/scenes/gui/Portrait.cs" id="1_g2rr0"]
 [ext_resource type="Shader" path="res://assets/shaders/portraitScroll.gdshader" id="1_kdplk"]
 [ext_resource type="Texture2D" uid="uid://clehas80h3qua" path="res://assets/sprites/gui/menu_screen/portrait_bg.png" id="2_k4hk5"]
 [ext_resource type="Texture2D" uid="uid://fgkjn0hafstn" path="res://assets/sprites/characters/playable/jario/portrait.png" id="3_j5p3f"]
@@ -7,10 +8,11 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1yhau"]
 shader = ExtResource("1_kdplk")
-shader_parameter/color = Vector3(107.51, 95.605, 88.915)
+shader_parameter/color = Vector3(5, 5, 10)
 shader_parameter/speed = 0.1
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_g2rr0")
 
 [node name="Background" type="Sprite2D" parent="."]
 texture_repeat = 2

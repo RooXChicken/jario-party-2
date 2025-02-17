@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=27 format=3 uid="uid://cdhcg4jjwsvcm"]
+[gd_resource type="SpriteFrames" load_steps=29 format=3 uid="uid://cdhcg4jjwsvcm"]
 
 [ext_resource type="Texture2D" uid="uid://cjulreu3dpt8x" path="res://assets/sprites/characters/playable/wooigi/wooigi_stand.png" id="1_wcecy"]
+[ext_resource type="Texture2D" uid="uid://crgyhdphbhqxq" path="res://assets/sprites/characters/playable/wooigi/wooigi_portrait.png" id="2_fpajk"]
 [ext_resource type="Texture2D" uid="uid://bbhmx00xtqa56" path="res://assets/sprites/characters/playable/wooigi/wooigi_idle.png" id="2_wmrsu"]
 [ext_resource type="Texture2D" uid="uid://dgrksygiomjdj" path="res://assets/sprites/characters/playable/wooigi/wooigi_walk_down.png" id="3_emqdn"]
 [ext_resource type="Texture2D" uid="uid://qgcc01w3qq6o" path="res://assets/sprites/characters/playable/wooigi/wooigi_walk_side.png" id="4_m5e4p"]
@@ -45,6 +46,10 @@ region = Rect2(256, 0, 32, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_l73sg"]
 atlas = ExtResource("2_wmrsu")
 region = Rect2(288, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7bltx"]
+atlas = ExtResource("2_fpajk")
+region = Rect2(0, 0, 60, 60)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fu7s8"]
 atlas = ExtResource("1_wcecy")
@@ -144,6 +149,14 @@ animations = [{
 "loop": true,
 "name": &"long_idle",
 "speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7bltx")
+}],
+"loop": true,
+"name": &"portrait",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
