@@ -48,7 +48,7 @@ public partial class EmoteWheel : Node2D
 		foreach(Sprite2D _sprite in emotes)
 		{
 			float _distance = _sprite.Position.DistanceTo(selector.Position);
-			GD.Print(_distance);
+			// GD.Print(_distance);
 			if(_distance < 32)
 				_sprite.Scale = new Vector2(1.4f, 1.4f);
 			else

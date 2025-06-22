@@ -11,8 +11,8 @@ config_version=5
 [application]
 
 config/name="Jario Party 2"
-run/main_scene="res://objects/scenes/title_screen/title_screen.tscn"
-config/features=PackedStringArray("4.3", "C#", "Forward Plus")
+run/main_scene="uid://c5q4j8gnrcue5"
+config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 

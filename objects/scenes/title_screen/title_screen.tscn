@@ -1,11 +1,11 @@
 [gd_scene load_steps=18 format=3 uid="uid://c5q4j8gnrcue5"]
 
 [ext_resource type="Texture2D" uid="uid://c5mcmk07mex4g" path="res://assets/sprites/gui/splash_screen/spr_splash_text.png" id="1_kfsxx"]
-[ext_resource type="Script" path="res://objects/scenes/title_screen/TitleScreen.cs" id="1_vbnw0"]
+[ext_resource type="Script" uid="uid://b6j8belo7qiej" path="res://objects/scenes/title_screen/title_screen.gd" id="1_y2trw"]
 [ext_resource type="AudioStream" uid="uid://wfdvbux60tbq" path="res://assets/sound/music/title_screen_intro.wav" id="2_w0w5n"]
 [ext_resource type="Texture2D" uid="uid://280g5hty6bcn" path="res://assets/sprites/gui/splash_screen/spr_jarioparty1_HD.png" id="2_wd4i1"]
-[ext_resource type="Shader" path="res://assets/shaders/title_screen/bg_scroll.gdshader" id="3_dhp8x"]
-[ext_resource type="Shader" path="res://assets/shaders/title_screen/logo_shine.gdshader" id="3_trvis"]
+[ext_resource type="Shader" uid="uid://d0m412wp2cq5s" path="res://assets/shaders/title_screen/bg_scroll.gdshader" id="3_dhp8x"]
+[ext_resource type="Shader" uid="uid://dihdccv4su1k6" path="res://assets/shaders/title_screen/logo_shine.gdshader" id="3_trvis"]
 [ext_resource type="AudioStream" uid="uid://btv2ohbpn23i3" path="res://assets/sound/music/title_screen_loop.wav" id="3_v774u"]
 [ext_resource type="Texture2D" uid="uid://bl4luc6ufja47" path="res://assets/sprites/gui/title_screen/title_screen_bg.png" id="4_je1yw"]
 [ext_resource type="Texture2D" uid="uid://bjdgysowgl60f" path="res://assets/sprites/gui/title_screen/jp2logo_small.png" id="7_80bjg"]
@@ -23,7 +23,7 @@ clip_1/auto_advance = 1
 clip_1/next_clip = 1
 _transitions = {
 Vector2i(0, 1): {
-"fade_beats": 1,
+"fade_beats": 1.0,
 "fade_mode": 0,
 "from_time": 0,
 "to_time": 0
@@ -280,7 +280,7 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"playLoopingShine"
+"method": &"play_looping_shine"
 }]
 }
 tracks/9/type = "value"
@@ -298,22 +298,22 @@ tracks/9/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_knovq"]
 _data = {
-"RESET": SubResource("Animation_bdxlg"),
-"logo_shine_loop": SubResource("Animation_s3x4k"),
-"splash_biggify": SubResource("Animation_ldcjt")
+&"RESET": SubResource("Animation_bdxlg"),
+&"logo_shine_loop": SubResource("Animation_s3x4k"),
+&"splash_biggify": SubResource("Animation_ldcjt")
 }
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_64ouc"]
 shader = ExtResource("3_dhp8x")
 shader_parameter/speed = 0.05
-shader_parameter/verticalMovement = null
+shader_parameter/verticalMovement = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ugtuq"]
 shader = ExtResource("3_trvis")
 shader_parameter/slide = 0.0
 
 [node name="SplashScreen" type="Node2D"]
-script = ExtResource("1_vbnw0")
+script = ExtResource("1_y2trw")
 
 [node name="TitleTheme" type="AudioStreamPlayer2D" parent="."]
 stream = SubResource("AudioStreamInteractive_vsqa0")
@@ -322,7 +322,7 @@ bus = &"Music"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../SplashSprite")
 libraries = {
-"": SubResource("AnimationLibrary_knovq")
+&"": SubResource("AnimationLibrary_knovq")
 }
 autoplay = "splash_biggify"
 
@@ -358,4 +358,3 @@ texture = ExtResource("7_80bjg")
 [node name="ButtonPrompt" parent="." instance=ExtResource("10_4ewj2")]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(12, 314)
-text = "Press %r!"

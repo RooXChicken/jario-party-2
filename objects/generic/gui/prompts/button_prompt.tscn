@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://cm003mc4wqrt1"]
 
-[ext_resource type="Script" path="res://objects/generic/gui/prompts/ButtonPrompt.cs" id="1_4utip"]
+[ext_resource type="Script" uid="uid://c82v2y3mkcyl7" path="res://objects/generic/gui/prompts/button_prompt.gd" id="1_nr0mr"]
 [ext_resource type="Theme" uid="uid://bcuw0mka8mj25" path="res://assets/gui_theme.tres" id="3_6bpyt"]
 [ext_resource type="FontFile" uid="uid://ju2o0qquj6im" path="res://assets/fonts/PopHappiness.ttf" id="3_dsury"]
 
@@ -12,15 +12,15 @@ shadow_color = Color(0.0980392, 0.0980392, 0.0980392, 0.705882)
 shadow_offset = Vector2(1, 3)
 
 [node name="ButtonPrompt" type="Node2D"]
-script = ExtResource("1_4utip")
-text = "Press %b!"
+script = ExtResource("1_nr0mr")
+text = "Press %r"
 
 [node name="Text" type="Label" parent="."]
-offset_right = 385.0
+offset_right = 350.0
 offset_bottom = 33.0
 theme = ExtResource("3_6bpyt")
 theme_override_colors/font_shadow_color = Color(0.321728, 0.321728, 0.321728, 1)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
-text = "Press     !"
+text = "Press     "
 label_settings = SubResource("LabelSettings_jwwk0")

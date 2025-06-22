@@ -394,7 +394,7 @@ public partial class GenericController : CharacterBody2D
 			if(velocity != Vector2.Zero)
 			{
 				//set speed based on velocity then play respective animaation
-				playerSprite.SpeedScale = (Math.Abs(velocity.X) + Math.Abs(velocity.Y)) / walkSpeed;
+				playerSprite.SpeedScale = combinedSpeed / walkSpeed;
 			}
 			else if(ticksWithoutMovement < longIdleTime)
 				playerSprite.Frame = 1;
