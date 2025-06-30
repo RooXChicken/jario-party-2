@@ -26,11 +26,11 @@ func update_text() -> void:
 	label = get_node("Text");
 	
 	var buttons: Array[PromptData] = [];
-	var final_msg: String = "";
+	var final_msg := "";
 	
-	var i: int = 0;
+	var i := 0;
 	while(i < text.length()):
-		var c: String = text[i];
+		var c := text[i];
 		i += 1;
 
 		if(c != "%"):
@@ -40,7 +40,7 @@ func update_text() -> void:
 		if(i >= text.length()):
 			continue;
 		
-		var data: PromptData = PromptData.new();
+		var data := PromptData.new();
 		data.pos = i;
 		data.character = text[i];
 		buttons.append(data);
@@ -55,10 +55,10 @@ func update_text() -> void:
 	for data in buttons:
 		var x = 0;
 		for c in range(0, data.pos):
-			var rect: Rect2 = label.get_character_bounds(c);
+			var rect := label.get_character_bounds(c);
 			x += rect.size.x;
 		
-		var button: AnimatedSprite2D = AnimatedSprite2D.new();
+		var button := AnimatedSprite2D.new();
 		button.sprite_frames = load(
 			"res://assets/sprites/gui/prompts/sprite_frames/button_" + data.character + ".tres");
 		

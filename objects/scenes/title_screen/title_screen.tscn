@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c5q4j8gnrcue5"]
+[gd_scene load_steps=22 format=3 uid="uid://c5q4j8gnrcue5"]
 
 [ext_resource type="Texture2D" uid="uid://c5mcmk07mex4g" path="res://assets/sprites/gui/splash_screen/spr_splash_text.png" id="1_kfsxx"]
 [ext_resource type="Script" uid="uid://b6j8belo7qiej" path="res://objects/scenes/title_screen/title_screen.gd" id="1_y2trw"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://bl4luc6ufja47" path="res://assets/sprites/gui/title_screen/title_screen_bg.png" id="4_je1yw"]
 [ext_resource type="Texture2D" uid="uid://bjdgysowgl60f" path="res://assets/sprites/gui/title_screen/jp2logo_small.png" id="7_80bjg"]
 [ext_resource type="PackedScene" uid="uid://cm003mc4wqrt1" path="res://objects/generic/gui/prompts/button_prompt.tscn" id="10_4ewj2"]
+[ext_resource type="Theme" uid="uid://bcuw0mka8mj25" path="res://assets/gui_theme.tres" id="11_nysha"]
+[ext_resource type="FontFile" uid="uid://ju2o0qquj6im" path="res://assets/fonts/PopHappiness.ttf" id="12_f301b"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_vsqa0"]
 clip_count = 2
@@ -151,6 +153,18 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("../ModeSelect:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 240)]
 }
 
 [sub_resource type="Animation" id="Animation_s3x4k"]
@@ -296,10 +310,38 @@ tracks/9/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_d3f34"]
+resource_name = "mode_select"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../ButtonPrompt:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../ModeSelect:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 240), Vector2(0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_knovq"]
 _data = {
 &"RESET": SubResource("Animation_bdxlg"),
 &"logo_shine_loop": SubResource("Animation_s3x4k"),
+&"mode_select": SubResource("Animation_d3f34"),
 &"splash_biggify": SubResource("Animation_ldcjt")
 }
 
@@ -311,6 +353,13 @@ shader_parameter/verticalMovement = false
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ugtuq"]
 shader = ExtResource("3_trvis")
 shader_parameter/slide = 0.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_hea76"]
+font = ExtResource("12_f301b")
+font_size = 32
+shadow_size = 0
+shadow_color = Color(0.0980392, 0.0980392, 0.0980392, 0.705882)
+shadow_offset = Vector2(1, 3)
 
 [node name="SplashScreen" type="Node2D"]
 script = ExtResource("1_y2trw")
@@ -358,3 +407,30 @@ texture = ExtResource("7_80bjg")
 [node name="ButtonPrompt" parent="." instance=ExtResource("10_4ewj2")]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(12, 314)
+
+[node name="ModeSelect" type="Node2D" parent="."]
+position = Vector2(0, 240)
+
+[node name="NewGame" type="Label" parent="ModeSelect"]
+offset_left = 12.0
+offset_top = 136.0
+offset_right = 362.0
+offset_bottom = 169.0
+theme = ExtResource("11_nysha")
+theme_override_colors/font_shadow_color = Color(0.321728, 0.321728, 0.321728, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+text = "New Game"
+label_settings = SubResource("LabelSettings_hea76")
+
+[node name="ResumeGame" type="Label" parent="ModeSelect"]
+offset_left = 12.0
+offset_top = 176.0
+offset_right = 362.0
+offset_bottom = 209.0
+theme = ExtResource("11_nysha")
+theme_override_colors/font_shadow_color = Color(0.321728, 0.321728, 0.321728, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+text = "Resume Game"
+label_settings = SubResource("LabelSettings_hea76")
