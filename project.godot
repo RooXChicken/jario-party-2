@@ -29,6 +29,7 @@ SoundManager="*res://objects/root/SoundManager.cs"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/scale=2.0

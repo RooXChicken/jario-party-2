@@ -1,9 +1,10 @@
-[gd_resource type="SpriteFrames" load_steps=30 format=3 uid="uid://de4yncbo4nf24"]
+[gd_resource type="SpriteFrames" load_steps=33 format=3 uid="uid://de4yncbo4nf24"]
 
 [ext_resource type="Texture2D" uid="uid://cxbb3kbuvfrwn" path="res://assets/sprites/characters/playable/jario/jario_walk_down.png" id="1_gx701"]
 [ext_resource type="Texture2D" uid="uid://h51cncxkiu7n" path="res://assets/sprites/characters/playable/jario/jario_idle.png" id="2_7v2wq"]
 [ext_resource type="Texture2D" uid="uid://dsavkpcvbpkgc" path="res://assets/sprites/characters/playable/jario/jario_jump_down.png" id="2_762sq"]
 [ext_resource type="Texture2D" uid="uid://ccpjxap737hat" path="res://assets/sprites/characters/playable/jario/jario_walk_side.png" id="2_eu84l"]
+[ext_resource type="Texture2D" uid="uid://clnew3a5v5j3c" path="res://assets/sprites/characters/playable/jario/jario_jump_side.png" id="2_pr7xl"]
 [ext_resource type="Texture2D" uid="uid://fgkjn0hafstn" path="res://assets/sprites/characters/playable/jario/portrait.png" id="3_2w3o5"]
 [ext_resource type="Texture2D" uid="uid://blio474nu1wfn" path="res://assets/sprites/characters/playable/jario/jario_walk_up.png" id="3_a375s"]
 
@@ -13,6 +14,14 @@ region = Rect2(0, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bpfwm"]
 atlas = ExtResource("2_762sq")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_knqv6"]
+atlas = ExtResource("2_pr7xl")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in1r3"]
+atlas = ExtResource("2_pr7xl")
 region = Rect2(32, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ekt0u"]
@@ -112,7 +121,13 @@ animations = [{
 "name": &"jump_down",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_knqv6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in1r3")
+}],
 "loop": true,
 "name": &"jump_left",
 "speed": 5.0
