@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://cclqlifx171cj"]
+
+[ext_resource type="Script" uid="uid://c52hktmgoe5j4" path="res://scenes/main_menu/portrait.gd" id="1_jcpqi"]
+[ext_resource type="Shader" uid="uid://cfqyf2wtt1aan" path="res://shaders/portrait_scroll.gdshader" id="2_apaqh"]
+[ext_resource type="Texture2D" uid="uid://dksgmynomfuge" path="res://sprites/gui/portraits/portrait_border.png" id="2_w1l5t"]
+[ext_resource type="Texture2D" uid="uid://clehas80h3qua" path="res://sprites/gui/portraits/portrait_bg.png" id="3_w1l5t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ok7sp"]
+shader = ExtResource("2_apaqh")
+
+[node name="Portrait" type="Node2D"]
+script = ExtResource("1_jcpqi")
+background = ExtResource("3_w1l5t")
+border = ExtResource("2_w1l5t")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_ok7sp")
+instance_shader_parameters/color = Vector3(0.5, 0.5, 0.5)
+instance_shader_parameters/speed = 0.1
+texture = ExtResource("3_w1l5t")
+
+[node name="Border" type="Sprite2D" parent="."]
+texture = ExtResource("2_w1l5t")
+
+[node name="Icon" type="Sprite2D" parent="."]

@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://fwku6cfxi0x3"]
+
+[ext_resource type="Texture2D" uid="uid://bsbo7cx7msim6" path="res://sprites/scenes/test_scene/test_background.png" id="1_1x7oe"]
+[ext_resource type="PackedScene" uid="uid://ccxndyvr4xqkq" path="res://objects/characters/playable/GenericController.tscn" id="2_l4ihe"]
+[ext_resource type="AudioStream" uid="uid://cfp5h45sal368" path="res://music/misc/mkwrosa.mp3" id="3_wgdak"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k3gy2"]
+size = Vector2(639.5, 132)
+
+[node name="TestScene" type="Node2D"]
+y_sort_enabled = true
+
+[node name="TestBackground" type="Sprite2D" parent="."]
+texture = ExtResource("1_1x7oe")
+centered = false
+
+[node name="GenericController" parent="." instance=ExtResource("2_l4ihe")]
+position = Vector2(174, 260)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(238, 274)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(82.25, -133)
+shape = SubResource("RectangleShape2D_k3gy2")
+
+[node name="GenericController2" parent="." instance=ExtResource("2_l4ihe")]
+position = Vector2(207, 260)
+characterIndex = 2
+
+[node name="GenericController3" parent="." instance=ExtResource("2_l4ihe")]
+position = Vector2(240, 260)
+characterIndex = 1
+dense = true
+
+[node name="GenericController4" parent="." instance=ExtResource("2_l4ihe")]
+position = Vector2(271, 260)
+characterIndex = 3
+dense = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wgdak")
+autoplay = true

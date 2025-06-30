@@ -16,20 +16,15 @@ config/features=PackedStringArray("4.4", "C#", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
 
-[audio]
-
-buses/default_bus_layout="res://assets/sound/default_bus_layout.tres"
-
 [autoload]
 
-SoundManager="*res://objects/root/SoundManager.cs"
-GameManager="*res://objects/root/game_manager.gd"
+SoundManager="*res://objects/root/sound/sound_manager.gd"
+GameManager="*res://objects/root/data/game_manager.gd"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
-window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/scale=2.0

@@ -1,0 +1,17 @@
+[gd_resource type="AudioStreamSynchronized" load_steps=5 format=3 uid="uid://d1cgae6px0x6t"]
+
+[ext_resource type="AudioStream" uid="uid://d1f18tiqi1lxh" path="res://music/menu_melody/menu1.wav" id="1_ppg7c"]
+[ext_resource type="AudioStream" uid="uid://c61nhf7ff30l0" path="res://music/menu_melody/layer1.wav" id="2_54tvy"]
+[ext_resource type="AudioStream" uid="uid://cnpe27dwmf833" path="res://music/menu_melody/layer2.wav" id="3_wvtgn"]
+[ext_resource type="AudioStream" uid="uid://5bb6lkw208v3" path="res://music/menu_melody/layer3.wav" id="4_jr07c"]
+
+[resource]
+stream_count = 4
+stream_0/stream = ExtResource("1_ppg7c")
+stream_0/volume = 0.0
+stream_1/stream = ExtResource("2_54tvy")
+stream_1/volume = -60.0
+stream_2/stream = ExtResource("3_wvtgn")
+stream_2/volume = -60.0
+stream_3/stream = ExtResource("4_jr07c")
+stream_3/volume = -60.0

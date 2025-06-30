@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://dk2xo8xlg65bv"]
+
+[ext_resource type="Script" uid="uid://pobylav4it12" path="res://objects/root/state_machine/state_machine.gd" id="1_blf23"]
+[ext_resource type="Script" uid="uid://blf1gfw87u2qy" path="res://scenes/test_scene/state_1.gd" id="2_8swoy"]
+[ext_resource type="Script" uid="uid://rq5ktq73i1j2" path="res://scenes/test_scene/state_2.gd" id="3_8swoy"]
+
+[node name="StateMachineTest" type="Node2D"]
+script = ExtResource("1_blf23")
+initial_state_name = "State1"
+
+[node name="State1" type="Node" parent="."]
+script = ExtResource("2_8swoy")
+
+[node name="State2" type="Node" parent="."]
+script = ExtResource("3_8swoy")

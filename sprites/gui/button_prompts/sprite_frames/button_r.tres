@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://bir1uopfh12j5"]
+
+[ext_resource type="Texture2D" uid="uid://dqcbbomlph644" path="res://sprites/gui/button_prompts/right_button.png" id="1_hejsc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40edi"]
+atlas = ExtResource("1_hejsc")
+region = Rect2(0, 0, 37, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auq5d"]
+atlas = ExtResource("1_hejsc")
+region = Rect2(37, 0, 37, 37)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40edi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auq5d")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]

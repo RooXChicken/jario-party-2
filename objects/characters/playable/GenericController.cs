@@ -53,16 +53,16 @@ public class Character
 	
 	//character types (no manual creation)
 	public static Character JARIO = new Character
-	(1, "Jario", "res://assets/sprites/characters/playable/jario_sprite_frames.tres", new Vector3(0, 0, 0));
+	(1, "Jario", "res://sprites/objects/characters/playable/jario_sprite_frames.tres", new Vector3(0, 0, 0));
 	
 	public static Character WOOIGI = new Character
-	(2, "Wooigi", "res://assets/sprites/characters/playable/wooigi_sprite_frames.tres", new Vector3(0, 0, 0));
+	(2, "Wooigi", "res://sprites/objects/characters/playable/wooigi_sprite_frames.tres", new Vector3(0, 0, 0));
 	
 	public static Character GRAPEJUICE = new Character
-	(3, "Grapejuice", "res://assets/sprites/characters/playable/grapejuice_sprite_frames.tres", new Vector3(0, 0, 0));
+	(3, "Grapejuice", "res://sprites/objects/characters/playable/grapejuice_sprite_frames.tres", new Vector3(0, 0, 0));
 	
 	public static Character JOSH = new Character
-	(4, "Josh", "res://assets/sprites/characters/playable/josh_sprite_frames.tres", new Vector3(0, 0, 0));
+	(4, "Josh", "res://sprites/objects/characters/playable/josh_sprite_frames.tres", new Vector3(0, 0, 0));
 
 	//used for index -> character
 	public static Character[] characters = new Character[] { JARIO, WOOIGI, GRAPEJUICE, JOSH };
@@ -162,7 +162,7 @@ public partial class GenericController : CharacterBody2D
 		playerSprite.SpriteFrames = character.spriteFrames;
 
 		//load sounds
-		SoundManager.loadSound("character_playable_jump", "res://assets/sound/effects/characters/playable/player_jump.wav", 4);
+		//SoundManager.loadSound("character_playable_jump", "res://assets/sound/effects/characters/playable/player_jump.wav", 4);
 
 		//create list of abilities
 		abilities = new List<Ability>();
@@ -287,7 +287,7 @@ public partial class GenericController : CharacterBody2D
 		{
 			if(getActionState("jump") == 1 && y == 0)
 			{
-				SoundManager.playSound("character_playable_jump");
+				//SoundManager.playSound("character_playable_jump");
 				yVelocity = -5f;
 			}
 		}
