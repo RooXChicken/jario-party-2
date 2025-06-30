@@ -1,7 +1,7 @@
 extends Node2D
 
-const stage_count: int = 4;
-var stage: int = 0;
+const stage_count := 4;
+var stage := 0;
 
 var streamSync: AudioStreamSynchronized;
 var volume: Array[float] = [];

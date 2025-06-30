@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cmgdevdoo7hh2"]
 
 [ext_resource type="Theme" uid="uid://bcuw0mka8mj25" path="res://assets/gui_theme.tres" id="1_0lciu"]
-[ext_resource type="Script" uid="uid://2fa4g3rtfrh6" path="res://objects/generic/gui/OptionsMenu.cs" id="3_v64cr"]
+[ext_resource type="Script" uid="uid://lasa04vxp5vo" path="res://objects/generic/gui/options_menu.gd" id="2_8xmfd"]
 
 [node name="OptionsMenu" type="Node2D"]
 
@@ -26,7 +26,7 @@ size_flags_vertical = 8
 theme = ExtResource("1_0lciu")
 tab_alignment = 1
 current_tab = 0
-script = ExtResource("3_v64cr")
+script = ExtResource("2_8xmfd")
 
 [node name="Video" type="VBoxContainer" parent="Layer/TabContainer"]
 layout_mode = 2
@@ -109,8 +109,8 @@ metadata/_tab_index = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="Layer/TabContainer/Controls"]
 layout_mode = 2
 
-[connection signal="item_selected" from="Layer/TabContainer/Video/ResolutionDropdown" to="Layer/TabContainer" method="resolutionChange"]
-[connection signal="toggled" from="Layer/TabContainer/Video/FullscreenButton" to="Layer/TabContainer" method="fullscreenToggle"]
-[connection signal="drag_ended" from="Layer/TabContainer/Audio/MasterVolumeSlider" to="Layer/TabContainer" method="masterVolumeChanged"]
-[connection signal="drag_ended" from="Layer/TabContainer/Audio/MusicVolumeSlider" to="Layer/TabContainer" method="musicVolumeChanged"]
+[connection signal="item_selected" from="Layer/TabContainer/Video/ResolutionDropdown" to="Layer/TabContainer" method="resolution_change"]
+[connection signal="toggled" from="Layer/TabContainer/Video/FullscreenButton" to="Layer/TabContainer" method="fullscreen_toggle"]
+[connection signal="drag_ended" from="Layer/TabContainer/Audio/MasterVolumeSlider" to="Layer/TabContainer" method="master_volume_changed"]
+[connection signal="drag_ended" from="Layer/TabContainer/Audio/MusicVolumeSlider" to="Layer/TabContainer" method="music_volume_changed"]
 [connection signal="drag_ended" from="Layer/TabContainer/Audio/SoundVolumeSlider" to="Layer/TabContainer" method="soundVolumeChanged"]
