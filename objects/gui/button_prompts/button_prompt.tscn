@@ -11,8 +11,9 @@ shadow_size = 0
 shadow_color = Color(0.0980392, 0.0980392, 0.0980392, 0.705882)
 shadow_offset = Vector2(1, 3)
 
-[node name="ButtonPrompt" type="Node2D"]
+[node name="ButtonPrompt" type="Node2D" node_paths=PackedStringArray("label")]
 script = ExtResource("1_nr0mr")
+label = NodePath("Text")
 text = "Press %r"
 
 [node name="Text" type="Label" parent="."]

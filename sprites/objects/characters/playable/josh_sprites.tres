@@ -81,6 +81,11 @@ animations = [{
 "name": &"long_idle",
 "speed": 4.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"portrait",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_il35v")

@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://c6u55pubjdb5y"]
+
+[ext_resource type="Script" uid="uid://pobylav4it12" path="res://objects/root/state_machine/state_machine.gd" id="1_2dfww"]
+[ext_resource type="Script" uid="uid://qjnejbs2kvqf" path="res://objects/characters/playable/character_controller.gd" id="1_lkq4s"]
+[ext_resource type="Texture2D" uid="uid://fimwh784clmb" path="res://sprites/objects/characters/shadow.png" id="2_8yfxs"]
+[ext_resource type="Script" uid="uid://3g403qko55w0" path="res://objects/characters/playable/states/idle_state.gd" id="2_lkq4s"]
+[ext_resource type="Shader" uid="uid://oe2b3lb5o8al" path="res://shaders/Wave.gdshader" id="3_lkq4s"]
+[ext_resource type="SpriteFrames" uid="uid://de4yncbo4nf24" path="res://sprites/objects/characters/playable/jario_sprites.tres" id="4_gnmej"]
+[ext_resource type="Theme" uid="uid://bcuw0mka8mj25" path="res://gui_theme.tres" id="5_61scu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_teobo"]
+shader = ExtResource("3_lkq4s")
+shader_parameter/vSpeed = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0iwcb"]
+size = Vector2(14, 14)
+
+[node name="CharacterController" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "debug_label")]
+motion_mode = 1
+script = ExtResource("1_lkq4s")
+sprite = NodePath("CharacterSprite")
+debug_label = NodePath("CharacterSprite/ColorRect/RichTextLabel")
+abilities = Array[int]([1, 3])
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("1_2dfww")
+initial_state_name = "Idle"
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("2_lkq4s")
+
+[node name="Walking" type="Node" parent="StateMachine"]
+
+[node name="Jumping" type="Node" parent="StateMachine"]
+
+[node name="LongIdle" type="Node" parent="StateMachine"]
+
+[node name="ShadowSprite" type="Sprite2D" parent="."]
+position = Vector2(0, 22.5)
+texture = ExtResource("2_8yfxs")
+
+[node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
+material = SubResource("ShaderMaterial_teobo")
+sprite_frames = ExtResource("4_gnmej")
+animation = &"long_idle"
+
+[node name="ColorRect" type="ColorRect" parent="CharacterSprite"]
+visible = false
+offset_left = -10.0
+offset_top = -64.0
+offset_right = 361.0
+offset_bottom = -23.0
+color = Color(0.140447, 0.140447, 0.140447, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CharacterSprite/ColorRect"]
+layout_mode = 0
+offset_right = 372.0
+offset_bottom = 41.0
+theme = ExtResource("5_61scu")
+text = "Position: (0, 0)
+Speed: 0"
+
+[node name="BodyCollision" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 17)
+shape = SubResource("RectangleShape2D_0iwcb")

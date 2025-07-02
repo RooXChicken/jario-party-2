@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://cr2m6tsk845yl" path="res://objects/characters/playable/GenericController.cs" id="1_awjjb"]
 [ext_resource type="Shader" uid="uid://oe2b3lb5o8al" path="res://shaders/Wave.gdshader" id="2_4r0dp"]
 [ext_resource type="Texture2D" uid="uid://fimwh784clmb" path="res://sprites/objects/characters/shadow.png" id="2_r52bl"]
-[ext_resource type="SpriteFrames" uid="uid://de4yncbo4nf24" path="res://sprites/objects/characters/playable/jario_sprite_frames.tres" id="4_2wye6"]
+[ext_resource type="SpriteFrames" uid="uid://de4yncbo4nf24" path="res://sprites/objects/characters/playable/jario_sprites.tres" id="4_2wye6"]
 [ext_resource type="Theme" uid="uid://bcuw0mka8mj25" path="res://gui_theme.tres" id="5_0oi5w"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_teobo"]

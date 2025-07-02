@@ -1,7 +1,7 @@
 @tool
 extends Node2D
 
-var label: Label;
+@export var label: Label;
 
 @export var text: String = "":
 	get:
@@ -16,14 +16,12 @@ func _ready() -> void:
 	
 func update_text() -> void:
 	# prevent godot from losing its mind as a tool
-	if(!has_node("Text")):
+	if(label == null):
 		return;
 		
 	for node in get_children():
 		if(node is AnimatedSprite2D):
 			node.queue_free();
-	
-	label = get_node("Text");
 	
 	var buttons: Array[PromptData] = [];
 	var final_msg := "";
