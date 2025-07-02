@@ -1,19 +1,19 @@
 extends Node
 
 var options_menu: Node;
-var settings := SettingsManager.new();
+var settings: Settings;
 
-var game_data := GameData.init(0, 0, 0);
+var game_data := GameData.new(0, 0, 0);
 var players: Array[PlayerData];
 
 var flags: Flags;
 
 func _enter_tree() -> void:
-	settings.load_settings();
-	settings.fullscreen = settings.fullscreen;
+	flags = Flags.new("flags.txt");
+	settings = Settings.new("user://options.cfg");
 	
-	flags = Flags.init("flags.txt");
 	add_child(flags);
+	add_child(settings);
 	
 	options_menu = (ResourceLoader.load("res://objects/gui/options/options_menu.tscn") as PackedScene).instantiate();
 	add_child(options_menu);

@@ -13,7 +13,9 @@ func get_flag(path: String) -> Variant:
 
 func set_flag(path: String, value: Variant) -> void:
 	dirty = true;
-	return flags.set(path, value);
+	
+	flags.set(path, value);
+	_on_flag_set(path, value);
 
 func get_flag_or_default(path: String, default: Variant) -> Variant:
 	if(flags.has(path)):
@@ -21,20 +23,26 @@ func get_flag_or_default(path: String, default: Variant) -> Variant:
 	else:
 		return default;
 
-static func init(path: String) -> Flags:
-	var instance := Flags.new();
+func _on_flag_set(_path: String, _value: Variant) -> void:
+	pass;
+
+func _init(_path: String):
+	if(!FileAccess.file_exists(_path)):
+		var temp_file := FileAccess.open(_path, FileAccess.WRITE);
+		
+		temp_file.store_string("{}");
+		temp_file.close();
 	
-	if(!FileAccess.file_exists(path)):
-		var file := FileAccess.open(path, FileAccess.WRITE);
-		file.store_string("{}");
-		file.close();
+	file_path = _path;
 	
-	instance.file = FileAccess.open(path, FileAccess.READ_WRITE);
+	file = FileAccess.open(file_path, FileAccess.READ);
+	flags = JSON.parse_string(file.get_as_text());
 	
-	instance.file_path = path;
-	instance.flags = JSON.parse_string(instance.file.get_as_text());
-	
-	return instance;
+	file.close();
+	_on_init();
+
+func _on_init() -> void:
+	pass;
 
 func _process(delta: float) -> void:
 	save_time += delta;
@@ -49,5 +57,10 @@ func _process(delta: float) -> void:
 		save_time = 0.0;
 
 func save() -> void:
+	file = FileAccess.open(file_path, FileAccess.WRITE);
+	
 	file.store_string(JSON.stringify(flags));
-	file.flush();
+	file.close();
+
+func _exit_tree() -> void:
+	save();

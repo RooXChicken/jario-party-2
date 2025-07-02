@@ -46,8 +46,8 @@ func update_texture(sprite: String, texture: Texture2D) -> void:
 	
 	(get_node(sprite) as Sprite2D).texture = texture;
 
-func set_uniform(name: String, value: Variant) -> void:
+func set_uniform(uniform_name: String, value: Variant) -> void:
 	if(!has_node("Background")):
 		return;
 	
-	(get_node("Background") as Sprite2D).set_instance_shader_parameter(name, value);
+	(get_node("Background") as Sprite2D).set_instance_shader_parameter(uniform_name, value);

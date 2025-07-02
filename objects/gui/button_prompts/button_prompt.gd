@@ -40,9 +40,7 @@ func update_text() -> void:
 		if(i >= text.length()):
 			continue;
 		
-		var data := PromptData.new();
-		data.pos = i;
-		data.character = text[i];
+		var data := PromptData.new(i, text[i]);
 		buttons.append(data);
 		
 		final_msg += "    ";

@@ -31,8 +31,8 @@ func check_state_name_valid(state_name: String) -> bool:
 	
 	return check_state_valid(get_node(state_name));
 
-func check_state_valid(state: State) -> bool:
-	return (state != null && state is State);
+func check_state_valid(_state: State) -> bool:
+	return (_state != null && _state is State);
 
 func set_state(new_state_name: String, data: Dictionary = {}) -> void:
 	var old_state_name := state.name;

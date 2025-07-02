@@ -113,4 +113,4 @@ layout_mode = 2
 [connection signal="toggled" from="Layer/TabContainer/Video/FullscreenButton" to="Layer/TabContainer" method="fullscreen_toggle"]
 [connection signal="drag_ended" from="Layer/TabContainer/Audio/MasterVolumeSlider" to="Layer/TabContainer" method="master_volume_changed"]
 [connection signal="drag_ended" from="Layer/TabContainer/Audio/MusicVolumeSlider" to="Layer/TabContainer" method="music_volume_changed"]
-[connection signal="drag_ended" from="Layer/TabContainer/Audio/SoundVolumeSlider" to="Layer/TabContainer" method="soundVolumeChanged"]
+[connection signal="drag_ended" from="Layer/TabContainer/Audio/SoundVolumeSlider" to="Layer/TabContainer" method="sound_volume_changed"]

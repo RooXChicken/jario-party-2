@@ -11,14 +11,14 @@ func _ready() -> void:
 func ready() -> void:
 	pass;
 
-func enter(old_state: String, data: Dictionary = {}) -> void:
+func enter(_old_state: String, _data: Dictionary = {}) -> void:
 	pass;
 
-func exit(new_state: String, data: Dictionary = {}) -> void:
+func exit(_new_state: String, _data: Dictionary = {}) -> void:
 	pass;
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	pass;
 
-func phys_update(delta: float) -> void:
+func phys_update(_delta: float) -> void:
 	pass;

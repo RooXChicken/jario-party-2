@@ -6,11 +6,11 @@ const main_menu_scene := "res://scenes/main_menu/main_menu.tscn";
 func ready() -> void:
 	ResourceLoader.load_threaded_request(main_menu_scene);
 
-func enter(previous_node: String, data: Dictionary = { "skipped": false }):
+func enter(_previous_node: String, data: Dictionary = { "skipped": false }):
 	if(data.get_or_add("skipped", false) as bool):
 		anim.seek(2);
 
-func update(delta: float) -> void:
+func update(_delta: float) -> void:
 	if(Input.is_action_just_pressed("select")):
 		load_game();
 

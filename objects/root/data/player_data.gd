@@ -8,30 +8,25 @@ var coins := 0;
 var stars := 0;
 
 static func load(json: Dictionary) -> PlayerData:
-	var id: int = json.get_or_add("id", 0);
-	var ai: bool = json.get_or_add("ai", false);
+	var _id: int = json.get_or_add("id", 0);
+	var _ai: bool = json.get_or_add("ai", false);
 	
-	var character_id: int = json.get_or_add("character_id", 0);
-	var coins: int = json.get_or_add("coins", 0);
-	var stars: int = json.get_or_add("stars", 0);
+	var _character_id: int = json.get_or_add("character_id", 0);
+	var _coins: int = json.get_or_add("coins", 0);
+	var _stars: int = json.get_or_add("stars", 0);
 	
-	return init(id, ai, character_id, coins, stars);
+	return PlayerData.new(_id, _ai, _character_id, _coins, _stars);
 
-static func init(id: int, ai: bool, character_id: int, coins: int = 0, stars: int = 0) -> PlayerData:
-	var instance := PlayerData.new();
+func _init(_id: int, _ai: bool, _character_id: int, _coins: int = 0, _stars: int = 0):
+	id = _id;
+	ai = _ai;
 	
-	instance.id = id;
-	instance.ai = ai;
-	
-	instance.character_id = character_id;
-	instance.coins = coins;
-	instance.stars = stars;
-	
-	return instance;
+	character_id = _character_id;
+	coins = _coins;
+	stars = _stars;
 
 static func load_players(json: Array) -> Array[PlayerData]:
 	var players: Array[PlayerData];
-	var player_count: int = json.size();
 	
 	for player in json:
 		players.append(PlayerData.load(player));

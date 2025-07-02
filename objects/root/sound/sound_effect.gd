@@ -1,16 +1,12 @@
 class_name SoundEffect extends Object
 
-var name := "";
+var sound_name := "";
 var stream: AudioStream;
 
 var volume := 1.0;
 
-static func init(name: String, path: String, volume: float = 1.0) -> SoundEffect:
-	var instance := SoundEffect.new();
+func _init(_sound_name: String, _path: String, _volume: float = 1.0):
+	sound_name = _sound_name;
+	stream = load(_path) as AudioStream;
 	
-	instance.name = name;
-	instance.stream = load(path) as AudioStream;
-	
-	instance.volume = volume;
-	
-	return instance;
+	volume = _volume;
