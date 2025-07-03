@@ -26,7 +26,7 @@ func play_sound(sound_name: String) -> void:
 	stream.bus = "Sound";
 	stream.stream = sounds[sound_name].stream;
 	stream.volume_db = sounds[sound_name].volume;
-	stream.sound_name = sound_name;
+	stream.name = sound_name;
 	
 	stream.finished.connect(sound_stopped.bind(stream));
 	

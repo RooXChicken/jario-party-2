@@ -1,5 +1,11 @@
 class_name StateMachine extends Node
 
+enum TickNextState {
+	NONE,
+	UPDATE,
+	PHYS_UPDATE
+}
+
 @export var initial_state_name := "null";
 var state: State;
 
@@ -34,7 +40,7 @@ func check_state_name_valid(state_name: String) -> bool:
 func check_state_valid(_state: State) -> bool:
 	return (_state != null && _state is State);
 
-func set_state(new_state_name: String, data: Dictionary = {}) -> void:
+func set_state(new_state_name: String, data: Dictionary = {}, tick := TickNextState.NONE, delta := 0.0) -> void:
 	var old_state_name := state.name;
 	
 	if(!has_node(new_state_name)):
@@ -51,9 +57,22 @@ func set_state(new_state_name: String, data: Dictionary = {}) -> void:
 	state = new_state;
 	
 	state.enter(old_state_name, data);
+	
+	match tick:
+		TickNextState.NONE: pass;
+		TickNextState.UPDATE: state.update(delta);
+		TickNextState.PHYS_UPDATE: state.phys_update(delta);
 
 func _process(delta: float) -> void:
 	state.update(delta);
+	post_update(delta);
 
 func _physics_process(delta: float) -> void:
 	state.phys_update(delta);
+	post_phys_update(delta);
+
+func post_update(_delta: float) -> void:
+	pass;
+
+func post_phys_update(_delta: float) -> void:
+	pass;

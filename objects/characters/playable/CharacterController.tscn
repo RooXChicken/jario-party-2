@@ -1,12 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6u55pubjdb5y"]
+[gd_scene load_steps=12 format=3 uid="uid://c6u55pubjdb5y"]
 
 [ext_resource type="Script" uid="uid://pobylav4it12" path="res://objects/root/state_machine/state_machine.gd" id="1_2dfww"]
 [ext_resource type="Script" uid="uid://qjnejbs2kvqf" path="res://objects/characters/playable/character_controller.gd" id="1_lkq4s"]
 [ext_resource type="Texture2D" uid="uid://fimwh784clmb" path="res://sprites/objects/characters/shadow.png" id="2_8yfxs"]
 [ext_resource type="Script" uid="uid://3g403qko55w0" path="res://objects/characters/playable/states/idle_state.gd" id="2_lkq4s"]
 [ext_resource type="Shader" uid="uid://oe2b3lb5o8al" path="res://shaders/Wave.gdshader" id="3_lkq4s"]
+[ext_resource type="Script" uid="uid://rvs0c60uso3v" path="res://objects/characters/playable/states/walking_state.gd" id="4_61scu"]
 [ext_resource type="SpriteFrames" uid="uid://de4yncbo4nf24" path="res://sprites/objects/characters/playable/jario_sprites.tres" id="4_gnmej"]
 [ext_resource type="Theme" uid="uid://bcuw0mka8mj25" path="res://gui_theme.tres" id="5_61scu"]
+[ext_resource type="Script" uid="uid://otb1bwak862" path="res://objects/characters/playable/states/jumping_state.gd" id="5_dp6hr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_teobo"]
 shader = ExtResource("3_lkq4s")
@@ -20,7 +22,7 @@ motion_mode = 1
 script = ExtResource("1_lkq4s")
 sprite = NodePath("CharacterSprite")
 debug_label = NodePath("CharacterSprite/ColorRect/RichTextLabel")
-abilities = Array[int]([1, 3])
+abilities = Array[int]([1, 0, 2, 3])
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("1_2dfww")
@@ -30,8 +32,10 @@ initial_state_name = "Idle"
 script = ExtResource("2_lkq4s")
 
 [node name="Walking" type="Node" parent="StateMachine"]
+script = ExtResource("4_61scu")
 
 [node name="Jumping" type="Node" parent="StateMachine"]
+script = ExtResource("5_dp6hr")
 
 [node name="LongIdle" type="Node" parent="StateMachine"]
 
