@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://c5q4j8gnrcue5"]
+[gd_scene load_steps=21 format=3 uid="uid://c5q4j8gnrcue5"]
 
 [ext_resource type="Texture2D" uid="uid://c5mcmk07mex4g" path="res://sprites/scenes/title_screen/spr_splash_text.png" id="1_kfsxx"]
 [ext_resource type="Script" uid="uid://pobylav4it12" path="res://objects/root/state_machine/state_machine.gd" id="2_nysha"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bl4luc6ufja47" path="res://sprites/scenes/title_screen/title_screen_bg.png" id="4_je1yw"]
 [ext_resource type="Texture2D" uid="uid://bjdgysowgl60f" path="res://sprites/scenes/title_screen/jp2logo_small.png" id="7_80bjg"]
 [ext_resource type="PackedScene" uid="uid://cm003mc4wqrt1" path="res://objects/gui/button_prompts/button_prompt.tscn" id="10_4ewj2"]
+[ext_resource type="AudioStream" uid="uid://mmgyjw0l1tke" path="res://sounds/misc/badge.mp3" id="13_4u6ih"]
 
 [sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_vsqa0"]
 clip_count = 2
@@ -370,3 +371,8 @@ texture = ExtResource("7_80bjg")
 [node name="ButtonPrompt" parent="." instance=ExtResource("10_4ewj2")]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(12, 314)
+
+[node name="Jingle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_4u6ih")
+volume_db = -8.432
+autoplay = true
