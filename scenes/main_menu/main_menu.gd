@@ -9,11 +9,13 @@ var stage := 0;
 var volume: Array[float] = [];
 
 func _ready() -> void:
-	streamSync = (get_node("MenuMusic").stream as AudioStreamSynchronized);
+	streamSync = $MenuMusic.stream;
 	stage_count = streamSync.stream_count;
 	
 	for i: int in range(0, stage_count):
 		volume.append(1.0);
+	
+	volume[0] = 0.0;
 
 func _process(delta: float) -> void:
 	for i: int in range(0, stage_count):
