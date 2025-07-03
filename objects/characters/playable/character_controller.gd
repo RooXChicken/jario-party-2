@@ -43,15 +43,19 @@ const deadzone := 0.1;
 const top_speed := 240.0;
 const move_min_speed := 0.1;
 
-const acceleration := 40.0;
-const jump_acceleration := 15.0;
-const deceleration := 35.0;
+const acceleration := 60.0;
+const jump_acceleration := 20.0;
+const deceleration := 80.0;
 
 func _ready() -> void:
 	get_character_data();
 	set_sprite_frames();
 	
-	SoundManager.load_sound("character_playable_jump", "res://sounds/characters/playable/player_jump.wav");
+	if(dense):
+		abilities.clear();
+	
+	if(!Engine.is_editor_hint()):
+		SoundManager.load_sound("character_playable_jump", "res://sounds/characters/playable/player_jump.wav");
 
 func set_sprite_frames() -> void:
 	if(sprite == null):
@@ -64,6 +68,10 @@ func get_character_data() -> void:
 
 func get_joy() -> Vector2:
 	var raw_input = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"));
+	if(abs(raw_input.x) < deadzone):
+		raw_input.x = 0;
+	if(abs(raw_input.y) < deadzone):
+		raw_input.y = 0;
 	
 	var dir := rad_to_deg(atan2(raw_input.y, raw_input.x));
 	var length := raw_input.length();

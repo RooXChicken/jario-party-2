@@ -12,12 +12,12 @@ func phys_update(delta: float) -> void:
 	
 	var joy_axis := player.get_joy();
 	
-	if(abs(joy_axis.x) >= player.deadzone):
+	if(abs(joy_axis.x) > 0):
 		player.velocity.x = move_toward(player.velocity.x, player.top_speed * joy_axis.x, player.acceleration);
 	else:
 		player.velocity.x = move_toward(player.velocity.x, 0, player.deceleration);
 	
-	if(abs(joy_axis.y) >= player.deadzone):
+	if(abs(joy_axis.y) > 0):
 		player.velocity.y = move_toward(player.velocity.y, player.top_speed * joy_axis.y, player.acceleration);
 	else:
 		player.velocity.y = move_toward(player.velocity.y, 0, player.deceleration);
