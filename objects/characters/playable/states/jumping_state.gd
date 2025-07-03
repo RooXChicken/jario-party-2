@@ -12,12 +12,12 @@ func phys_update(delta: float) -> void:
 	if(abs(joy_axis.x) >= player.deadzone):
 		player.velocity.x = move_toward(player.velocity.x, player.top_speed * joy_axis.x, player.jump_acceleration);
 	else:
-		player.velocity.x = move_toward(player.velocity.x, 0, player.deceleration);
+		player.velocity.x = move_toward(player.velocity.x, 0, player.jump_deceleration);
 	
 	if(abs(joy_axis.y) >= player.deadzone):
 		player.velocity.y = move_toward(player.velocity.y, player.top_speed * joy_axis.y, player.jump_acceleration);
 	else:
-		player.velocity.y = move_toward(player.velocity.y, 0, player.deceleration);
+		player.velocity.y = move_toward(player.velocity.y, 0, player.jump_deceleration);
 	
 	player.y_velocity = move_toward(player.y_velocity, player.max_fall_speed, player.gravity_speed);
 	player.y += player.y_velocity;

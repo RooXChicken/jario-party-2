@@ -24,6 +24,7 @@ enum Ability {
 var character_data: CharacterData;
 @export var ai := false;
 @export var dense := false;
+@export var controller_index := 0;
 
 @export_category("Abilities")
 @export var abilities: Array[Ability];
@@ -40,21 +41,25 @@ const max_fall_speed := 320.0;
 const joy_steps := 8;
 const deadzone := 0.1;
 
-const top_speed := 240.0;
+const top_speed := 180.0;
 const move_min_speed := 0.1;
 
-const acceleration := 60.0;
+const acceleration := 40.0;
+const deceleration := 60.0;
+
 const jump_acceleration := 20.0;
-const deceleration := 80.0;
+const jump_deceleration := 4.0;
+
+const push_force := 0.68;
 
 func _ready() -> void:
 	get_character_data();
 	set_sprite_frames();
 	
-	if(dense):
-		abilities.clear();
 	
 	if(!Engine.is_editor_hint()):
+		if(dense):
+			$StateMachine.set_state("Dense");
 		SoundManager.load_sound("character_playable_jump", "res://sounds/characters/playable/player_jump.wav");
 
 func set_sprite_frames() -> void:
@@ -67,7 +72,7 @@ func get_character_data() -> void:
 	character_data = Globals.Characters[character];
 
 func get_joy() -> Vector2:
-	var raw_input = Vector2(Input.get_axis("left", "right"), Input.get_axis("up", "down"));
+	var raw_input = Vector2(Input.get_joy_axis(controller_index, JOY_AXIS_LEFT_X), Input.get_joy_axis(controller_index, JOY_AXIS_LEFT_Y));
 	if(abs(raw_input.x) < deadzone):
 		raw_input.x = 0;
 	if(abs(raw_input.y) < deadzone):
@@ -113,31 +118,31 @@ func animate(state: String, joy_axis: Vector2, speed: float):
 func move() -> void:
 	if(has_ability(Ability.Y_MOVEMENT)):
 		sprite.position.y = y;
+		
+		if(y < -32):
+			collision_layer = 2;
+			collision_mask = 2;
+		else:
+			collision_layer = 1;
+			collision_mask = 1;
 	
-	move_and_slide();
+	var old_velocity := Vector2(velocity);
+	
+	if(move_and_slide()):
+		push_others(old_velocity);
+
+func push_others(old_velocity: Vector2) -> void:
+	for i: int in get_slide_collision_count():
+		var collision := get_slide_collision(i);
+		if(!collision.get_collider() is CharacterController):
+			continue;
+		
+		var push := collision.get_normal();
+		push.x *= -abs(old_velocity.x);
+		push.y *= -abs(old_velocity.y);
+		
+		collision.get_collider().velocity += push;
+		velocity -= push * push_force;
 
 func has_ability(ability: Ability) -> bool:
 	return abilities.has(ability);
-
-#const SPEED = 300.0
-#const JUMP_VELOCITY = -400.0
-#
-#
-#func _physics_process(delta: float) -> void:
-	## Add the gravity.
-	#if not is_on_floor():
-		#velocity += get_gravity() * delta
-#
-	## Handle jump.
-	#if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		#velocity.y = JUMP_VELOCITY
-#
-	## Get the input direction and handle the movement/deceleration.
-	## As good practice, you should replace UI actions with custom gameplay actions.
-	#var direction := Input.get_axis("ui_left", "ui_right")
-	#if direction:
-		#velocity.x = direction * SPEED
-	#else:
-		#velocity.x = move_toward(velocity.x, 0, SPEED)
-#
-	#move_and_slide()

@@ -6,7 +6,7 @@ func enter(previous_state: String, data: Dictionary = {}) -> void:
 	pass;
 
 func phys_update(delta: float) -> void:
-	if(Input.is_action_just_pressed("jump") && player.y <= 0 && player.has_ability(CharacterController.Ability.JUMP)):
+	if(Input.is_joy_button_pressed(player.controller_index, JOY_BUTTON_A) && player.y <= 0 && player.has_ability(CharacterController.Ability.JUMP)):
 		state_machine.set_state("Jumping", {}, StateMachine.TickNextState.PHYS_UPDATE, delta);
 		return;
 	
