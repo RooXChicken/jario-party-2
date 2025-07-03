@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://cemiexldkunah"]
+[gd_scene load_steps=32 format=3 uid="uid://cemiexldkunah"]
 
 [ext_resource type="Script" uid="uid://de1w1xwbwwvdc" path="res://scenes/main_menu/main_menu.gd" id="1_3nlgh"]
 [ext_resource type="AudioStream" uid="uid://d1cgae6px0x6t" path="res://music/menu_melody/menu_streams.tres" id="2_3nlgh"]
@@ -12,12 +12,35 @@
 [ext_resource type="Texture2D" uid="uid://m5eix7oo2pt2" path="res://sprites/gui/portraits/windowborder.png" id="7_a1gy5"]
 [ext_resource type="Script" uid="uid://cs6vgibbf8kxg" path="res://scenes/main_menu/states/stage_select_state.gd" id="7_gr5yr"]
 [ext_resource type="Texture2D" uid="uid://dia83m52molrt" path="res://sprites/scenes/title_screen/jariomask.png" id="8_20bbh"]
-[ext_resource type="Texture2D" uid="uid://csuggk1204v4g" path="res://sprites/gui/portraits/galleryicon.png" id="8_bq5lc"]
+[ext_resource type="Texture2D" uid="uid://cyp02kc0li7gk" path="res://sprites/gui/portraits/galleryicon2.png" id="8_bq5lc"]
 [ext_resource type="Texture2D" uid="uid://bexcae726b6rb" path="res://sprites/scenes/main_menu/bg_skylong.png" id="8_j6s1b"]
 [ext_resource type="Shader" uid="uid://d0m412wp2cq5s" path="res://shaders/title_screen/bg_scroll.gdshader" id="9_30c87"]
+[ext_resource type="Texture2D" uid="uid://dbv0pg8com5bb" path="res://sprites/gui/common/hand.png" id="9_xac7c"]
 [ext_resource type="Texture2D" uid="uid://4w1bwr6lmfp7" path="res://sprites/scenes/main_menu/bg_sun.png" id="11_en18o"]
 [ext_resource type="Texture2D" uid="uid://5abau5cvwk2m" path="res://sprites/scenes/main_menu/bg_clouds.png" id="12_7vbe6"]
 [ext_resource type="Texture2D" uid="uid://cuqrsi0fvgjdw" path="res://sprites/scenes/main_menu/bg_grass.png" id="14_004ae"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0m3cs"]
+atlas = ExtResource("9_xac7c")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i7nm7"]
+atlas = ExtResource("9_xac7c")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tfctf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0m3cs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i7nm7")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
 
 [sub_resource type="Animation" id="Animation_1ptyb"]
 length = 0.001
@@ -159,6 +182,12 @@ data = "Gallery"
 background_scale = 2.5
 icon = ExtResource("8_bq5lc")
 border = ExtResource("7_a1gy5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="StateMachine/ModeSelect"]
+position = Vector2(234, 170)
+sprite_frames = SubResource("SpriteFrames_tfctf")
+autoplay = "default"
+frame_progress = 0.127422
 
 [node name="CharacterSelect" type="Node" parent="StateMachine"]
 script = ExtResource("6_vpo1e")

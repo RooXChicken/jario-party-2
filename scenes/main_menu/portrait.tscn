@@ -20,7 +20,7 @@ instance_shader_parameters/color = Vector3(0.5, 0.5, 0.5)
 instance_shader_parameters/speed = 0.1
 texture = ExtResource("3_w1l5t")
 
+[node name="Icon" type="Sprite2D" parent="."]
+
 [node name="Border" type="Sprite2D" parent="."]
 texture = ExtResource("2_w1l5t")
-
-[node name="Icon" type="Sprite2D" parent="."]

@@ -1,11 +1,12 @@
 @tool
-class_name CharacterController extends CharacterBody2D
+class_name CharacterController extends RigidBody2D
 
 enum Ability {
 	ANIMATE,
 	MOVE,
 	JUMP,
-	Y_MOVEMENT
+	Y_MOVEMENT,
+	DEBUG
 }
 
 @export_category("References")
@@ -29,6 +30,7 @@ var character_data: CharacterData;
 @export_category("Abilities")
 @export var abilities: Array[Ability];
 
+var velocity := Vector2.ZERO;
 var y := 0.0;
 var y_velocity := 0.0;
 
@@ -39,13 +41,14 @@ const gravity_speed := 0.4;
 const max_fall_speed := 320.0;
 
 const joy_steps := 8;
+const steps := 360.0/joy_steps;
 const deadzone := 0.1;
 
 const top_speed := 180.0;
 const move_min_speed := 0.1;
 
-const acceleration := 40.0;
-const deceleration := 60.0;
+const acceleration := 60.0;
+const deceleration := 80.0;
 
 const jump_acceleration := 20.0;
 const jump_deceleration := 4.0;
@@ -56,8 +59,10 @@ func _ready() -> void:
 	get_character_data();
 	set_sprite_frames();
 	
-	
 	if(!Engine.is_editor_hint()):
+		if(has_ability(Ability.DEBUG)):
+			debug_label.get_parent().visible = true;
+		
 		if(dense):
 			$StateMachine.set_state("Dense");
 		
@@ -81,9 +86,7 @@ func get_joy() -> Vector2:
 	
 	var dir := rad_to_deg(atan2(raw_input.y, raw_input.x));
 	var length := raw_input.length();
-	
-	const steps := 360.0/joy_steps;
-	
+
 	dir = deg_to_rad(round(dir/steps) * steps);
 	
 	return Vector2(cos(dir), sin(dir)) * length;
@@ -127,23 +130,29 @@ func move() -> void:
 			collision_layer = 1;
 			collision_mask = 1;
 	
-	var old_velocity := Vector2(velocity);
-	
-	if(move_and_slide()):
-		push_others(old_velocity);
+	apply_central_force(velocity * 60);
+	if(has_ability(Ability.DEBUG)):
+		debug_label.text = "Speed: {speed}".format({ "speed": (velocity*60) });
+	#apply_central_force(velocity*20);
 
-func push_others(old_velocity: Vector2) -> void:
-	for i: int in get_slide_collision_count():
-		var collision := get_slide_collision(i);
-		if(!collision.get_collider() is CharacterController):
-			continue;
-		
-		var push := collision.get_normal();
-		push.x *= -abs(old_velocity.x);
-		push.y *= -abs(old_velocity.y);
-		
-		collision.get_collider().velocity += push;
-		velocity -= push * push_force;
+	#var old_velocity := Vector2(velocity);
+	
+	
+	#if(move_and_slide()):
+		#push_others(old_velocity);
+#
+#func push_others(old_velocity: Vector2) -> void:
+	#for i: int in get_slide_collision_count():
+		#var collision := get_slide_collision(i);
+		#if(!collision.get_collider() is CharacterController):
+			#continue;
+		#
+		#var push := collision.get_normal();
+		#push.x *= -abs(old_velocity.x);
+		#push.y *= -abs(old_velocity.y);
+		#
+		#collision.get_collider().velocity += push;
+		#velocity -= push * push_force;
 
 func has_ability(ability: Ability) -> bool:
 	return abilities.has(ability);

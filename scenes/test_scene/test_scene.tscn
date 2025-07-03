@@ -29,19 +29,20 @@ autoplay = true
 bus = &"Music"
 
 [node name="CharacterController" parent="." instance=ExtResource("3_1x7oe")]
-position = Vector2(139, 257)
+position = Vector2(140, 260)
+abilities = Array[int]([0, 1, 2, 3, 4])
 
 [node name="CharacterController2" parent="." instance=ExtResource("3_1x7oe")]
-position = Vector2(169, 257)
+position = Vector2(173, 260)
 character = 1
 controller_index = 1
 
 [node name="CharacterController3" parent="." instance=ExtResource("3_1x7oe")]
-position = Vector2(199, 257)
+position = Vector2(210, 261)
 character = 2
 dense = true
 
 [node name="CharacterController4" parent="." instance=ExtResource("3_1x7oe")]
-position = Vector2(229, 257)
+position = Vector2(247, 260)
 character = 3
 dense = true

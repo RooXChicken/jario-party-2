@@ -1,24 +1,33 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6u55pubjdb5y"]
+[gd_scene load_steps=12 format=3 uid="uid://c6u55pubjdb5y"]
 
 [ext_resource type="Script" uid="uid://pobylav4it12" path="res://objects/root/state_machine/state_machine.gd" id="1_2dfww"]
 [ext_resource type="Script" uid="uid://qjnejbs2kvqf" path="res://objects/characters/playable/character_controller.gd" id="1_lkq4s"]
 [ext_resource type="Texture2D" uid="uid://fimwh784clmb" path="res://sprites/objects/characters/shadow.png" id="2_8yfxs"]
 [ext_resource type="Script" uid="uid://3g403qko55w0" path="res://objects/characters/playable/states/idle_state.gd" id="2_lkq4s"]
 [ext_resource type="Script" uid="uid://rvs0c60uso3v" path="res://objects/characters/playable/states/walking_state.gd" id="4_61scu"]
-[ext_resource type="Script" path="res://objects/characters/playable/states/dense_state.gd" id="4_dp6hr"]
+[ext_resource type="Script" uid="uid://dxonn5jh6vxrj" path="res://objects/characters/playable/states/dense_state.gd" id="4_dp6hr"]
 [ext_resource type="SpriteFrames" uid="uid://de4yncbo4nf24" path="res://sprites/objects/characters/playable/jario_sprites.tres" id="4_gnmej"]
 [ext_resource type="Theme" uid="uid://bcuw0mka8mj25" path="res://gui_theme.tres" id="5_61scu"]
 [ext_resource type="Script" uid="uid://otb1bwak862" path="res://objects/characters/playable/states/jumping_state.gd" id="5_dp6hr"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_61scu"]
+friction = 0.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0iwcb"]
 size = Vector2(14, 14)
 
-[node name="CharacterController" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "debug_label")]
-motion_mode = 1
+[node name="CharacterController" type="RigidBody2D" node_paths=PackedStringArray("sprite", "debug_label")]
+physics_material_override = SubResource("PhysicsMaterial_61scu")
+gravity_scale = 0.0
+can_sleep = false
+lock_rotation = true
+continuous_cd = 2
+contact_monitor = true
+linear_damp_mode = 1
+linear_damp = 100.0
 script = ExtResource("1_lkq4s")
 sprite = NodePath("CharacterSprite")
 debug_label = NodePath("CharacterSprite/ColorRect/RichTextLabel")
-abilities = Array[int]([1, 0, 2, 3])
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("1_2dfww")
