@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://fwku6cfxi0x3"]
+[gd_scene load_steps=5 format=3 uid="uid://fwku6cfxi0x3"]
 
 [ext_resource type="Texture2D" uid="uid://bsbo7cx7msim6" path="res://sprites/scenes/test_scene/test_background.png" id="1_1x7oe"]
+[ext_resource type="PackedScene" uid="uid://c6u55pubjdb5y" path="res://objects/characters/playable/CharacterController.tscn" id="3_1x7oe"]
 [ext_resource type="AudioStream" uid="uid://cfp5h45sal368" path="res://music/misc/mkwrosa.mp3" id="3_wgdak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3gy2"]
@@ -23,3 +24,18 @@ shape = SubResource("RectangleShape2D_k3gy2")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_wgdak")
 autoplay = true
+
+[node name="CharacterController" parent="." instance=ExtResource("3_1x7oe")]
+position = Vector2(139, 257)
+
+[node name="CharacterController2" parent="." instance=ExtResource("3_1x7oe")]
+position = Vector2(169, 257)
+character = 1
+
+[node name="CharacterController3" parent="." instance=ExtResource("3_1x7oe")]
+position = Vector2(199, 257)
+character = 2
+
+[node name="CharacterController4" parent="." instance=ExtResource("3_1x7oe")]
+position = Vector2(229, 257)
+character = 3

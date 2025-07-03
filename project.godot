@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Jario Party 2"
-run/main_scene="uid://c6u55pubjdb5y"
+run/main_scene="uid://fwku6cfxi0x3"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
@@ -25,6 +25,7 @@ GameManager="*res://objects/root/data/game_manager.gd"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=3
 window/size/resizable=false
 window/stretch/mode="viewport"
 window/stretch/scale=2.0

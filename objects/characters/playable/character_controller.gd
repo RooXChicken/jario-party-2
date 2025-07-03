@@ -40,7 +40,7 @@ const max_fall_speed := 320.0;
 const joy_steps := 8;
 const deadzone := 0.1;
 
-const top_speed := 240.0;
+const top_speed := 180.0;
 const move_min_speed := 0.1;
 
 const acceleration := 60.0;
