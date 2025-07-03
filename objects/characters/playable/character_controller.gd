@@ -60,7 +60,8 @@ func _ready() -> void:
 	if(!Engine.is_editor_hint()):
 		if(dense):
 			$StateMachine.set_state("Dense");
-		SoundManager.load_sound("character_playable_jump", "res://sounds/characters/playable/player_jump.wav");
+		
+		SoundManager.load_sound("character_playable_jump", "res://sounds/characters/playable/player_jump.wav", 12);
 
 func set_sprite_frames() -> void:
 	if(sprite == null):

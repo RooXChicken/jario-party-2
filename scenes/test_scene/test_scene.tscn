@@ -26,27 +26,7 @@ shape = SubResource("RectangleShape2D_k3gy2")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_wgdak")
 autoplay = true
-<<<<<<< HEAD
 bus = &"Music"
-
-[node name="CharacterController" parent="." instance=ExtResource("3_1x7oe")]
-position = Vector2(110, 248)
-
-[node name="CharacterController2" parent="." instance=ExtResource("3_1x7oe")]
-position = Vector2(150, 249)
-character = 1
-controller_index = 1
-
-[node name="CharacterController3" parent="." instance=ExtResource("3_1x7oe")]
-position = Vector2(188, 250)
-character = 2
-dense = true
-
-[node name="CharacterController4" parent="." instance=ExtResource("3_1x7oe")]
-position = Vector2(227, 250)
-character = 3
-dense = true
-=======
 
 [node name="CharacterController" parent="." instance=ExtResource("3_1x7oe")]
 position = Vector2(139, 257)
@@ -54,12 +34,14 @@ position = Vector2(139, 257)
 [node name="CharacterController2" parent="." instance=ExtResource("3_1x7oe")]
 position = Vector2(169, 257)
 character = 1
+controller_index = 1
 
 [node name="CharacterController3" parent="." instance=ExtResource("3_1x7oe")]
 position = Vector2(199, 257)
 character = 2
+dense = true
 
 [node name="CharacterController4" parent="." instance=ExtResource("3_1x7oe")]
 position = Vector2(229, 257)
 character = 3
->>>>>>> 011f9118a68505de73cce678b0bfb529d6f67e13
+dense = true
