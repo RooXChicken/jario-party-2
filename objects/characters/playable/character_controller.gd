@@ -22,7 +22,9 @@ enum Ability {
 		get_character_data();
 		set_sprite_frames();
 
+var player_data: PlayerData;
 var character_data: CharacterData;
+
 @export var ai := false;
 @export var dense := false;
 @export var controller_index := 0;
@@ -87,7 +89,16 @@ func set_sprite_frames() -> void:
 func get_character_data() -> void:
 	character_data = Globals.Characters[character];
 
+func set_player_data(data: PlayerData) -> void:
+	player_data = data;
+	
+	controller_index = player_data.id;
+	character = player_data.character;
+
 func get_joy() -> Vector2:
+	if(!has_ability(CharacterController.Ability.MOVE)):
+		return Vector2.ZERO;
+	
 	var raw_input = Vector2(Input.get_joy_axis(controller_index, JOY_AXIS_LEFT_X), Input.get_joy_axis(controller_index, JOY_AXIS_LEFT_Y));
 	if(abs(raw_input.x) < deadzone):
 		raw_input.x = 0;

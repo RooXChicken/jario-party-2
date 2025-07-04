@@ -3,7 +3,7 @@ class_name PlayerData extends Object
 var id := 0;
 var ai := false;
 
-var character_id := 0;
+var character := Globals.CharacterType.JARIO;
 var coins := 0;
 var stars := 0;
 
@@ -11,17 +11,17 @@ static func load(json: Dictionary) -> PlayerData:
 	var _id: int = json.get_or_add("id", 0);
 	var _ai: bool = json.get_or_add("ai", false);
 	
-	var _character_id: int = json.get_or_add("character_id", 0);
+	var _character_id: Globals.CharacterType = Globals.CharacterType.get(json.get_or_add("character", Globals.CharacterType.JARIO));
 	var _coins: int = json.get_or_add("coins", 0);
 	var _stars: int = json.get_or_add("stars", 0);
 	
 	return PlayerData.new(_id, _ai, _character_id, _coins, _stars);
 
-func _init(_id: int, _ai: bool, _character_id: int, _coins: int = 0, _stars: int = 0):
+func _init(_id: int, _ai: bool, _character: Globals.CharacterType, _coins: int = 0, _stars: int = 0):
 	id = _id;
 	ai = _ai;
 	
-	character_id = _character_id;
+	character = _character;
 	coins = _coins;
 	stars = _stars;
 
@@ -38,7 +38,7 @@ func save() -> Dictionary:
 		"id": id,
 		"ai": ai,
 		
-		"character_id": character_id,
+		"character": character,
 		"coins": coins,
 		"stars": stars
 	};

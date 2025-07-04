@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://fimwh784clmb" path="res://sprites/objects/characters/shadow.png" id="2_8yfxs"]
 [ext_resource type="Script" uid="uid://3g403qko55w0" path="res://objects/characters/playable/states/idle_state.gd" id="2_lkq4s"]
 [ext_resource type="Script" uid="uid://rvs0c60uso3v" path="res://objects/characters/playable/states/walking_state.gd" id="4_61scu"]
-[ext_resource type="Script" path="res://objects/characters/playable/states/dense_state.gd" id="4_dp6hr"]
+[ext_resource type="Script" uid="uid://dxonn5jh6vxrj" path="res://objects/characters/playable/states/dense_state.gd" id="4_dp6hr"]
 [ext_resource type="SpriteFrames" uid="uid://de4yncbo4nf24" path="res://sprites/objects/characters/playable/jario_sprites.tres" id="4_gnmej"]
 [ext_resource type="Theme" uid="uid://bcuw0mka8mj25" path="res://gui_theme.tres" id="5_61scu"]
 [ext_resource type="Script" uid="uid://otb1bwak862" path="res://objects/characters/playable/states/jumping_state.gd" id="5_dp6hr"]

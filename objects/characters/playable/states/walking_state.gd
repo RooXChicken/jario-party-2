@@ -3,7 +3,8 @@ extends State
 @onready var player: CharacterController = owner;
 
 func enter(previous_state: String, data: Dictionary = {}) -> void:
-	pass;
+	if(!player.has_ability(CharacterController.Ability.MOVE)):
+		state_machine.set_state("Idle");
 
 func phys_update(delta: float) -> void:
 	if(Input.is_joy_button_pressed(player.controller_index, JOY_BUTTON_A) && player.y <= 0 && player.has_ability(CharacterController.Ability.JUMP)):

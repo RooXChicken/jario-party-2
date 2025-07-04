@@ -9,6 +9,11 @@ func enter(previous_state: String, data: Dictionary = {}) -> void:
 	
 	jump_flip = !jump_flip;
 
+func exit(new_state: String, data: Dictionary = {}) -> void:
+	match player.dir:
+		"up": player.sprite.flip_h = false;
+		"down": player.sprite.flip_h = false;
+
 func phys_update(delta: float) -> void:
 	if(!Input.is_joy_button_pressed(player.controller_index, JOY_BUTTON_A) && player.y_velocity < 0):
 		player.y_velocity += player.gravity_speed;

@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://krf8b1k18unq"]
+
+[ext_resource type="Texture2D" uid="uid://gp7j8swgtvre" path="res://sprites/scenes/minigames/jump_rope/fire.png" id="1_p72xh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j2xkx"]
+atlas = ExtResource("1_p72xh")
+region = Rect2(0, 0, 25, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lewvq"]
+atlas = ExtResource("1_p72xh")
+region = Rect2(25, 0, 25, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7td20"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j2xkx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lewvq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[node name="Flame" type="Node2D"]
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7td20")
+autoplay = "default"
+frame_progress = 0.238643
