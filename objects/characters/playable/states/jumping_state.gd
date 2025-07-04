@@ -5,7 +5,7 @@ var jump_flip := true;
 
 func enter(previous_state: String, data: Dictionary = {}) -> void:
 	player.y_velocity = player.jump_height;
-	SoundManager.play_sound("character_playable_jump");
+	SoundManager.play_sound(player.jump_sound);
 	
 	jump_flip = !jump_flip;
 
