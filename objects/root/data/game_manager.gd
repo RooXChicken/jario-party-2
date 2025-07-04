@@ -15,6 +15,9 @@ func _enter_tree() -> void:
 	add_child(flags);
 	add_child(settings);
 	
+	for i in range(0, 4):
+		players.append(PlayerData.new(i, i != 0, i, 0, 0));
+	
 	options_menu = (ResourceLoader.load("res://objects/gui/options/options_menu.tscn") as PackedScene).instantiate();
 	add_child(options_menu);
 

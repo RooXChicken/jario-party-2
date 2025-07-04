@@ -15,18 +15,32 @@ enum Mode {
 
 @export_category("Player Settings")
 @export var abilities: Array[CharacterController.Ability];
-@export_tool_button("Add spawn points", "Callable") var spawn_point_button := generate_spawn_points
+@export_tool_button("Add spawn points", "Callable") var spawn_point_button := generate_spawn_points;
 
 func generate_spawn_points() -> void:
 	for i in range(0, 4):
 		var spawn_name := "SpawnPoint" + str(i);
 		
-		if(has_node(spawn_name)):
+		if($SpawnPoints.has_node(spawn_name)):
 			continue;
 			
 		var spawn := Node2D.new();
 		spawn.name = spawn_name;
 		spawn.position = Vector2((i+1)*10, 0);
-		add_child(spawn);
+		$SpawnPoints.add_child(spawn);
 		
 		spawn.set_owner(self);
+
+func spawn_players() -> void:
+	var loaded_character := load("res://objects/characters/playable/character_controller.tscn");
+	for i in $SpawnPoints.get_child_count():
+		var spawn := $SpawnPoints.get_child(i);
+		
+		var character: CharacterController = loaded_character.instantiate();
+		character.position = spawn.position;
+		character.abilities = abilities;
+		character.name = "Character" + str(i);
+		
+		character.set_player_data(GameManager.players[i]);
+		add_child(character);
+		
