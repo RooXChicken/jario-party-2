@@ -37,6 +37,7 @@ var y := 0.0;
 var y_velocity := 0.0;
 
 var dir := "down";
+var jump_sound := "character_playable_jump";
 
 const jump_height := -6.0;
 const gravity_speed := 0.4;
@@ -72,6 +73,10 @@ func _ready() -> void:
 		sprite.speed_scale = 0.0;
 		
 		SoundManager.load_sound("character_playable_jump", "res://sounds/characters/playable/player_jump.wav", 6);
+		SoundManager.load_sound("character_playable_jump_GIRLY", "res://sounds/characters/playable/player_jump_GIRLY.wav", 6);
+		
+		if(character == Globals.CharacterType.GRAPEJUICE):
+			jump_sound = "character_playable_jump_GIRLY";
 
 func set_sprite_frames() -> void:
 	if(sprite == null):
