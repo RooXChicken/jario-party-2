@@ -71,7 +71,7 @@ func _ready() -> void:
 		set_anim("walk_down");
 		sprite.speed_scale = 0.0;
 		
-		SoundManager.load_sound("character_playable_jump", "res://sounds/characters/playable/player_jump.wav", 12);
+		SoundManager.load_sound("character_playable_jump", "res://sounds/characters/playable/player_jump.wav", 6);
 
 func set_sprite_frames() -> void:
 	if(sprite == null):
@@ -122,7 +122,7 @@ func animate(state: String, joy_axis: Vector2, speed: float):
 			pass;
 	
 	set_anim(state + "_" + dir);
-	sprite.speed_scale = speed;
+	sprite.speed_scale = speed * 1.3;
 
 func move() -> void:
 	if(has_ability(Ability.Y_MOVEMENT)):

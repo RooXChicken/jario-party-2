@@ -30,7 +30,6 @@ bus = &"Music"
 
 [node name="CharacterController" parent="." instance=ExtResource("3_1x7oe")]
 position = Vector2(140, 260)
-dense = true
 abilities = Array[int]([0, 1, 2, 3])
 metadata/_edit_pinned_properties_ = [&"position"]
 

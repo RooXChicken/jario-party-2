@@ -11,7 +11,7 @@ func enter(previous_state: String, data: Dictionary = {}) -> void:
 
 func phys_update(delta: float) -> void:
 	if(!Input.is_joy_button_pressed(player.controller_index, JOY_BUTTON_A) && player.y_velocity < 0):
-		player.y_velocity += player.gravity_speed*2;
+		player.y_velocity += player.gravity_speed;
 	
 	var joy_axis := player.get_joy();
 	
