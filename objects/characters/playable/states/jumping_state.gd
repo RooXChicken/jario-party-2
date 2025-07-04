@@ -1,12 +1,18 @@
 extends State
 
 @onready var player: CharacterController = owner;
+var jump_flip := true;
 
 func enter(previous_state: String, data: Dictionary = {}) -> void:
 	player.y_velocity = player.jump_height;
 	SoundManager.play_sound("character_playable_jump");
+	
+	jump_flip = !jump_flip;
 
 func phys_update(delta: float) -> void:
+	if(!Input.is_joy_button_pressed(player.controller_index, JOY_BUTTON_A) && player.y_velocity < 0):
+		player.y_velocity += player.gravity_speed*2;
+	
 	var joy_axis := player.get_joy();
 	
 	if(abs(joy_axis.x) >= player.deadzone):
@@ -31,6 +37,10 @@ func phys_update(delta: float) -> void:
 		state_machine.set_state("Walking", {}, StateMachine.TickNextState.PHYS_UPDATE, delta);
 		return;
 
-	#var combined_speed: float = abs(joy_axis.x) + abs(joy_axis.y);
-	player.animate("jump", joy_axis, 0);
+	player.animate("jump", joy_axis, 0.0);
+	
+	match player.dir:
+		"up": player.sprite.flip_h = jump_flip;
+		"down": player.sprite.flip_h = jump_flip;
+	
 	player.move();

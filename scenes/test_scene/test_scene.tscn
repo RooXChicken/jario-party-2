@@ -30,7 +30,9 @@ bus = &"Music"
 
 [node name="CharacterController" parent="." instance=ExtResource("3_1x7oe")]
 position = Vector2(140, 260)
-abilities = Array[int]([0, 1, 2, 3, 4])
+dense = true
+abilities = Array[int]([0, 1, 2, 3])
+metadata/_edit_pinned_properties_ = [&"position"]
 
 [node name="CharacterController2" parent="." instance=ExtResource("3_1x7oe")]
 position = Vector2(173, 260)
@@ -40,7 +42,7 @@ controller_index = 1
 [node name="CharacterController3" parent="." instance=ExtResource("3_1x7oe")]
 position = Vector2(210, 261)
 character = 2
-dense = true
+abilities = Array[int]([0, 1, 2, 3])
 
 [node name="CharacterController4" parent="." instance=ExtResource("3_1x7oe")]
 position = Vector2(247, 260)

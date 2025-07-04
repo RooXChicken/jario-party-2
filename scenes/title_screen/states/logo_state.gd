@@ -1,7 +1,7 @@
 extends State
 
 @export var anim: AnimationPlayer;
-var sound: AudioStreamPlayer2D;
+var sound: AudioStreamPlayer;
 
 func enter(_old_state: String, _data: Dictionary = {}) -> void:
 	SoundManager.load_sound("intro_jingle", "res://sounds/misc/badge.mp3");

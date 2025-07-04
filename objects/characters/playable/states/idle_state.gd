@@ -1,9 +1,10 @@
 extends State
 
 @onready var player: CharacterController = owner;
+var idle_timer := 0.0;
 
 func enter(previous_state: String, data: Dictionary = {}) -> void:
-	pass;
+	idle_timer = 0.0;
 
 func phys_update(delta: float) -> void:
 	if(Input.is_joy_button_pressed(player.controller_index, JOY_BUTTON_A) && player.y <= 0 && player.has_ability(CharacterController.Ability.JUMP)):
@@ -19,5 +20,13 @@ func phys_update(delta: float) -> void:
 	player.velocity.x = move_toward(player.velocity.x, 0, player.deceleration);
 	player.velocity.y = move_toward(player.velocity.y, 0, player.deceleration);
 	
-	player.sprite.frame = 1;
+	if(player.sprite.animation != "long_idle"):
+		player.sprite.frame = 0;
+		
+		idle_timer += delta;
+		if(idle_timer >= 10.0):
+			player.set_anim("long_idle");
+			player.dir = "down";
+			player.sprite.speed_scale = 1.0;
+	
 	player.move();

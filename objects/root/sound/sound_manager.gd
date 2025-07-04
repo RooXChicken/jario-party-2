@@ -16,12 +16,12 @@ func unload_sound(sound_name: String) -> void:
 	
 	sounds.erase(sound_name);
 
-func play_sound(sound_name: String) -> AudioStreamPlayer2D:
+func play_sound(sound_name: String) -> AudioStreamPlayer:
 	if(!sounds.has(sound_name)):
 		printerr(sound_play_not_loaded.format({ "sound_name": sound_name }));
 		return;
 	
-	var stream := AudioStreamPlayer2D.new();
+	var stream := AudioStreamPlayer.new();
 	
 	stream.bus = "Sound";
 	stream.stream = sounds[sound_name].stream;
@@ -35,8 +35,8 @@ func play_sound(sound_name: String) -> AudioStreamPlayer2D:
 	
 	return stream;
 
-func stop_sound(stream: AudioStreamPlayer2D) -> void:
+func stop_sound(stream: AudioStreamPlayer) -> void:
 	stream.stop();
 
-func sound_stopped(stream: AudioStreamPlayer2D) -> void:
+func sound_stopped(stream: AudioStreamPlayer) -> void:
 	stream.queue_free();

@@ -31,6 +31,8 @@ var character_data: CharacterData;
 @export var abilities: Array[Ability];
 
 var velocity := Vector2.ZERO;
+var old_position := Vector2.ZERO;
+
 var y := 0.0;
 var y_velocity := 0.0;
 
@@ -65,6 +67,9 @@ func _ready() -> void:
 		
 		if(dense):
 			$StateMachine.set_state("Dense");
+		
+		set_anim("walk_down");
+		sprite.speed_scale = 0.0;
 		
 		SoundManager.load_sound("character_playable_jump", "res://sounds/characters/playable/player_jump.wav", 12);
 
@@ -131,28 +136,12 @@ func move() -> void:
 			collision_mask = 1;
 	
 	apply_central_force(velocity * 60);
+	
+	var speed := position - old_position;
+	old_position = Vector2(position);
+	
 	if(has_ability(Ability.DEBUG)):
-		debug_label.text = "Speed: {speed}".format({ "speed": (velocity*60) });
-	#apply_central_force(velocity*20);
-
-	#var old_velocity := Vector2(velocity);
-	
-	
-	#if(move_and_slide()):
-		#push_others(old_velocity);
-#
-#func push_others(old_velocity: Vector2) -> void:
-	#for i: int in get_slide_collision_count():
-		#var collision := get_slide_collision(i);
-		#if(!collision.get_collider() is CharacterController):
-			#continue;
-		#
-		#var push := collision.get_normal();
-		#push.x *= -abs(old_velocity.x);
-		#push.y *= -abs(old_velocity.y);
-		#
-		#collision.get_collider().velocity += push;
-		#velocity -= push * push_force;
+		debug_label.text = "Speed: {speed}".format({ "speed": (speed*60) });
 
 func has_ability(ability: Ability) -> bool:
 	return abilities.has(ability);
