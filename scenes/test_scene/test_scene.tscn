@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://fwku6cfxi0x3"]
 
 [ext_resource type="Texture2D" uid="uid://bsbo7cx7msim6" path="res://sprites/scenes/test_scene/test_background.png" id="1_1x7oe"]
-[ext_resource type="PackedScene" uid="uid://c6u55pubjdb5y" path="res://objects/characters/playable/CharacterController.tscn" id="3_1x7oe"]
+[ext_resource type="PackedScene" uid="uid://c6u55pubjdb5y" path="res://objects/characters/playable/character_controller.tscn" id="3_1x7oe"]
 [ext_resource type="AudioStream" uid="uid://cfp5h45sal368" path="res://music/misc/mkwrosa.mp3" id="3_wgdak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3gy2"]

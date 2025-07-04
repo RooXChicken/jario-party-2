@@ -27,6 +27,14 @@ anti_aliasing = false
 
 [resource]
 default_font = ExtResource("1_wj2hj")
+Label/colors/font_shadow_color = Color(0.0980392, 0.0980392, 0.0980392, 0.705882)
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 3
+Label/font_sizes/font_size = 30
+RichTextLabel/colors/font_shadow_color = Color(0.0980392, 0.0980392, 0.0980392, 0.705882)
+RichTextLabel/constants/shadow_offset_x = 1
+RichTextLabel/constants/shadow_offset_y = 3
+RichTextLabel/font_sizes/normal_font_size = 30
 TabContainer/colors/font_hovered_color = Color(0.521138, 0.521141, 0.521141, 1)
 TabContainer/colors/font_selected_color = Color(0.95, 0.95, 0.95, 1)
 TabContainer/colors/font_unselected_color = Color(0, 0, 0, 1)

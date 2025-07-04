@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://d287o2ysl1owm"]
+
+[ext_resource type="Script" uid="uid://ch24os4fd8o7n" path="res://objects/root/minigames/minigame.gd" id="1_s2oru"]
+
+[node name="JumpRope" type="Node2D"]
+script = ExtResource("1_s2oru")
+win_type = 2
+
+[node name="SpawnPoint0" type="Node2D" parent="."]
+position = Vector2(10, 0)
+
+[node name="SpawnPoint1" type="Node2D" parent="."]
+position = Vector2(20, 0)
+
+[node name="SpawnPoint2" type="Node2D" parent="."]
+position = Vector2(30, 0)
+
+[node name="SpawnPoint3" type="Node2D" parent="."]
+position = Vector2(40, 0)

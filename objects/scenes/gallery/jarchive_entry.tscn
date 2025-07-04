@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://mndu3ilsrkpi"]
+
+[ext_resource type="Theme" uid="uid://bcuw0mka8mj25" path="res://gui_theme.tres" id="1_hccqw"]
+[ext_resource type="Texture2D" uid="uid://c7rxm2f1iamd5" path="res://sprites/gui/Copy of The Jarchive-01.png" id="2_24qb2"]
+[ext_resource type="Texture2D" uid="uid://p3o6bd6ulb8n" path="res://sprites/scenes/gallery/jarchive_jario.png" id="3_24qb2"]
+
+[node name="JarchiveEntry" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+
+[node name="Name" type="RichTextLabel" parent="."]
+offset_left = 28.0
+offset_top = 8.0
+offset_right = 273.0
+offset_bottom = 37.0
+theme = ExtResource("1_hccqw")
+theme_override_colors/default_color = Color(0.329158, 0.329158, 0.329158, 1)
+theme_override_colors/font_shadow_color = Color(0.662452, 0.662452, 0.662452, 0.215686)
+theme_override_font_sizes/normal_font_size = 24
+bbcode_enabled = true
+text = "Jario"
+
+[node name="SpokenFont" type="RichTextLabel" parent="."]
+offset_left = 431.0
+offset_top = 6.0
+offset_right = 632.0
+offset_bottom = 49.0
+theme = ExtResource("1_hccqw")
+theme_override_colors/default_color = Color(0.329158, 0.329158, 0.329158, 1)
+theme_override_colors/font_shadow_color = Color(0.662452, 0.662452, 0.662452, 0.215686)
+theme_override_font_sizes/normal_font_size = 17
+bbcode_enabled = true
+text = "Spoken Font
+[font name=\"res://fonts/Comic Sans MS.ttf\"]Comic Sans MS[/font]"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 2
+
+[node name="Description" type="RichTextLabel" parent="."]
+offset_left = 227.0
+offset_top = 49.0
+offset_right = 553.0
+offset_bottom = 357.0
+theme = ExtResource("1_hccqw")
+theme_override_colors/default_color = Color(0.329158, 0.329158, 0.329158, 1)
+theme_override_colors/font_shadow_color = Color(0.662452, 0.662452, 0.662452, 0.215686)
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "Real Name: Jario Jario
+Birthday: September 22nd, 1987
+Height: 5'10\"
+
+FACTS
+[ul]
+ Is able to long jump in any direction (even up)
+ Probably doesn't shower
+ Prefers Coca-Cola
+ Finds mushrooms disgusting
+ Doesn't pay taxes, taxes pay him
+ Most skilled balleyball player
+ #JarioOnTop
+[/ul]"
+
+[node name="CharacterSprite" type="Sprite2D" parent="."]
+position = Vector2(113.5, 183.5)
+scale = Vector2(0.522857, 0.52214)
+texture = ExtResource("3_24qb2")
+
+[node name="Template" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(1, 1, 1, 0.192157)
+scale = Vector2(0.32, 0.32)
+texture = ExtResource("2_24qb2")
+centered = false
+metadata/_edit_lock_ = true
