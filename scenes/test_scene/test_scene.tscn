@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://fwku6cfxi0x3"]
 
 [ext_resource type="Texture2D" uid="uid://bsbo7cx7msim6" path="res://sprites/scenes/test_scene/test_background.png" id="1_1x7oe"]
-[ext_resource type="PackedScene" uid="uid://cday7g27f6nfc" path="res://objects/characters/playable/CharacterController.tscn" id="3_1x7oe"]
+[ext_resource type="PackedScene" path="res://objects/characters/playable/CharacterController.tscn" id="3_1x7oe"]
 [ext_resource type="AudioStream" uid="uid://cfp5h45sal368" path="res://music/misc/mkwrosa.mp3" id="3_wgdak"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k3gy2"]
@@ -42,6 +42,7 @@ controller_index = 1
 [node name="CharacterController3" parent="." instance=ExtResource("3_1x7oe")]
 position = Vector2(210, 261)
 character = 2
+dense = true
 abilities = Array[int]([0, 1, 2, 3])
 
 [node name="CharacterController4" parent="." instance=ExtResource("3_1x7oe")]
