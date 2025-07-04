@@ -50,6 +50,7 @@ position = Vector2(0, 22.5)
 texture = ExtResource("2_8yfxs")
 
 [node name="CharacterSprite" type="AnimatedSprite2D" parent="."]
+z_index = 1
 y_sort_enabled = true
 sprite_frames = ExtResource("4_gnmej")
 animation = &"long_idle"

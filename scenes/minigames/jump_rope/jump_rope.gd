@@ -23,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	for i in range(0, 13):
 		var fire: Node2D = get_node("Flames/Flame" + str(i+1));
 		fire.position.y = sample * heights[i];
-		fire.z_index = 1 if sample_time < 0.5 else 0;
+		fire.z_index = 2 if sample_time < 0.5 else 1;
 		
 		if(sample_time > 0.42 && sample_time < 0.58):
 			fire.modulate.r = fire_red;
