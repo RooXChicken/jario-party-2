@@ -42,7 +42,7 @@ var dir := "down";
 var jump_sound := "character_playable_jump";
 
 const jump_height := -6.0;
-const gravity_speed := 0.4;
+const gravity_speed := 0.35;
 const max_fall_speed := 320.0;
 
 const joy_steps := 8;
