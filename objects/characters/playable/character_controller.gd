@@ -122,7 +122,7 @@ func animate(state: String, joy_axis: Vector2, speed: float):
 			pass;
 	
 	set_anim(state + "_" + dir);
-	sprite.speed_scale = speed;
+	sprite.speed_scale = speed * 1.3;
 
 func move() -> void:
 	if(has_ability(Ability.Y_MOVEMENT)):
