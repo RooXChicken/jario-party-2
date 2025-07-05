@@ -1,35 +1,15 @@
-[gd_scene load_steps=20 format=3 uid="uid://c5q4j8gnrcue5"]
+[gd_scene load_steps=18 format=3 uid="uid://c5q4j8gnrcue5"]
 
 [ext_resource type="Texture2D" uid="uid://c5mcmk07mex4g" path="res://sprites/scenes/title_screen/spr_splash_text.png" id="1_kfsxx"]
 [ext_resource type="Script" uid="uid://pobylav4it12" path="res://objects/root/state_machine/state_machine.gd" id="2_nysha"]
-[ext_resource type="AudioStream" uid="uid://wfdvbux60tbq" path="res://music/title_screen_intro.wav" id="2_w0w5n"]
 [ext_resource type="Shader" uid="uid://d0m412wp2cq5s" path="res://shaders/title_screen/bg_scroll.gdshader" id="3_dhp8x"]
 [ext_resource type="Script" uid="uid://djga40eua03kp" path="res://scenes/title_screen/states/logo_state.gd" id="3_f301b"]
 [ext_resource type="Shader" uid="uid://dihdccv4su1k6" path="res://shaders/title_screen/logo_shine.gdshader" id="3_trvis"]
-[ext_resource type="AudioStream" uid="uid://btv2ohbpn23i3" path="res://music/title_screen_loop.wav" id="3_v774u"]
 [ext_resource type="Script" uid="uid://ufoykkv6q7ae" path="res://scenes/title_screen/states/title_screen_state.gd" id="4_f301b"]
 [ext_resource type="Texture2D" uid="uid://bl4luc6ufja47" path="res://sprites/scenes/title_screen/title_screen_bg.png" id="4_je1yw"]
 [ext_resource type="Texture2D" uid="uid://bjdgysowgl60f" path="res://sprites/scenes/title_screen/jp2logo_small.png" id="7_80bjg"]
 [ext_resource type="PackedScene" uid="uid://cm003mc4wqrt1" path="res://objects/gui/button_prompts/button_prompt.tscn" id="10_4ewj2"]
-
-[sub_resource type="AudioStreamInteractive" id="AudioStreamInteractive_vsqa0"]
-clip_count = 2
-clip_0/name = &"Title Screen Intro"
-clip_0/stream = ExtResource("2_w0w5n")
-clip_0/auto_advance = 1
-clip_0/next_clip = 1
-clip_1/name = &"Title Screen Loop"
-clip_1/stream = ExtResource("3_v774u")
-clip_1/auto_advance = 1
-clip_1/next_clip = 1
-_transitions = {
-Vector2i(0, 1): {
-"fade_beats": 1.0,
-"fade_mode": 0,
-"from_time": 0,
-"to_time": 0
-}
-}
+[ext_resource type="AudioStream" uid="uid://dsh1pyxabrsw7" path="res://music/title_screen.mp3" id="10_ju3lf"]
 
 [sub_resource type="Animation" id="Animation_bdxlg"]
 length = 0.001
@@ -120,19 +100,19 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("../TitleTheme:playing")
+tracks/7/path = NodePath("../BGScroll:modulate")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("../BGScroll:modulate")
+tracks/8/path = NodePath("../ButtonPrompt:modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -144,14 +124,14 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("../ButtonPrompt:modulate")
+tracks/9/path = NodePath("../AudioStreamPlayer:playing")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 0)]
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_s3x4k"]
@@ -249,52 +229,52 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("../TitleTheme:playing")
+tracks/6/path = NodePath("../BGScroll:modulate")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(-0.0333333, 2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("../BGScroll:modulate")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
 "times": PackedFloat32Array(3.1, 4.36667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("../ButtonPrompt:modulate")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("../ButtonPrompt:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
 "times": PackedFloat32Array(6.66667, 7.36667),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
-tracks/9/type = "method"
-tracks/9/imported = false
-tracks/9/enabled = true
-tracks/9/path = NodePath("../StateMachine")
-tracks/9/interp = 1
-tracks/9/loop_wrap = true
-tracks/9/keys = {
+tracks/8/type = "method"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("../StateMachine")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
 "times": PackedFloat32Array(2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": ["TitleScreen", {}],
 "method": &"set_state"
 }]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("../AudioStreamPlayer:playing")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_knovq"]
@@ -328,10 +308,6 @@ anim = NodePath("../../AnimationPlayer")
 [node name="TitleScreen" type="Node" parent="StateMachine" node_paths=PackedStringArray("anim")]
 script = ExtResource("4_f301b")
 anim = NodePath("../../AnimationPlayer")
-
-[node name="TitleTheme" type="AudioStreamPlayer2D" parent="."]
-stream = SubResource("AudioStreamInteractive_vsqa0")
-bus = &"Music"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../SplashSprite")
@@ -372,3 +348,8 @@ texture = ExtResource("7_80bjg")
 [node name="ButtonPrompt" parent="." instance=ExtResource("10_4ewj2")]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(12, 314)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_ju3lf")
+bus = &"Music"
+parameters/looping = true

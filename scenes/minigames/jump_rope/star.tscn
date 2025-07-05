@@ -1,0 +1,64 @@
+[gd_scene load_steps=9 format=3 uid="uid://m12p284gy3dd"]
+
+[ext_resource type="Texture2D" uid="uid://c3ed1ypc5v0l5" path="res://sprites/scenes/minigames/jump_rope/star.png" id="1_m7xwj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uma7x"]
+atlas = ExtResource("1_m7xwj")
+region = Rect2(0, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ccqre"]
+atlas = ExtResource("1_m7xwj")
+region = Rect2(7, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xgshr"]
+atlas = ExtResource("1_m7xwj")
+region = Rect2(14, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0s8h7"]
+atlas = ExtResource("1_m7xwj")
+region = Rect2(21, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ug1wk"]
+atlas = ExtResource("1_m7xwj")
+region = Rect2(28, 0, 7, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbqqs"]
+atlas = ExtResource("1_m7xwj")
+region = Rect2(35, 0, 7, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7jamx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uma7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ccqre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xgshr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0s8h7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ug1wk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbqqs")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="Star" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7jamx")
+autoplay = "default"
+frame = 6
+frame_progress = 1.0

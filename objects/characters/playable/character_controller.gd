@@ -22,6 +22,9 @@ enum Ability {
 		get_character_data();
 		set_sprite_frames();
 
+@onready var state_machine: StateMachine = $StateMachine;
+@onready var anim: AnimationPlayer = $AnimationPlayer;
+
 var player_data: PlayerData;
 var character_data: CharacterData;
 
@@ -74,8 +77,8 @@ func _ready() -> void:
 		set_anim("walk_down");
 		sprite.speed_scale = 0.0;
 		
-		SoundManager.load_sound("character_playable_jump", "res://sounds/characters/playable/player_jump.wav", 6);
-		SoundManager.load_sound("character_playable_jump_GIRLY", "res://sounds/characters/playable/player_jump_GIRLY.wav", 6);
+		SoundManager.load_sound("character_playable_jump", "res://sounds/characters/playable/jump.wav", 6);
+		SoundManager.load_sound("character_playable_jump_GIRLY", "res://sounds/characters/playable/jump_GIRLY.wav", 6);
 		
 		if(character == Globals.CharacterType.GRAPEJUICE):
 			jump_sound = "character_playable_jump_GIRLY";
@@ -159,5 +162,16 @@ func move() -> void:
 	if(has_ability(Ability.DEBUG)):
 		debug_label.text = "Speed: {speed}".format({ "speed": (speed*60) });
 
+func try_jump(delta: float) -> bool:
+	if(Input.is_joy_button_pressed(controller_index, JOY_BUTTON_A) && y <= 0 && has_ability(CharacterController.Ability.JUMP)):
+		state_machine.set_state("Jumping", {}, StateMachine.TickNextState.PHYS_UPDATE, delta);
+		return true;
+	
+	return false;
+
 func has_ability(ability: Ability) -> bool:
 	return abilities.has(ability);
+
+func play_out() -> void:
+	var out_text: Node2D = load("res://objects/characters/playable/out_text.tscn").instantiate();
+	add_child(out_text);

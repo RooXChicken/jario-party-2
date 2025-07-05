@@ -12,9 +12,7 @@ var time := 0.0;
 var speed := 0.6;
 
 func _ready() -> void:
-	#for i in range(0, 13):
-		#(get_node("Flames/Flame" + str(i+1) + "/Sprite") as AnimatedSprite2D).speed_scale = 0.6 + (randf()*0.4);
-	
+	SoundManager.load_sound("character_playable_star", "res://sounds/characters/playable/star.wav", 8);
 	spawn_players();
 
 func _physics_process(delta: float) -> void:
@@ -22,17 +20,25 @@ func _physics_process(delta: float) -> void:
 	var sample := (flame_curve.sample(sample_time) - 0.5) * 2;
 	var size := size_curve.sample(sample_time);
 	
+	var burning := (sample_time > 0.42 && sample_time < 0.58);
+	
 	for i in range(0, 13):
 		var fire: Node2D = get_node("Flames/Flame" + str(i+1));
 		fire.position.y = sample * heights[i];
 		fire.scale = Vector2(size, size);
 		
 		fire.z_index = 2 if sample_time < 0.5 else 1;
-		
-		if(sample_time > 0.42 && sample_time < 0.58):
-			fire.modulate.r = fire_red;
-		else:
-			fire.modulate.r = 1.0;
+		fire.modulate.r = fire_red if (burning) else 1.0;
+	
+	if(burning):
+		for player in $Characters.get_children():
+			if(!(player is CharacterController) || player.state_machine.state.name == "Burnt"):
+				continue;
+			
+			if(player.y > -6):
+				player.state_machine.set_state("Burnt");
 	
 	time += delta * speed;
 	speed += speed_mult * delta;
+	
+	$Music.pitch_scale = (speed/10) + 0.94;

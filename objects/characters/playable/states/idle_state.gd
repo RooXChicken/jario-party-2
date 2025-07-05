@@ -7,8 +7,7 @@ func enter(previous_state: String, data: Dictionary = {}) -> void:
 	idle_timer = 0.0;
 
 func phys_update(delta: float) -> void:
-	if(Input.is_joy_button_pressed(player.controller_index, JOY_BUTTON_A) && player.y <= 0 && player.has_ability(CharacterController.Ability.JUMP)):
-		state_machine.set_state("Jumping", {}, StateMachine.TickNextState.PHYS_UPDATE, delta);
+	if(player.try_jump(delta)):
 		return;
 	
 	var joy_axis := player.get_joy();

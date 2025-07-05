@@ -1,6 +1,7 @@
-[gd_resource type="SpriteFrames" load_steps=36 format=3 uid="uid://de4yncbo4nf24"]
+[gd_resource type="SpriteFrames" load_steps=40 format=3 uid="uid://de4yncbo4nf24"]
 
 [ext_resource type="Texture2D" uid="uid://cxbb3kbuvfrwn" path="res://sprites/objects/characters/playable/jario/jario_walk_down.png" id="1_gx701"]
+[ext_resource type="Texture2D" uid="uid://d4ntmq2h140t1" path="res://sprites/objects/characters/playable/jario/jario_burn.png" id="1_vclqm"]
 [ext_resource type="Texture2D" uid="uid://h51cncxkiu7n" path="res://sprites/objects/characters/playable/jario/jario_idle.png" id="2_7v2wq"]
 [ext_resource type="Texture2D" uid="uid://dsavkpcvbpkgc" path="res://sprites/objects/characters/playable/jario/jario_jump_down.png" id="2_762sq"]
 [ext_resource type="Texture2D" uid="uid://ccpjxap737hat" path="res://sprites/objects/characters/playable/jario/jario_walk_side.png" id="2_eu84l"]
@@ -8,6 +9,18 @@
 [ext_resource type="Texture2D" uid="uid://fgkjn0hafstn" path="res://sprites/objects/characters/playable/jario/portrait.png" id="3_2w3o5"]
 [ext_resource type="Texture2D" uid="uid://blio474nu1wfn" path="res://sprites/objects/characters/playable/jario/jario_walk_up.png" id="3_a375s"]
 [ext_resource type="Texture2D" uid="uid://dhx2itm5bot8t" path="res://sprites/objects/characters/playable/jario/jario_jump_up.png" id="3_gntpa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxyfo"]
+atlas = ExtResource("1_vclqm")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ij237"]
+atlas = ExtResource("1_vclqm")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yjyjb"]
+atlas = ExtResource("1_vclqm")
+region = Rect2(0, 48, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oln7v"]
 atlas = ExtResource("2_762sq")
@@ -119,6 +132,20 @@ region = Rect2(96, 0, 32, 48)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxyfo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ij237")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yjyjb")
+}],
+"loop": true,
+"name": &"burnt",
+"speed": 8.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_oln7v")
