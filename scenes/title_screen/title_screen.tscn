@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://c5mcmk07mex4g" path="res://sprites/scenes/title_screen/spr_splash_text.png" id="1_kfsxx"]
 [ext_resource type="Script" uid="uid://pobylav4it12" path="res://objects/root/state_machine/state_machine.gd" id="2_nysha"]
 [ext_resource type="AudioStream" uid="uid://wfdvbux60tbq" path="res://music/title_screen_intro.wav" id="2_w0w5n"]
-[ext_resource type="Texture2D" uid="uid://280g5hty6bcn" path="res://sprites/scenes/title_screen/spr_jarioparty1_HD.png" id="2_wd4i1"]
 [ext_resource type="Shader" uid="uid://d0m412wp2cq5s" path="res://shaders/title_screen/bg_scroll.gdshader" id="3_dhp8x"]
 [ext_resource type="Script" uid="uid://djga40eua03kp" path="res://scenes/title_screen/states/logo_state.gd" id="3_f301b"]
 [ext_resource type="Shader" uid="uid://dihdccv4su1k6" path="res://shaders/title_screen/logo_shine.gdshader" id="3_trvis"]
@@ -310,6 +309,9 @@ shader = ExtResource("3_dhp8x")
 shader_parameter/speed = 0.05
 shader_parameter/verticalMovement = false
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xetrx"]
+load_path = "res://.godot/imported/spr_jarioparty1_HD.png-7a60b6747b6616d1f96a2a81b9e470f6.ctex"
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ugtuq"]
 shader = ExtResource("3_trvis")
 
@@ -360,7 +362,7 @@ texture = ExtResource("1_kfsxx")
 [node name="BackgroundSprite" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(320, 520)
-texture = ExtResource("2_wd4i1")
+texture = SubResource("CompressedTexture2D_xetrx")
 
 [node name="LogoSprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_ugtuq")
