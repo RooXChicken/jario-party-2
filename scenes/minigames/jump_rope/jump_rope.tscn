@@ -1,14 +1,14 @@
 [gd_scene load_steps=8 format=3 uid="uid://d287o2ysl1owm"]
 
 [ext_resource type="Script" uid="uid://iia8kuyu1rf3" path="res://scenes/minigames/jump_rope/jump_rope.gd" id="1_w70a0"]
-[ext_resource type="PackedScene" uid="uid://krf8b1k18unq" path="res://scenes/minigames/jump_rope/flame.tscn" id="2_1s3dm"]
+[ext_resource type="PackedScene" path="res://scenes/minigames/jump_rope/flame.tscn" id="2_1s3dm"]
 
 [sub_resource type="Curve" id="Curve_w70a0"]
 _data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.44, 0.97), 1.19427, 1.19427, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(0.56, 0.97), -1.5424, -1.5424, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 5
 
 [sub_resource type="Curve" id="Curve_1s3dm"]
-_data = [Vector2(0, 0.9), 0.0, 0.8, 0, 1, Vector2(0.25, 1.1), 0.0, 0.0, 0, 0, Vector2(0.5, 0.9), 0.0, 0.0, 0, 0, Vector2(0.75, 0.8), 0.0, 0.0, 0, 0, Vector2(1, 0.9), 0.4, 0.0, 1, 0]
+_data = [Vector2(0, 0.9), 0.0, 0.8, 0, 1, Vector2(0.25, 1.1), 0.0, 0.0, 0, 0, Vector2(0.5, 1), 0.0, 0.0, 0, 0, Vector2(0.75, 0.8), 0.0, 0.0, 0, 0, Vector2(1, 0.9), 0.4, 0.0, 1, 0]
 point_count = 5
 
 [sub_resource type="Animation" id="Animation_257kv"]

@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=19 format=3 uid="uid://cdhcg4jjwsvcm"]
+[gd_resource type="SpriteFrames" load_steps=20 format=3 uid="uid://cdhcg4jjwsvcm"]
 
 [ext_resource type="Texture2D" uid="uid://cjulreu3dpt8x" path="res://sprites/objects/characters/playable/wooigi/wooigi_stand.png" id="1_wcecy"]
 [ext_resource type="Texture2D" uid="uid://crgyhdphbhqxq" path="res://sprites/objects/characters/playable/wooigi/wooigi_portrait.png" id="2_fpajk"]
@@ -14,15 +14,19 @@ region = Rect2(0, 0, 32, 48)
 atlas = ExtResource("2_fpajk")
 region = Rect2(0, 0, 60, 60)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fu7s8"]
-atlas = ExtResource("1_wcecy")
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcq7t"]
+atlas = ExtResource("3_emqdn")
 region = Rect2(0, 0, 32, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_00ihw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rm4jj"]
 atlas = ExtResource("3_emqdn")
 region = Rect2(32, 0, 32, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kxf47"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y82gn"]
+atlas = ExtResource("3_emqdn")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pv3vy"]
 atlas = ExtResource("3_emqdn")
 region = Rect2(96, 0, 32, 48)
 
@@ -93,16 +97,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fu7s8")
+"texture": SubResource("AtlasTexture_vcq7t")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_00ihw")
+"texture": SubResource("AtlasTexture_rm4jj")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_fu7s8")
+"texture": SubResource("AtlasTexture_y82gn")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kxf47")
+"texture": SubResource("AtlasTexture_pv3vy")
 }],
 "loop": true,
 "name": &"walk_down",
