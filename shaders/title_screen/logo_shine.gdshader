@@ -10,6 +10,7 @@ void fragment() {
 		slide = (TIME - floor(TIME))*1.1;
 	}
 
-	if(uvX < slide && uvX > slide - 0.05)
+	if(uvX < slide && uvX > slide - 0.05) {
 		COLOR.rgb *= 1.2; // make it
+	}
 }

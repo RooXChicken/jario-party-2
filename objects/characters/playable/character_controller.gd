@@ -6,7 +6,7 @@ enum Ability {
 	MOVE,
 	JUMP,
 	Y_MOVEMENT,
-	DEBUG
+	DEBUG,
 }
 
 @export_category("References")
@@ -44,8 +44,13 @@ var y_velocity := 0.0;
 var dir := "down";
 var jump_sound := "character_playable_jump";
 
-const jump_height := -6.0;
-const gravity_speed := 0.35;
+var jump_pressed := false;
+var jump_time := 0.0;
+
+@export_category("Jump")
+@export var jump_buffer := 0.1;
+@export var jump_height := -6.0;
+@export var gravity_speed := 0.35;
 const max_fall_speed := 320.0;
 
 const joy_steps := 8;
@@ -82,6 +87,21 @@ func _ready() -> void:
 		
 		if(character == Globals.CharacterType.GRAPEJUICE):
 			jump_sound = "character_playable_jump_GIRLY";
+
+func _process(delta: float) -> void:
+	if(Engine.is_editor_hint()):
+		return;
+	
+	var jump_state := Input.is_joy_button_pressed(controller_index, JOY_BUTTON_A);
+	
+	if(!jump_pressed && jump_state):
+		jump_pressed = true;
+		jump_time = jump_buffer;
+	elif(jump_pressed && !jump_state):
+		jump_pressed = false;
+	
+	if(jump_time > 0):
+		jump_time = jump_time - delta;
 
 func set_sprite_frames() -> void:
 	if(sprite == null):
@@ -163,7 +183,7 @@ func move() -> void:
 		debug_label.text = "Speed: {speed}".format({ "speed": (speed*60) });
 
 func try_jump(delta: float) -> bool:
-	if(Input.is_joy_button_pressed(controller_index, JOY_BUTTON_A) && y <= 0 && has_ability(CharacterController.Ability.JUMP)):
+	if(jump_time > 0 && y <= 0 && has_ability(CharacterController.Ability.JUMP)):
 		state_machine.set_state("Jumping", {}, StateMachine.TickNextState.PHYS_UPDATE, delta);
 		return true;
 	

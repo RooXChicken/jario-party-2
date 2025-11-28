@@ -5,10 +5,10 @@ enum CharacterType {
 	JARIO,
 	WOOIGI,
 	GRAPEJUICE,
-	JOSH
+	JOSH,
 }
 
-static var Characters = {
+static var Characters := {
 	CharacterType.JARIO:
 		CharacterData.new("Jario", "res://sprites/objects/characters/playable/jario_sprites.tres", Color.WHITE),
 	CharacterType.WOOIGI:

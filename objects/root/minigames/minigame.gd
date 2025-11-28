@@ -5,7 +5,7 @@ enum Mode {
 	TIMER,
 	LAST_PLAYER,
 	TIMED_LAST_PLAYER,
-	CUSTOM
+	CUSTOM,
 }
 
 @export_category("Minigame Paramaters")
